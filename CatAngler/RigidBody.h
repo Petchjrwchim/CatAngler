@@ -40,12 +40,12 @@ public:
 
 	void update(float dt) {
 		m_Acceleration.X = (m_Force.X + m_Friction.X) / m_Mass;
-		m_Acceleration.Y = m_Gravity + m_Force.Y / m_Mass;
+		m_Acceleration.Y = (m_Force.Y + m_Friction.Y) / m_Mass;
 		m_Velocity.X = m_Acceleration.X * dt;
 		m_Velocity.Y = m_Acceleration.Y * dt;
 		m_Position.X = m_Velocity.X * dt;
 		m_Position.Y = m_Velocity.Y * dt;
-		SDL_Log("%f, %f", dt, m_Position.X);
+		//SDL_Log("%f, %f", dt, m_Position.X);
 	}
 
 	private:

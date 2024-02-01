@@ -40,7 +40,6 @@ bool Engine::init()
 	player = new Cat(new Properties("player", SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2, 32, 32));
 
 	Transform tf;
-	tf.log();
 
 	return m_IsRunning = true;
 }
@@ -62,6 +61,7 @@ void Engine::quit()
 
 void Engine::update()
 {
+
 	float dt = Timer::GetInstance()->getDeltaTime();
 	player->update(dt);
 }
