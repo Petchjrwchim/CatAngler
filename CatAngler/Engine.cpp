@@ -1,10 +1,11 @@
+#include <iostream>
+
 #include "Engine.h"
 #include "TextureManager.h"
 #include "Transform.h"
 #include "Input.h"
 #include "Timer.h"
-#include <iostream>
-
+#include "MapParser.h"
 #include "Cat.h"
 
 Engine* Engine::s_Instance = nullptr;
@@ -33,6 +34,14 @@ bool Engine::init()
 		SDL_Log("Failed to create Renderer: %s", SDL_GetError());
 		return false;
 	}
+
+	/*if (MapParser::GetInstance()->load()) {
+		std::cout << "Failed to load map" << std::endl;
+	}
+
+	m_Map = MapParser::GetInstance()->getMaps("map");*/
+
+	MapParser::GetInstance()->LoadMap("assets\\images\\map.tmx");
 
 	TextureManager::GetInstance()->load("player_run", "assets\\images\\cat.png");
 	TextureManager::GetInstance()->load("player", "assets\\images\\cat_idle.png");
