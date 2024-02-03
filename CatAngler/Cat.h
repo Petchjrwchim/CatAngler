@@ -1,8 +1,10 @@
 #ifndef CAT.H
 
 #include "Character.h"
+#include "Collider.h"
 #include "Animation.h"
 #include "RigidBody.h"
+#include "Vector2D.h"
 
 class Cat: public Character{
 	public:
@@ -14,8 +16,10 @@ class Cat: public Character{
 
 	private:
 
+		Collider* m_Collider;
 		Animation* m_Aimation;
 		RigidBody* m_RigidBody;
+		Vector2D m_LastSafePosition;
 };
 
 #endif // !CAT.H

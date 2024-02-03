@@ -4,8 +4,8 @@
 
 #include <string>
 #include "SDL.h"
-#include "SDL.h"
 #include "SDL_Image.h"
+#include "Camera.h"
 #include <map>
 
 class TextureManager
@@ -20,7 +20,7 @@ class TextureManager
 		void clean();
 
 		void draw(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip=SDL_FLIP_NONE);
-		void drawTile(std::string tilesetID, int tilesize, int x, int y, int row, int frame, SDL_RendererFlip flip = SDL_FLIP_NONE);
+		void drawTile(std::string tilesetID, int tilesize, int x, int y, int row, int frame,  int scaledWidth, int scaledHeight, SDL_RendererFlip flip = SDL_FLIP_NONE );
 		void drawFrame(std::string id, int x, int y, int width, int height, int row, int frame, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	private:

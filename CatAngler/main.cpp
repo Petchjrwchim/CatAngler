@@ -1,194 +1,132 @@
-//#include <iostream>
-//#include "SDL.h"
-//#include "Engine.h"
-//#include "Timer.h"
-//
-//using namespace std;
-//
-//int main(int argc, char* args[]) {
-//
-//	Engine::GetInstance()->init();
-//
-//	while (Engine::GetInstance()->IsRunning()) {
-//		Engine::GetInstance()->event();
-//		Engine::GetInstance()->update();
-//		Engine::GetInstance()->render();
-//		Timer::GetInstance()->Tick();
-//
-//	}
-//
-//	Engine::GetInstance()->clean();
-//	return 0;
-//}
-#include <SDL.h>
-#include <SDL_image.h>
-#include "tinyxml.h"
 #include <iostream>
-#include <string>
-#include <vector>
+#include "SDL.h"
+#include "Engine.h"
+#include "Timer.h"
 
-// Define the screen dimension constants
-const int SCREEN_WIDTH = 840;
-const int SCREEN_HEIGHT = 680;
+using namespace std;
 
-// Tile texture
-struct TileTexture {
-    SDL_Texture* texture;
-    int width, height;
-};
+int main(int argc, char* args[]) {
 
-// Initialize SDL and global variables
-SDL_Window* gWindow = nullptr;
-SDL_Renderer* gRenderer = nullptr;
+	Engine::GetInstance()->init();
 
-bool init() {
-    // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
-        return false;
-    }
+	while (Engine::GetInstance()->IsRunning()) {
+		Engine::GetInstance()->event();
+		Engine::GetInstance()->update();
+		Engine::GetInstance()->render();
+		Timer::GetInstance()->Tick();
 
-    // Create window
-    gWindow = SDL_CreateWindow("TMX Map Display", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-    if (gWindow == nullptr) {
-        std::cout << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
-        return false;
-    }
+	}
 
-    // Create renderer for window
-    gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
-    if (gRenderer == nullptr) {
-        std::cout << "Renderer could not be created! SDL Error: " << SDL_GetError() << std::endl;
-        return false;
-    }
-
-    // Initialize PNG loading
-    int imgFlags = IMG_INIT_PNG;
-    if (!(IMG_Init(imgFlags) & imgFlags)) {
-        std::cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << std::endl;
-        return false;
-    }
-
-    return true;
+	Engine::GetInstance()->clean();
+	return 0;
 }
-
-void close() {
-    // Destroy window
-    SDL_DestroyRenderer(gRenderer);
-    SDL_DestroyWindow(gWindow);
-    gWindow = nullptr;
-    gRenderer = nullptr;
-
-    // Quit SDL subsystems
-    IMG_Quit();
-    SDL_Quit();
-}
-
-SDL_Texture* loadTexture(std::string path) {
-    // The final texture
-    SDL_Texture* newTexture = nullptr;
-
-    // Load image at specified path
-    SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-    if (loadedSurface == nullptr) {
-        std::cout << "Unable to load image " << path << "! SDL_image Error: " << IMG_GetError() << std::endl;
-    }
-    else {
-        // Create texture from surface pixels
-        newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
-        if (newTexture == nullptr) {
-            std::cout << "Unable to create texture from " << path << "! SDL Error: " << SDL_GetError() << std::endl;
-        }
-
-        // Get rid of old loaded surface
-        SDL_FreeSurface(loadedSurface);
-    }
-
-    return newTexture;
-}
-
-// Function to load the TMX file and textures
-bool loadMedia(TileTexture& tileTexture, const std::string& tmxFilePath) {
-    // Load TMX file
-    TiXmlDocument doc(tmxFilePath.c_str());
-    if (!doc.LoadFile()) {
-        std::cout << "Could not load TMX file!" << std::endl;
-        return false;
-    }
-
-    // Assume a single tileset for simplicity
-    TiXmlElement* tilesetElement = doc.FirstChildElement("map")->FirstChildElement("tileset");
-    std::string imageSource = tilesetElement->FirstChildElement("image")->Attribute("source");
-
-    // Load texture
-    tileTexture.texture = loadTexture(imageSource);
-    if (tileTexture.texture == nullptr) {
-        std::cout << "Failed to load tileset texture!" << std::endl;
-        return false;
-    }
-
-    // Assume each tile is 32x32 for simplicity
-    tileTexture.width = 16;
-    tileTexture.height = 16;
-
-    return true;
-}
-
-// Function to render the map
-void renderMap(TileTexture& tileTexture) {
-    // Clear screen
-    SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(gRenderer);
-
-    // Assuming the map is 30 tiles wide and 20 tiles high
-    for (int y = 0; y < 20; ++y) {
-        for (int x = 0; x < 30; ++x) {
-            SDL_Rect srcRect = { 0, 0, tileTexture.width, tileTexture.height }; // Assuming the tile you want to draw is the first one
-            SDL_Rect dstRect = { x * tileTexture.width, y * tileTexture.height, tileTexture.width, tileTexture.height };
-            SDL_RenderCopy(gRenderer, tileTexture.texture, &srcRect, &dstRect);
-        }
-    }
-
-    // Update screen
-    SDL_RenderPresent(gRenderer);
-}
-
-int main(int argc, char* argv[]) {
-    if (!init()) {
-        std::cout << "Failed to initialize!" << std::endl;
-        return -1; // Initialization failed
-    }
-
-    // Load media
-    TileTexture tileTexture;
-    if (!loadMedia(tileTexture, "assets/images/map.tmx")) {
-        std::cout << "Failed to load media!" << std::endl;
-        close(); // Ensure resources are cleaned up
-        return -1;
-    }
-
-    // Main loop flag
-    bool quit = false;
-
-    // Event handler
-    SDL_Event e;
-
-    // While application is running
-    while (!quit) {
-        // Handle events on queue
-        while (SDL_PollEvent(&e) != 0) {
-            // User requests quit
-            if (e.type == SDL_QUIT) {
-                quit = true;
-            }
-        }
-
-        // Render map
-        renderMap(tileTexture);
-    }
-
-    // Free resources and close SDL
-    close();
-
-    return 0;
-}
+//#include <SDL.h>
+//#include "tileson.hpp"
+//#include <iostream>
+//#include <filesystem>
+//#include <SDL_Image.h>
+//namespace fs = std::filesystem;
+//
+//// Function to load an SDL_Texture from a file
+//SDL_Texture* loadTexture(std::string path, SDL_Renderer* renderer) {
+//    SDL_Surface* surface = IMG_Load(path.c_str()); // Use IMG_Load instead of SDL_LoadBMP
+//    if (!surface) {
+//        std::cout << "Error loading surface: " << IMG_GetError() << std::endl; // Use IMG_GetError() to get the error message
+//        return nullptr;
+//    }
+//    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+//    SDL_FreeSurface(surface);
+//    if (!texture) {
+//        std::cout << "Error creating texture: " << SDL_GetError() << std::endl;
+//    }
+//    return texture;
+//}
+//
+//int main(int argc, char* argv[]) {
+//    // Initialize SDL
+//    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+//        std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
+//        return -1;
+//    }
+//
+//    // Create window
+//    SDL_Window* window = SDL_CreateWindow("Tileson SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+//    if (!window) {
+//        std::cout << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+//        SDL_Quit();
+//        return -1;
+//    }
+//
+//    // Create renderer
+//    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+//    if (!renderer) {
+//        std::cout << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+//        SDL_DestroyWindow(window);
+//        SDL_Quit();
+//        return -1;
+//    }
+//
+//    // Parse the map with Tileson
+//    tson::Tileson t;
+//    std::unique_ptr<tson::Map> map = t.parse(fs::path("assets/images/map.json"));
+//
+//    if (map->getStatus() != tson::ParseStatus::OK) {
+//        std::cout << "Failed to load map!" << std::endl;
+//        SDL_DestroyRenderer(renderer);
+//        SDL_DestroyWindow(window);
+//        SDL_Quit();
+//        return -1;
+//    }
+//
+//    // Main loop flag
+//    bool quit = false;
+//
+//    // Event handler
+//    SDL_Event e;
+//
+//    // While application is running
+//    while (!quit) {
+//        // Handle events on queue
+//        while (SDL_PollEvent(&e) != 0) {
+//            // User requests quit
+//            if (e.type == SDL_QUIT) {
+//                quit = true;
+//            }
+//        }
+//
+//        // Clear screen
+//        SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+//        SDL_RenderClear(renderer);
+//
+//        // Render map
+//        for (auto& layer : map->getLayers()) {
+//            if (layer.getType() == tson::LayerType::TileLayer) {
+//                for (auto& [pos, tile] : layer.getTileData()) { // If pos is a tuple<int, int>
+//                    tson::Tileset* tileset = tile->getTileset();
+//                    tson::Rect drawingRect = tile->getDrawingRect();
+//
+//                    SDL_Rect srcRect = { drawingRect.x, drawingRect.y, drawingRect.width, drawingRect.height };
+//                    tson::Vector2f tilePosition = tile->getPosition(pos); // Corrected to pass 'pos'
+//                    SDL_Rect dstRect = { static_cast<int>(tilePosition.x), static_cast<int>(tilePosition.y), tile->getTileSize().x, tile->getTileSize().y };
+//
+//                    // Load each tileset image into an SDL_Texture
+//                    SDL_Texture* texture = loadTexture(tileset->getImage().string(), renderer);
+//                    if (texture) {
+//                        SDL_RenderCopy(renderer, texture, &srcRect, &dstRect);
+//                        SDL_DestroyTexture(texture); // Free the texture after use
+//                    }
+//                }
+//            }
+//        }
+//
+//        // Update screen
+//        SDL_RenderPresent(renderer);
+//    }
+//
+//    // Free resources and close SDL
+//    SDL_DestroyRenderer(renderer);
+//    SDL_DestroyWindow(window);
+//    SDL_Quit();
+//
+//    return 0;
+//}

@@ -5,11 +5,13 @@
 #include "Transform.h"
 #include "Input.h"
 #include "Timer.h"
-#include "MapParser.h"
 #include "Cat.h"
+#include "Camera.h"
+#include "Tile.h"
 
 Engine* Engine::s_Instance = nullptr;
-Cat* player = nullptr;
+Cat* cat = nullptr;
+Tile* m_Tile;
 
 bool Engine::init()
 {
@@ -35,20 +37,20 @@ bool Engine::init()
 		return false;
 	}
 
-	/*if (MapParser::GetInstance()->load()) {
-		std::cout << "Failed to load map" << std::endl;
+	m_Tile = Tile::GetInstance(); // This should assign to the class member
+	if (!m_Tile->load("yourMapID", "assets/images/map.json")) {
+		std::cerr << "Failed to load the map." << std::endl;
+		return false;
 	}
 
-	m_Map = MapParser::GetInstance()->getMaps("map");*/
+	TextureManager::GetInstance()->load("cat_walk", "assets\\images\\cat_walk.png");
+	TextureManager::GetInstance()->load("cat_idle", "assets\\images\\cat_idle.png");
+	TextureManager::GetInstance()->load("cat_walkf", "assets\\images\\cat_walkf.png");
 
-	MapParser::GetInstance()->LoadMap("assets\\images\\map.tmx");
-
-	TextureManager::GetInstance()->load("player_run", "assets\\images\\cat.png");
-	TextureManager::GetInstance()->load("player", "assets\\images\\cat_idle.png");
-
-	player = new Cat(new Properties("player", SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2, 32, 32));
-
-	Transform tf;
+	cat = new Cat(new Properties("cat", 200 , 200, 32, 32));
+	
+	Camera::GetInstance()->setTarget(cat->getOrigin());
+	
 
 	return m_IsRunning = true;
 }
@@ -72,15 +74,19 @@ void Engine::update()
 {
 
 	float dt = Timer::GetInstance()->getDeltaTime();
-	player->update(dt);
+	
+	cat->update(dt);
+	Camera::GetInstance()->update(dt);
 }
 
 void Engine::render()
 {
-	SDL_SetRenderDrawColor(m_Renderer, 124, 218, 254, 255);
 	SDL_RenderClear(m_Renderer);
 
-	player->draw();
+	m_Tile->render("Tile Layer 1");
+	cat->draw();
+
+	m_Tile->render("tree");
 
 	SDL_RenderPresent(m_Renderer);
 }

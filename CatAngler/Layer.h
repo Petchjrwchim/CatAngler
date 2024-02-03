@@ -1,13 +1,8 @@
 #pragma once
-#ifndef LAER_H
-#define LAYERH
 
-class Layer
-{
-	public:
-		virtual void render();
-		virtual void update();
+class Layer {
+public:
+    virtual ~Layer() = default;
+    virtual void render() = 0;
+    virtual void update() = 0;
 };
-
-
-#endif LAYER_H
