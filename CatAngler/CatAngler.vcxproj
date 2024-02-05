@@ -143,6 +143,9 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionHandler.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Fish.cpp" />
+    <ClCompile Include="FishingManager.cpp" />
+    <ClCompile Include="FishingRod.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="IObject.cpp" />
@@ -165,6 +168,9 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionHandler.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Fish.h" />
+    <ClInclude Include="FishingManager.h" />
+    <ClInclude Include="FishingRod.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="IObject.h" />

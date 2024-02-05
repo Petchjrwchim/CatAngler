@@ -5,6 +5,9 @@ C:\CatAngler\CatAngler\Character.cpp;C:\CatAngler\CatAngler\x64\Debug\Character.
 C:\CatAngler\CatAngler\Collider.cpp;C:\CatAngler\CatAngler\x64\Debug\Collider.obj
 C:\CatAngler\CatAngler\CollisionHandler.cpp;C:\CatAngler\CatAngler\x64\Debug\CollisionHandler.obj
 C:\CatAngler\CatAngler\Engine.cpp;C:\CatAngler\CatAngler\x64\Debug\Engine.obj
+C:\CatAngler\CatAngler\Fish.cpp;C:\CatAngler\CatAngler\x64\Debug\Fish.obj
+C:\CatAngler\CatAngler\FishingManager.cpp;C:\CatAngler\CatAngler\x64\Debug\FishingManager.obj
+C:\CatAngler\CatAngler\FishingRod.cpp;C:\CatAngler\CatAngler\x64\Debug\FishingRod.obj
 C:\CatAngler\CatAngler\GameObject.cpp;C:\CatAngler\CatAngler\x64\Debug\GameObject.obj
 C:\CatAngler\CatAngler\Input.cpp;C:\CatAngler\CatAngler\x64\Debug\Input.obj
 C:\CatAngler\CatAngler\IObject.cpp;C:\CatAngler\CatAngler\x64\Debug\IObject.obj

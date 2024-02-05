@@ -89,38 +89,6 @@ class Tile {
             }
         }
 
-        //void render(float scale = 2.0f) {
-
-        //    if (!map) {
-        //        std::cerr << "Map is not loaded, cannot render!" << std::endl;
-        //        return;
-        //    }
-        //    for (auto& layer : map->getLayers()) {
-        //        if (layer.getType() == tson::LayerType::TileLayer) {
-        //            for (auto& [pos, tile] : layer.getTileData()) {
-        //                tson::Tileset* tileset = tile->getTileset();
-        //                if (!tileset) continue;
-
-        //                tson::Rect drawingRect = tile->getDrawingRect();
-        //                tson::Vector2f tilePosition = tile->getPosition(pos);
-
-        //                int scaledX = static_cast<int>(tilePosition.x * scale);
-        //                int scaledY = static_cast<int>(tilePosition.y * scale);
-        //                int scaledWidth = static_cast<int>(tile->getTileSize().x * scale);
-        //                int scaledHeight = static_cast<int>(tile->getTileSize().y * scale);
-
-        //                std::string tilesetID = tileset->getImagePath().filename().string();
-
-        //                TextureManager::GetInstance()->drawTile(tilesetID, tile->getTileSize().x, scaledX, scaledY, drawingRect.y / tile->getTileSize().y + 1, drawingRect.x / tile->getTileSize().x, scaledWidth, scaledHeight, SDL_FLIP_NONE);
-
-        //            }
-        //        }
-        //    }
-        //}
-
-
- 
-
         std::vector<std::vector<uint32_t>> getLayerTilesetIDsByName(const std::string& name) {
             std::vector<std::vector<uint32_t>> tilesetIDs;
 

@@ -14,6 +14,7 @@ class Input
 
 		void listen();
 		bool getKeyDown(SDL_Scancode key);
+		bool getKeyUp(SDL_Scancode key);
 
 	private:
 		Input();

@@ -1,5 +1,9 @@
 #include "TextureManager.h"
 #include "Engine.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <string>
 
 TextureManager* TextureManager::s_Instance = nullptr;
 
@@ -20,6 +24,34 @@ bool TextureManager::load(std::string id, std::string filename)
 	m_TextureMap[id] = texture;
 	return true;
 }
+
+bool TextureManager::parseTexture(std::string source) {
+	std::ifstream file(source);
+	if (!file.is_open()) {
+		std::cerr << "Failed to open texture file: " << source << std::endl;
+		return false;
+	}
+
+	std::string line;
+	while (getline(file, line)) {
+		if (line.empty() || line[0] == '#') continue;
+
+		std::stringstream linestream(line);
+		std::string id, filename;
+
+		if (getline(linestream, id, ',') && getline(linestream, filename)) {
+			if (!load(id, filename)) {
+				std::cerr << "Failed to load texture: " << filename << " with ID: " << id << std::endl;
+				return false;
+			}
+		}
+		else {
+			std::cerr << "Invalid format in textures file: " << line << std::endl;
+		}
+	}
+	return true;
+}
+
 
 void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip)
 {

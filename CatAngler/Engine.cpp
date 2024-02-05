@@ -2,6 +2,8 @@
 
 #include "Engine.h"
 #include "TextureManager.h"
+#include "FishingManager.h"
+#include "FishingRod.h"
 #include "Transform.h"
 #include "Input.h"
 #include "Timer.h"
@@ -19,13 +21,14 @@ bool Engine::init()
 		SDL_Log("Failed to initialize SDL: %s", SDL_GetError());
 		return false;
 	}
+	SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
 	m_Window = SDL_CreateWindow("SDL2 Basic Game",
     SDL_WINDOWPOS_UNDEFINED,
     SDL_WINDOWPOS_UNDEFINED,
     SCREEN_WIDTH,
 	SCREEN_HEIGHT,
-    0);
+    window_flags);
 	if (m_Window == nullptr) {
 		SDL_Log("Failed to create Window: %s", SDL_GetError());
 		return false;
@@ -43,9 +46,7 @@ bool Engine::init()
 		return false;
 	}
 
-	TextureManager::GetInstance()->load("cat_walk", "assets\\images\\cat_walk.png");
-	TextureManager::GetInstance()->load("cat_idle", "assets\\images\\cat_idle.png");
-	TextureManager::GetInstance()->load("cat_walkf", "assets\\images\\cat_walkf.png");
+	TextureManager::GetInstance()->parseTexture("assets/images/textures.txt");
 
 	cat = new Cat(new Properties("cat", 200 , 200, 32, 32));
 	
@@ -74,8 +75,9 @@ void Engine::update()
 {
 
 	float dt = Timer::GetInstance()->getDeltaTime();
-	
+
 	cat->update(dt);
+
 	Camera::GetInstance()->update(dt);
 }
 
@@ -85,7 +87,7 @@ void Engine::render()
 
 	m_Tile->render("Tile Layer 1");
 	cat->draw();
-
+	FishingManager::GetInstance()->update(cat->getFishing(), cat->getX(), cat->getY() );
 	m_Tile->render("tree");
 
 	SDL_RenderPresent(m_Renderer);

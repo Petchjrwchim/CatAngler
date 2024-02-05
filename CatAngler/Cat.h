@@ -6,20 +6,36 @@
 #include "RigidBody.h"
 #include "Vector2D.h"
 
-class Cat: public Character{
-	public:
-		Cat(Properties* props);
+#define SPEED 20.0f
 
-		virtual void draw();
-		virtual void update(float dt);
-		virtual void clean();
+class Cat : public Character {
 
-	private:
+private:
 
-		Collider* m_Collider;
-		Animation* m_Aimation;
-		RigidBody* m_RigidBody;
-		Vector2D m_LastSafePosition;
+	char lastDirection = 'W';
+	bool m_IsFishing;
+	bool m_IsWalking;
+	bool m_IsWalkingForward;
+	bool m_IsWalkingBackwward;
+	bool m_IsIdle;
+	SDL_RendererFlip m_Flip;
+
+	Collider* m_Collider;
+	Animation* m_Aimation;
+	RigidBody* m_RigidBody;
+	Vector2D m_LastSafePosition;
+
+public:
+
+	Cat(Properties* props);
+	bool getFishing() { return m_IsFishing; }
+	int getX();
+	int getY();
+	virtual void draw();
+	virtual void update(float dt);
+	virtual void clean();
+
+
 };
 
 #endif // !CAT.H

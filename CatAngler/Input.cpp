@@ -27,6 +27,13 @@ bool Input::getKeyDown(SDL_Scancode key)
 	return false;
 }
 
+bool Input::getKeyUp(SDL_Scancode key)
+{
+	if (m_KeyState[key] != 1)
+		return true;
+	return false;
+}
+
 
 void Input::keyUp(){
 	m_KeyState = SDL_GetKeyboardState(nullptr);

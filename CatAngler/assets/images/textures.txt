@@ -1,0 +1,4 @@
+cat_walk,assets/images/cat_walk.png
+cat_idle,assets/images/cat_idle.png
+cat_walkf,assets/images/cat_walkf.png
+cat_fishing,assets/images/cat_fishing.png

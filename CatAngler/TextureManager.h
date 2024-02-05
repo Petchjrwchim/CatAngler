@@ -16,6 +16,7 @@ class TextureManager
 		}
 
 		bool load(std::string id, std::string filename);
+		bool parseTexture(std::string source);
 		void drop(std::string id);
 		void clean();
 

@@ -20,110 +20,156 @@ int main(int argc, char* args[]) {
 	Engine::GetInstance()->clean();
 	return 0;
 }
+
 //#include <SDL.h>
-//#include "tileson.hpp"
-//#include <iostream>
-//#include <filesystem>
-//#include <SDL_Image.h>
-//namespace fs = std::filesystem;
+//#include <stdbool.h>
+//#include <stdio.h>
+//#include <math.h>
 //
-//// Function to load an SDL_Texture from a file
-//SDL_Texture* loadTexture(std::string path, SDL_Renderer* renderer) {
-//    SDL_Surface* surface = IMG_Load(path.c_str()); // Use IMG_Load instead of SDL_LoadBMP
-//    if (!surface) {
-//        std::cout << "Error loading surface: " << IMG_GetError() << std::endl; // Use IMG_GetError() to get the error message
-//        return nullptr;
+//const int WINDOW_WIDTH = 800;
+//const int WINDOW_HEIGHT = 600;
+//
+//void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float* controlX, float* controlY) {
+//    if (length <= 0) return;
+//
+//    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+//
+//    const int endX = startX + length;
+//    const int endY = startY + 20;
+//
+//
+//    *controlX = startX + length / 2;
+//    *controlY = startY - length / 4;
+//
+//    for (float t = 0.0; t <= 1.0; t += 0.01) {
+//        float x = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * (*controlX) + t * t * endX;
+//        float y = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * (*controlY) + t * t * endY;
+//        SDL_RenderDrawPoint(renderer, (int)x, (int)y);
 //    }
-//    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-//    SDL_FreeSurface(surface);
-//    if (!texture) {
-//        std::cout << "Error creating texture: " << SDL_GetError() << std::endl;
+//
+//    int radius = 5; 
+//    for (int w = 0; w < radius * 2; w++) {
+//        for (int h = 0; h < radius * 2; h++) {
+//            int dx = radius - w; 
+//            int dy = radius - h; 
+//            if ((dx * dx + dy * dy) <= (radius * radius)) {
+//                SDL_RenderDrawPoint(renderer, endX + dx, endY + dy);
+//            }
+//        }
 //    }
-//    return texture;
+//}
+//
+//void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY) {
+//    if (length <= 0 || animationProgress < 0.0f || animationProgress > 1.0f) return;
+//
+//    const int endX = startX + length;
+//    const int endY = startY + 20;
+//
+//    float x = (1 - animationProgress) * (1 - animationProgress) * startX + 2 * (1 - animationProgress) * animationProgress * controlX + animationProgress * animationProgress * endX;
+//    float y = (1 - animationProgress) * (1 - animationProgress) * startY + 2 * (1 - animationProgress) * animationProgress * controlY + animationProgress * animationProgress * endY;
+//
+//    controlX = startX + length / 2;
+//    controlY = startY - length / 4;
+//
+//    for (float t = 0.0; t <= 1.0; t += 0.01) {
+//        float x = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * (controlX) + t * t * endX;
+//        float y = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * (controlY) + t * t * endY;
+//        SDL_RenderDrawPoint(renderer, (int)x, (int)y);
+//    }
+//
+//    int radius = 5; 
+//    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+//    for (int w = -radius; w <= radius; w++) {
+//        for (int h = -radius; h <= radius; h++) {
+//            if (w * w + h * h <= radius * radius) {
+//                SDL_RenderDrawPoint(renderer, (int)x + w, (int)y + h);
+//            }
+//        }
+//    }
 //}
 //
 //int main(int argc, char* argv[]) {
-//    // Initialize SDL
 //    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-//        std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
+//        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 //        return -1;
 //    }
 //
-//    // Create window
-//    SDL_Window* window = SDL_CreateWindow("Tileson SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+//    SDL_Window* window = SDL_CreateWindow("Fishing Game Prototype - Real-time and Animation",
+//        SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+//        WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 //    if (!window) {
-//        std::cout << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+//        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 //        SDL_Quit();
 //        return -1;
 //    }
 //
-//    // Create renderer
 //    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 //    if (!renderer) {
-//        std::cout << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
 //        SDL_DestroyWindow(window);
+//        printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 //        SDL_Quit();
 //        return -1;
 //    }
 //
-//    // Parse the map with Tileson
-//    tson::Tileson t;
-//    std::unique_ptr<tson::Map> map = t.parse(fs::path("assets/images/map.json"));
+//    bool running = true;
+//    SDL_Event event;
 //
-//    if (map->getStatus() != tson::ParseStatus::OK) {
-//        std::cout << "Failed to load map!" << std::endl;
-//        SDL_DestroyRenderer(renderer);
-//        SDL_DestroyWindow(window);
-//        SDL_Quit();
-//        return -1;
-//    }
+//    bool isFKeyPressed = false;
+//    Uint32 fKeyPressStartTime = 0;
+//    float animationProgress = 0.0f; 
+//    bool animate = false; 
+//    int ropeLength = 0;
+//    float controlX = 0, controlY = 0;
 //
-//    // Main loop flag
-//    bool quit = false;
+//    while (running) {
 //
-//    // Event handler
-//    SDL_Event e;
-//
-//    // While application is running
-//    while (!quit) {
-//        // Handle events on queue
-//        while (SDL_PollEvent(&e) != 0) {
-//            // User requests quit
-//            if (e.type == SDL_QUIT) {
-//                quit = true;
+//        while (SDL_PollEvent(&event) != 0) {
+//            if (event.type == SDL_QUIT) {
+//                running = false;
 //            }
-//        }
-//
-//        // Clear screen
-//        SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-//        SDL_RenderClear(renderer);
-//
-//        // Render map
-//        for (auto& layer : map->getLayers()) {
-//            if (layer.getType() == tson::LayerType::TileLayer) {
-//                for (auto& [pos, tile] : layer.getTileData()) { // If pos is a tuple<int, int>
-//                    tson::Tileset* tileset = tile->getTileset();
-//                    tson::Rect drawingRect = tile->getDrawingRect();
-//
-//                    SDL_Rect srcRect = { drawingRect.x, drawingRect.y, drawingRect.width, drawingRect.height };
-//                    tson::Vector2f tilePosition = tile->getPosition(pos); // Corrected to pass 'pos'
-//                    SDL_Rect dstRect = { static_cast<int>(tilePosition.x), static_cast<int>(tilePosition.y), tile->getTileSize().x, tile->getTileSize().y };
-//
-//                    // Load each tileset image into an SDL_Texture
-//                    SDL_Texture* texture = loadTexture(tileset->getImage().string(), renderer);
-//                    if (texture) {
-//                        SDL_RenderCopy(renderer, texture, &srcRect, &dstRect);
-//                        SDL_DestroyTexture(texture); // Free the texture after use
-//                    }
+//            else if (event.type == SDL_KEYDOWN) {
+//                if (!isFKeyPressed && event.key.keysym.sym == SDLK_f) {
+//                    isFKeyPressed = true;
+//                    fKeyPressStartTime = SDL_GetTicks();
+//                    animate = false; 
+//                    animationProgress = 0.0f;
+//                }
+//            }
+//            else if (event.type == SDL_KEYUP) {
+//                if (isFKeyPressed && event.key.keysym.sym == SDLK_f) {
+//                    isFKeyPressed = false;
+//                    animate = true;
 //                }
 //            }
 //        }
 //
-//        // Update screen
+//        if (isFKeyPressed) {
+//            ropeLength = (SDL_GetTicks() - fKeyPressStartTime) / 10;
+//        }
+//
+//        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+//        SDL_RenderClear(renderer);
+//
+//        if (isFKeyPressed && ropeLength > 0) {
+//            drawCurve(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, ropeLength, &controlX, &controlY);
+//        }
+//
+//
+//        if (animate) {
+//            animationProgress += 0.02f; 
+//            if (animationProgress > 1.0f) {
+//                animationProgress = 0.0f; 
+//                animate = false;
+//                ropeLength = 0;
+//            }
+//
+//            drawMovingCircle(renderer, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, ropeLength, animationProgress, controlX, controlY);
+//        }
+//
 //        SDL_RenderPresent(renderer);
+//        SDL_Delay(16);
 //    }
 //
-//    // Free resources and close SDL
 //    SDL_DestroyRenderer(renderer);
 //    SDL_DestroyWindow(window);
 //    SDL_Quit();

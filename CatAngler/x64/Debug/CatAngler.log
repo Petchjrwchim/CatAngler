@@ -1,1 +1,22 @@
-﻿  CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe
+﻿  Cat.cpp
+C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(21,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\Cat.cpp(29,23): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(36,15): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(45,14): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(46,14): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(101,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(101,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(109,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(109,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe
