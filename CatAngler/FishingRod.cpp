@@ -4,7 +4,13 @@
 #include "Cat.h"
 #include <iostream>
 
-FishingRod* FishingRod::s_Instance = nullptr;
+
+
+FishingRod::FishingRod(int id, const std::string& name, const std::string& type, const std::string& texture)
+    : Item(id, name, type, texture), isFKeyPressed(false), fKeyPressStartTime(0), animationProgress(0.0f), animate(false), ropeLength(1), controlX(0), controlY(0) {
+   
+}
+
 
 void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float* controlX, float* controlY) {
     if (length <= 0) return;
@@ -68,9 +74,8 @@ void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length
 }
 
 
-void FishingRod::cast(int x, int y)
+void FishingRod::use(int x, int y)
 {
-
     if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_H) && !isFKeyPressed) {
         isFKeyPressed = true;
         fKeyPressStartTime = SDL_GetTicks();
@@ -88,13 +93,14 @@ void FishingRod::cast(int x, int y)
         ropeLength = (SDL_GetTicks() - fKeyPressStartTime) / 10;
     }
 
+
     if (isFKeyPressed && ropeLength > 0) {
         drawCurve(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, & controlX, & controlY);
     }
 
 
     if (animate && ropeLength > 1) {
-        animationProgress += 0.02f;
+        animationProgress += 0.01f;
         if (animationProgress > 1.0f) {
             animationProgress = 0.0f;
             animate = false;
@@ -104,5 +110,11 @@ void FishingRod::cast(int x, int y)
 
         drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY);
     }
+    
+}
 
+
+std::string FishingRod::getDescription() const
+{
+    return std::string();
 }

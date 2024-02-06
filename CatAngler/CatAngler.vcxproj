@@ -71,8 +71,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\sdl\SDL2_image-2.8.2\include;C:\sdl\SDL2_ttf-2.22.0\include;C:\Users\satik\Downloads\tileson-master\tileson-master\include;C:\sdl\SDL2-2.29.3\include;$(IncludePath)</IncludePath>
-    <PublicIncludeDirectories>$(ProjectDir);$(PublicIncludeDirectories)</PublicIncludeDirectories>
+    <IncludePath>C:\sdl\SDL2_image-2.8.2\include;C:\sdl\SDL2_ttf-2.22.0\include;C:\Users\satik\Downloads\tileson-master\tileson-master\include;C:\sdl\SDL2-2.29.3\include;$(ProjectDir)assets\images\;$(IncludePath)</IncludePath>
+    <PublicIncludeDirectories>$(ProjectDir);$(ProjectDir)assets\images;$(PublicIncludeDirectories)</PublicIncludeDirectories>
+    <ExcludePath>$(ExcludePath)</ExcludePath>
+    <ExternalIncludePath>$(ProjectDir)assets\images\;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -108,14 +110,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\sdl\SDL2_ttf-2.20.2\include;C:\sdl\SDL2_image-2.8.2\include;$(ProjectDir);C:\CatAngler\CatAngler\assets\images;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\sdl\SDL2_ttf-2.20.2\include;C:\sdl\SDL2_image-2.8.2\include;$(ProjectDir);$(ProjectDir)assets\images;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\sdl\SDL2-2.29.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\sdl\SDL2-2.29.3\lib\x64;$(ProjectDir)assets\images;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,12 +150,11 @@
     <ClCompile Include="FishingRod.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="IObject.cpp" />
-    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="RigidBody.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -173,8 +174,8 @@
     <ClInclude Include="FishingRod.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="IObject.h" />
-    <ClInclude Include="Layer.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="TextureManager.h" />

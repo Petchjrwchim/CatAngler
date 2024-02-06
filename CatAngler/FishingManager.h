@@ -9,7 +9,7 @@
 
 class FishingManager {
     private:
-        FishingRod* rod = FishingRod::GetInstance();;
+        FishingRod* rod = new FishingRod(1,"rod","Equipment", "");
         std::vector<Fish*> fishInArea;
         static FishingManager* s_Instance;
 

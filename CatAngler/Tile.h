@@ -31,7 +31,7 @@ class Tile {
                 std::string imagePath = tileset.getImage().string();
                 fs::path p = imagePath;
                 std::string baseName = p.filename().string();
-                if (!TextureManager::GetInstance()->load(baseName, imagePath)) {
+                if (!TextureManager::GetInstance()->load(baseName, "assets\\images\\"+imagePath)) {
                     std::cerr << "Failed to load tileset: " << imagePath << std::endl;
                     return false;
                 }

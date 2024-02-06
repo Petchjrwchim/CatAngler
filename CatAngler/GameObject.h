@@ -2,7 +2,6 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-#include "IObject.h"
 #include "Transform.h"
 #include "Point.h"
 #include "SDL.h"
@@ -27,7 +26,7 @@ struct Properties {
 		
 };
 
-class GameObject: public IObject
+class GameObject
 {
 	public:
 

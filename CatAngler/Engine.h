@@ -27,15 +27,17 @@ class Engine {
 		inline bool IsRunning() { return m_IsRunning; }
 		inline SDL_Renderer* GetRenderer() { return m_Renderer; }
 
-	private:
-		Engine(){}
-		bool m_IsRunning;
+private:
+    Engine() {}
+    bool m_IsRunning;
+    bool m_IsFullscreen = false; 
 
-		
-		SDL_Window* m_Window;
-		SDL_Renderer* m_Renderer;
-		static Engine* s_Instance;
+    SDL_Window* m_Window;
+    SDL_Renderer* m_Renderer;
+    static Engine* s_Instance;
 
+    void toggleFullscreen(); 
 };
+
 
 #endif // !ENGINE_H

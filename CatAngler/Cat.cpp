@@ -20,6 +20,7 @@ Cat::Cat(Properties* props) : Character(props)
 	m_Aimation = new Animation();
 	m_Aimation->setProps(m_TextureID, 1, 5, 100);
 
+	m_Inventory = new Inventory(10);
 }
 
 int Cat::getX()
@@ -38,13 +39,22 @@ int Cat::getY()
 
 void Cat::draw()
 {
+	
 	m_Aimation->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
-
+	
 	//Vector2D cam = Camera::GetInstance()->getPosition();
 	//SDL_Rect box = m_Collider->get();
 	//box.x -= cam.X;
 	//box.y -= cam.Y;
 	//SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
+}
+
+void Cat::drawInv() {
+	Vector2D cam = Camera::GetInstance()->getPosition();
+	if (m_Inventory->checkVisible()) {
+		m_Inventory->render();
+	}
+	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530);
 }
 
 void Cat::update(float dt)
@@ -80,13 +90,17 @@ void Cat::update(float dt)
 
 	if (m_IsMoving) frame = 5; else frame = 1;
 
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_F)) {
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_F)) {
 		if (!m_IsFishing) {
 			m_IsFishing = true;
 		}
 		else {
 			m_IsFishing = false;
 		}
+	}
+
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_I)) {
+		m_Inventory->toggleVisibility();
 	}
 
 	if (lastDirection == 'W') {
@@ -103,8 +117,8 @@ void Cat::update(float dt)
 		m_Flip = SDL_FLIP_NONE;
 		m_Aimation->setProps("cat_walk", 1, frame, 100, m_Flip);
 	}
-	
-	if (m_IsFishing){
+
+	if (m_IsFishing) {
 		m_Aimation->setProps("cat_fishing", 1, 5, 100, m_Flip);
 		m_RigidBody->unsetForce();
 	}
@@ -128,6 +142,15 @@ void Cat::update(float dt)
 	m_Origin->x = m_Transform->X + m_Width / 2;
 	m_Origin->y = m_Transform->Y + m_Height / 2;
 	m_Aimation->update();
+
+
+
+}
+
+void Cat::equip() {
+	if (!m_Inventory->getItems().empty()) {
+		m_Inventory->getItems()[0]->use(getX(), getY());
+	}
 }
 
 void Cat::clean()

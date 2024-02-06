@@ -10,12 +10,11 @@ C:\CatAngler\CatAngler\FishingManager.cpp;C:\CatAngler\CatAngler\x64\Debug\Fishi
 C:\CatAngler\CatAngler\FishingRod.cpp;C:\CatAngler\CatAngler\x64\Debug\FishingRod.obj
 C:\CatAngler\CatAngler\GameObject.cpp;C:\CatAngler\CatAngler\x64\Debug\GameObject.obj
 C:\CatAngler\CatAngler\Input.cpp;C:\CatAngler\CatAngler\x64\Debug\Input.obj
-C:\CatAngler\CatAngler\IObject.cpp;C:\CatAngler\CatAngler\x64\Debug\IObject.obj
-C:\CatAngler\CatAngler\Layer.cpp;C:\CatAngler\CatAngler\x64\Debug\Layer.obj
+C:\CatAngler\CatAngler\Inventory.cpp;C:\CatAngler\CatAngler\x64\Debug\Inventory.obj
+C:\CatAngler\CatAngler\Item.cpp;C:\CatAngler\CatAngler\x64\Debug\Item.obj
 C:\CatAngler\CatAngler\main.cpp;C:\CatAngler\CatAngler\x64\Debug\main.obj
 C:\CatAngler\CatAngler\Point.cpp;C:\CatAngler\CatAngler\x64\Debug\Point.obj
 C:\CatAngler\CatAngler\RigidBody.cpp;C:\CatAngler\CatAngler\x64\Debug\RigidBody.obj
-C:\CatAngler\CatAngler\Source.cpp;C:\CatAngler\CatAngler\x64\Debug\Source.obj
 C:\CatAngler\CatAngler\TextureManager.cpp;C:\CatAngler\CatAngler\x64\Debug\TextureManager.obj
 C:\CatAngler\CatAngler\Tile.cpp;C:\CatAngler\CatAngler\x64\Debug\Tile.obj
 C:\CatAngler\CatAngler\Timer.cpp;C:\CatAngler\CatAngler\x64\Debug\Timer.obj

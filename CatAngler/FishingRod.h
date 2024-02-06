@@ -1,24 +1,25 @@
 #pragma once
-#include "SDL.h"
+#include "Item.h"
+#include <string>
 
-class FishingRod
-{
-	public:
 
-        FishingRod(){}
+struct SDL_Renderer;
+struct SDL_Texture;
 
-	    bool isFKeyPressed = false;
-        Uint32 fKeyPressStartTime = 0;
-        float animationProgress = 0.0f; 
-        bool animate = false; 
-        int ropeLength = 1;
-        float controlX = 0, controlY = 0;
+class FishingRod : public Item {
+public:
+    FishingRod(int id, const std::string& name, const std::string& type, const std::string& texture);
 
-	    void cast(int x, int y);
-        inline static FishingRod* GetInstance() { return s_Instance = (s_Instance != nullptr) ? s_Instance : new FishingRod(); }
+    void use(int x, int y) override;
+    std::string getDescription() const override;
 
-    private:
-        static FishingRod* s_Instance;
-        
+
+private:
+    bool isFKeyPressed;
+    Uint32 fKeyPressStartTime;
+    float animationProgress;
+    bool animate;
+    int ropeLength;
+    float controlX, controlY;
+
 };
-

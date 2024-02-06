@@ -12,7 +12,5 @@ void FishingManager::castRod()
 
 void FishingManager::update(bool input, int x, int y)
 {
-	if (input) {
-		rod->cast(x,y);
-	}
+
 }
