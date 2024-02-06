@@ -98,6 +98,7 @@ void FishingRod::cast(int x, int y)
             animationProgress = 0.0f;
             animate = false;
             ropeLength = 0;
+            SDL_Delay(1000);
         }
 
         drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY);
