@@ -1,6 +1,7 @@
 #include "FishingRod.h"
 #include "Input.h"
 #include "Engine.h"
+#include "Cat.h"
 #include <iostream>
 
 FishingRod* FishingRod::s_Instance = nullptr;
@@ -54,7 +55,7 @@ void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length
     //}
 
     int radius = 5; 
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     for (int w = -radius; w <= radius; w++) {
         for (int h = -radius; h <= radius; h++) {
             if (w * w + h * h <= radius * radius) {

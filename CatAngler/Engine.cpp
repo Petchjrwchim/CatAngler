@@ -3,7 +3,6 @@
 #include "Engine.h"
 #include "TextureManager.h"
 #include "FishingManager.h"
-#include "FishingRod.h"
 #include "Transform.h"
 #include "Input.h"
 #include "Timer.h"
@@ -87,7 +86,7 @@ void Engine::render()
 
 	m_Tile->render("Tile Layer 1");
 	cat->draw();
-	FishingManager::GetInstance()->update(cat->getFishing(), cat->getX(), cat->getY() );
+	FishingManager::GetInstance()->update(cat->getFishing(), cat->getX(), cat->getY());
 	m_Tile->render("tree");
 
 	SDL_RenderPresent(m_Renderer);

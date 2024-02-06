@@ -12,12 +12,9 @@ class Cat : public Character {
 
 private:
 
-	char lastDirection = 'W';
+	char lastDirection = 'S';
 	bool m_IsFishing;
-	bool m_IsWalking;
-	bool m_IsWalkingForward;
-	bool m_IsWalkingBackwward;
-	bool m_IsIdle;
+	bool m_IsMoving;
 	SDL_RendererFlip m_Flip;
 
 	Collider* m_Collider;
@@ -29,6 +26,7 @@ public:
 
 	Cat(Properties* props);
 	bool getFishing() { return m_IsFishing; }
+	char getDirection() { return lastDirection; }
 	int getX();
 	int getY();
 	virtual void draw();

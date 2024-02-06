@@ -49,40 +49,36 @@ void Cat::draw()
 
 void Cat::update(float dt)
 {
+	int frame = 5;
 	SDL_RendererFlip m_Flip = SDL_FLIP_NONE;
-	
-	if (!m_IsFishing) {
-		m_Aimation->setProps("cat_idle", 1, 5, 100);
-		m_RigidBody->unsetForce();
-	} else {
-		m_Aimation->setProps("cat_fishing", 1, 5, 100, m_Flip);
-	}
+	m_IsMoving = false;
+	m_RigidBody->unsetForce();
 
 	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_W)) {
+		m_IsMoving = true;
 		lastDirection = 'W';
 		m_RigidBody->applyForceY(SPEED * BACKWARD);
-		m_Aimation->setProps("cat_walk", 1, 5, 100, m_Flip);
 	}
 
 	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_S)) {
+		m_IsMoving = true;
 		lastDirection = 'S';
 		m_RigidBody->applyForceY(SPEED * FORWARD);
-		m_Aimation->setProps("cat_walkf", 1, 5, 100, m_Flip);
 	}
 
 	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_A)) {
+		m_IsMoving = true;
 		lastDirection = 'A';
-		m_Flip = SDL_FLIP_HORIZONTAL;
 		m_RigidBody->applyForceX(SPEED * BACKWARD);
-		m_Aimation->setProps("cat_walk", 1, 5, 100, m_Flip);
 	}
 
 	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_D)) {
+		m_IsMoving = true;
 		lastDirection = 'D';
-		m_Flip = SDL_FLIP_NONE;
 		m_RigidBody->applyForceX(SPEED * FORWARD);
-		m_Aimation->setProps("cat_walk", 1, 5, 100, m_Flip);
 	}
+
+	if (m_IsMoving) frame = 5; else frame = 1;
 
 	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_F)) {
 		if (!m_IsFishing) {
@@ -93,7 +89,25 @@ void Cat::update(float dt)
 		}
 	}
 
-	if (m_IsFishing == true) m_RigidBody->unsetForce();
+	if (lastDirection == 'W') {
+		m_Aimation->setProps("cat_walk", 1, frame, 100, m_Flip);
+	}
+	if (lastDirection == 'A') {
+		m_Flip = SDL_FLIP_HORIZONTAL;
+		m_Aimation->setProps("cat_walk", 1, frame, 100, m_Flip);
+	}
+	if (lastDirection == 'S') {
+		if (m_IsMoving) m_Aimation->setProps("cat_walkf", 1, 5, 100, m_Flip); else m_Aimation->setProps("cat_idle", 1, 5, 100, m_Flip);
+	}
+	if (lastDirection == 'D') {
+		m_Flip = SDL_FLIP_NONE;
+		m_Aimation->setProps("cat_walk", 1, frame, 100, m_Flip);
+	}
+	
+	if (m_IsFishing){
+		m_Aimation->setProps("cat_fishing", 1, 5, 100, m_Flip);
+		m_RigidBody->unsetForce();
+	}
 
 	m_RigidBody->update(dt);
 	m_LastSafePosition.X = m_Transform->X;

@@ -1,7 +1,19 @@
 ﻿  FishingRod.cpp
-C:\CatAngler\CatAngler\FishingRod.cpp(17,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'FishingRod.cpp')
+  
+C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'FishingRod.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FishingRod.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(21,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FishingRod.cpp')
+  
 C:\CatAngler\CatAngler\FishingRod.cpp(18,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(20,44): warning C4305: '+=': truncation from 'double' to 'float'
-C:\CatAngler\CatAngler\FishingRod.cpp(47,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\FishingRod.cpp(19,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\FishingRod.cpp(21,44): warning C4305: '+=': truncation from 'double' to 'float'
 C:\CatAngler\CatAngler\FishingRod.cpp(48,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\FishingRod.cpp(49,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

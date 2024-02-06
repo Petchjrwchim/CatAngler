@@ -6,6 +6,7 @@
 #include "SDL.h"
 
 
+
 class FishingManager {
     private:
         FishingRod* rod = FishingRod::GetInstance();;
