@@ -99,12 +99,14 @@ void Engine::update()
 
 void Engine::render()
 {
+	int test = 1;
 	SDL_RenderClear(m_Renderer);
-
+	m_Tile->render("Tile Layer 1");
+	m_Tile->render("Tile Layer 4");
+	m_Tile->render("Tile Layer 4");
 	m_Tile->render("Tile Layer 1");
 	cat->draw();
 	cat->equip();
-	//FishingManager::GetInstance()->update(cat->getFishing(), cat->getX(), cat->getY());
 	m_Tile->render("tree");
 	cat->drawInv();
 

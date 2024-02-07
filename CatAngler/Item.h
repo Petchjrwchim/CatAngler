@@ -3,6 +3,7 @@
 #define ITEM_H
 
 #include "SDL.h"
+#include "TextureManager.h"
 #include <string>
 
 class Item {
@@ -12,7 +13,7 @@ class Item {
 
         virtual void use(char direction, int x = 0, int y = 0);
         virtual std::string getDescription() const;
-        void draw();
+        virtual void draw(int x = 0, int y = 0);
         void update(float dt);
         void clean();
 

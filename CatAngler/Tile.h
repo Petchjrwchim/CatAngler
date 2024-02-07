@@ -58,7 +58,6 @@ class Tile {
                 return;
             }
 
-            // Find the specified layer by name
             tson::Layer* layer = getLayerByName(layerName);
             if (layer == nullptr) {
                 std::cerr << "Layer named: " << layerName << " not found. Cannot render this layer." << std::endl;
@@ -66,7 +65,7 @@ class Tile {
             }
 
             if (layer->getType() == tson::LayerType::TileLayer) {
-                // Render only if it's a tile layer
+
                 for (auto& [pos, tile] : layer->getTileData()) {
                         tson::Tileset* tileset = tile->getTileset();
                         if (!tileset) continue;
@@ -80,6 +79,8 @@ class Tile {
                         int scaledHeight = static_cast<int>(tile->getTileSize().y * scale);
 
                         std::string tilesetID = tileset->getImagePath().filename().string();
+
+                        
 
                         TextureManager::GetInstance()->drawTile(tilesetID, tile->getTileSize().x, scaledX, scaledY, drawingRect.y / tile->getTileSize().y + 1, drawingRect.x / tile->getTileSize().x, scaledWidth, scaledHeight, SDL_FLIP_NONE);
                 }

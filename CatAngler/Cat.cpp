@@ -64,47 +64,45 @@ void Cat::update(float dt)
 	m_IsMoving = false;
 	m_RigidBody->unsetForce();
 
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_W)) {
-		m_IsMoving = true;
-		lastDirection = 'W';
-		m_RigidBody->applyForceY(SPEED * BACKWARD);
+	if (Input::GetInstance()->getMouseButtonUp(1)) {
+		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_W)) {
+			m_IsMoving = true;
+			lastDirection = 'W';
+			m_RigidBody->applyForceY(SPEED * BACKWARD);
+		}
+
+		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_S)) {
+			m_IsMoving = true;
+			lastDirection = 'S';
+			m_RigidBody->applyForceY(SPEED * FORWARD);
+		}
+
+		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_A)) {
+			m_IsMoving = true;
+			lastDirection = 'A';
+			m_RigidBody->applyForceX(SPEED * BACKWARD);
+		}
+
+		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_D)) {
+			m_IsMoving = true;
+			lastDirection = 'D';
+			m_RigidBody->applyForceX(SPEED * FORWARD);
+		}
 	}
 
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_S)) {
-		m_IsMoving = true;
-		lastDirection = 'S';
-		m_RigidBody->applyForceY(SPEED * FORWARD);
-	}
-
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_A)) {
-		m_IsMoving = true;
-		lastDirection = 'A';
-		m_RigidBody->applyForceX(SPEED * BACKWARD);
-	}
-
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_D)) {
-		m_IsMoving = true;
-		lastDirection = 'D';
-		m_RigidBody->applyForceX(SPEED * FORWARD);
-	}
 
 	if (m_IsMoving) frame = 5; else frame = 1;
-
-	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_F)) {
-		if (!m_IsFishing) {
-			m_IsFishing = true;
-		}
-		else {
-			m_IsFishing = false;
-		}
-	}
 
 	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_I)) {
 		m_Inventory->toggleVisibility();
 	}
 
+	if (Input::GetInstance()->getMouseButtonDown(1)) {
+		m_RigidBody->unsetForce();
+	}
+
 	if (lastDirection == 'W') {
-		m_Aimation->setProps("cat_walk", 1, frame, 100, m_Flip);
+		m_Aimation->setProps("cat_walkb", 1, frame, 100, m_Flip);
 	}
 	if (lastDirection == 'A') {
 		m_Flip = SDL_FLIP_HORIZONTAL;
@@ -118,10 +116,7 @@ void Cat::update(float dt)
 		m_Aimation->setProps("cat_walk", 1, frame, 100, m_Flip);
 	}
 
-	if (m_IsFishing) {
-		m_Aimation->setProps("cat_fishing", 1, 5, 100, m_Flip);
-		m_RigidBody->unsetForce();
-	}
+
 
 	m_RigidBody->update(dt);
 	m_LastSafePosition.X = m_Transform->X;
@@ -167,6 +162,7 @@ void Cat::equip() {
 	}
 
 	if (m_Inventory->getItems().size() > m_IsUsing) {
+		m_Inventory->getItems()[m_IsUsing]->draw(m_Transform->X, m_Transform->Y);
 		m_Inventory->getItems()[m_IsUsing]->use(lastDirection, getX(), getY());
 	}
 

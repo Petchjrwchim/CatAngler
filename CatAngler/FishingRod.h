@@ -12,7 +12,7 @@ public:
 
     void use(char direction, int x, int y) override;
     std::string getDescription() const override;
-
+    void draw(int x, int y) override;
 
 private:
     bool isFKeyPressed;

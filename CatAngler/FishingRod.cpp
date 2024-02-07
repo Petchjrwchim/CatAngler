@@ -22,7 +22,6 @@ void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float
     const int endX = startX + length;
     const int endY = startY + 20;
 
-
     *controlX = startX + length / 2;
     *controlY = startY - abs(length) / 4;
 
@@ -98,16 +97,11 @@ void FishingRod::use(char direction, int x, int y)
         ropeLength = (SDL_GetTicks() - fKeyPressStartTime) / 10;
     }
 
-    std::cout << direction << std::endl;
-
-    
-
     if (isFKeyPressed && ropeLength > 0) {
         
         drawCurve(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, & controlX, & controlY, direction);
     }
 
-    std::cout << ropeLength << std::endl;
     if (animate && ropeLength > 1) {
         animationProgress += 0.01f;
         if (animationProgress > 1.0f) {
@@ -119,6 +113,7 @@ void FishingRod::use(char direction, int x, int y)
 
         drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY, direction);
     }
+
     
 }
 
@@ -126,4 +121,9 @@ void FishingRod::use(char direction, int x, int y)
 std::string FishingRod::getDescription() const
 {
     return std::string();
+}
+
+void FishingRod::draw(int x, int y)
+{
+    TextureManager::GetInstance()->draw("fishingrod", x, y, 64, 64);
 }
