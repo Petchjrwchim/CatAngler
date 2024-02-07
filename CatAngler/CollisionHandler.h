@@ -18,9 +18,10 @@ public:
     }
 
     bool checkCollision(const SDL_Rect& a, const SDL_Rect& b);
-    bool mapCollision(const SDL_Rect& a);
+    bool mapCollision(const SDL_Rect& a, std::string layerName = "Collision");
 
 private:
+    std::string layerName;
     std::vector<std::vector<uint32_t>> m_CollisionMap;
     static CollisionHandler* s_Instance;
 };
