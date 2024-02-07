@@ -23,7 +23,7 @@ public:
     void addItem(Item* item);
     void removeItem(int itemID);
     void toggleVisibility();
-    void render();
+    void render(int x, int y);
     void renderInventoryBar(int x, int y);
     bool checkVisible() { return isVisible; }
 };

@@ -52,7 +52,7 @@ void Cat::draw()
 void Cat::drawInv() {
 	Vector2D cam = Camera::GetInstance()->getPosition();
 	if (m_Inventory->checkVisible()) {
-		m_Inventory->render();
+		m_Inventory->render(cam.X, cam.Y);
 	}
 	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530);
 }

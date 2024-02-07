@@ -89,7 +89,7 @@ void FishingRod::use(int x, int y)
 
 
     if (isFKeyPressed) {
-        std::cout << SDL_GetTicks << ", " << fKeyPressStartTime << ", " << ropeLength << std::endl;
+        //std::cout << SDL_GetTicks << ", " << fKeyPressStartTime << ", " << ropeLength << std::endl;
         ropeLength = (SDL_GetTicks() - fKeyPressStartTime) / 10;
     }
 
