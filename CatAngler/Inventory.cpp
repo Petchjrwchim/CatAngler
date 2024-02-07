@@ -30,14 +30,12 @@ void Inventory::render(int x, int y) {
     SDL_Rect backgroundRect = { 100, 100, 800, 600 }; 
     TextureManager::GetInstance()->draw("background", x + 200, y + 150, 400, 300);
 
-    int slotWidth = 40;
-    int slotHeight = 40;
-    int padding = 20;
-    int startX = 150; 
-    int startY = 150; 
+    int slotWidth = 51;
+    int slotHeight = 50;
+    int padding = 11;
 
     for (int i = 0; i < capacity; ++i) {
-        int newX = x + (i % 5) * (slotWidth + padding) + 230; 
+        int newX = x + (i % 5) * (slotWidth + padding) + 250; 
         int newY = y + (i / 5) * (slotHeight + padding) + 170;
 
         SDL_Rect slotRect = { newX, newY, slotWidth, slotHeight };
@@ -46,8 +44,8 @@ void Inventory::render(int x, int y) {
 
     for (int i = 0; i < m_items.size(); ++i) {
         if (m_items[i] != nullptr) {
-            int newX = x + (i % 10) * (slotWidth + padding) + 230;
-            int newY = y + (i / 10) * (slotHeight + padding) + 170;
+            int newX = x + (i % 6) * (slotWidth + padding) + 250;
+            int newY = y + (i / 6) * (slotHeight + padding) + 170;
 
             SDL_Rect itemRect = { x, y, slotWidth, slotHeight };
             TextureManager::GetInstance()->draw(m_items[i]->getID(), newX, newY, slotWidth, slotHeight);

@@ -12,8 +12,10 @@ FishingRod::FishingRod(int id, const std::string& name, const std::string& type,
 }
 
 
-void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float* controlX, float* controlY) {
-    if (length <= 0) return;
+void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float* controlX, float* controlY, char direction) {
+    if (length < 0) return;
+
+    if (direction == 'A') length *= -1;
 
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
@@ -22,7 +24,7 @@ void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float
 
 
     *controlX = startX + length / 2;
-    *controlY = startY - length / 4;
+    *controlY = startY - abs(length) / 4;
 
     for (float t = 0.0; t <= 1.0; t += 0.01) {
         float x = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * (*controlX) + t * t * endX;
@@ -42,8 +44,10 @@ void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float
     }
 }
 
-void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY) {
-    if (length <= 0 || animationProgress < 0.0f || animationProgress > 1.0f) return;
+void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction) {
+    if (length < 0 || animationProgress < 0.0f || animationProgress > 1.0f) return;
+
+    if (direction == 'A') length *= -1;
 
     const int endX = startX + length;
     const int endY = startY + 20;
@@ -52,7 +56,7 @@ void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length
     float y = (1 - animationProgress) * (1 - animationProgress) * startY + 2 * (1 - animationProgress) * animationProgress * controlY + animationProgress * animationProgress * endY;
 
     controlX = startX + length / 2;
-    controlY = startY - length / 4;
+    controlY = startY - abs(length) / 4;
 
     //for (float t = 0.0; t <= 1.0; t += 0.01) {
     //    float x = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * (controlX) + t * t * endX;
@@ -74,15 +78,16 @@ void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length
 }
 
 
-void FishingRod::use(int x, int y)
+void FishingRod::use(char direction, int x, int y)
 {
-    if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_H) && !isFKeyPressed) {
+    
+    if (Input::GetInstance()->getMouseButtonDown(1) && !isFKeyPressed) {
         isFKeyPressed = true;
         fKeyPressStartTime = SDL_GetTicks();
         animate = false;
         animationProgress = 0.0f;
     }
-    if (Input::GetInstance()->getKeyUp(SDL_SCANCODE_H)) {
+    if (Input::GetInstance()->getMouseButtonUp(1)) {
         isFKeyPressed = false;
         animate = true;
     }
@@ -93,12 +98,16 @@ void FishingRod::use(int x, int y)
         ropeLength = (SDL_GetTicks() - fKeyPressStartTime) / 10;
     }
 
+    std::cout << direction << std::endl;
+
+    
 
     if (isFKeyPressed && ropeLength > 0) {
-        drawCurve(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, & controlX, & controlY);
+        
+        drawCurve(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, & controlX, & controlY, direction);
     }
 
-
+    std::cout << ropeLength << std::endl;
     if (animate && ropeLength > 1) {
         animationProgress += 0.01f;
         if (animationProgress > 1.0f) {
@@ -108,7 +117,7 @@ void FishingRod::use(int x, int y)
             SDL_Delay(1000);
         }
 
-        drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY);
+        drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY, direction);
     }
     
 }

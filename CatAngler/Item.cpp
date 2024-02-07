@@ -7,7 +7,7 @@ Item::Item(int id, const std::string& name, const std::string& type, const std::
 
 }
 
-void Item::use(int x, int y)
+void Item::use(char direction, int x, int y)
 {
 }
 

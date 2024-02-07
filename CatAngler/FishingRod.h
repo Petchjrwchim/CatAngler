@@ -10,7 +10,7 @@ class FishingRod : public Item {
 public:
     FishingRod(int id, const std::string& name, const std::string& type, const std::string& texture);
 
-    void use(int x, int y) override;
+    void use(char direction, int x, int y) override;
     std::string getDescription() const override;
 
 

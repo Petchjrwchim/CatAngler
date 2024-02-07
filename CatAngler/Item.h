@@ -10,7 +10,7 @@ class Item {
 
         Item(int id, const std::string& name, const std::string& type, const std::string& texture);
 
-        virtual void use(int x = 0, int y = 0);
+        virtual void use(char direction, int x = 0, int y = 0);
         virtual std::string getDescription() const;
         void draw();
         void update(float dt);

@@ -18,12 +18,21 @@ class Input
 		bool getKeyDown(SDL_Scancode key);
 		bool getKeyUp(SDL_Scancode key);
 
+		bool getMouseButtonDown(int button);
+		bool getMouseButtonUp(int button);
+		bool getMouseButton(int button);
+		void getMousePosition(int& x, int& y);
+
 		~Input();
 
 	private:
 		Input();
 		void keyUp();
 		void keyDown();
+
+		int m_MouseState;
+		int m_PrevMouseState;
+		int m_MouseX, m_MouseY;
 
 		Uint8* m_PrevKeyState; 
 		const Uint8* m_KeyState;

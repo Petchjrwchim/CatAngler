@@ -148,9 +148,11 @@ void Cat::update(float dt)
 }
 
 void Cat::equip() {
+	
 	if (!m_Inventory->getItems().empty()) {
-		m_Inventory->getItems()[0]->use(getX(), getY());
+		m_Inventory->getItems()[0]->use(lastDirection, getX(), getY());
 	}
+
 }
 
 void Cat::clean()

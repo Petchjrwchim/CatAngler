@@ -7,6 +7,11 @@ Input* Input::s_Instance = nullptr;
 Input::Input() {
     m_KeyState = SDL_GetKeyboardState(nullptr);
     m_PrevKeyState = new Uint8[SDL_NUM_SCANCODES];
+
+    m_MouseState = 0;
+    m_PrevMouseState = 0;
+    m_MouseX = m_MouseY = 0;
+
     memcpy(m_PrevKeyState, m_KeyState, SDL_NUM_SCANCODES);
 }
 
@@ -17,6 +22,8 @@ Input::~Input() {
 void Input::listen()
 {
     memcpy(m_PrevKeyState, m_KeyState, SDL_NUM_SCANCODES);
+    m_PrevMouseState = m_MouseState;
+    m_MouseState = SDL_GetMouseState(&m_MouseX, &m_MouseY);
 
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
@@ -44,6 +51,7 @@ bool Input::getKeyUpOnetime(SDL_Scancode key)
     return m_KeyState[key] == 0 && m_PrevKeyState[key] == 1;
 }
 
+
 bool Input::getKeyDown(SDL_Scancode key)
 {
     return m_KeyState[key] == 1;
@@ -61,4 +69,21 @@ void Input::keyUp() {
 void Input::keyDown()
 {
     m_KeyState = SDL_GetKeyboardState(nullptr);
+}
+
+bool Input::getMouseButtonDown(int button) {
+    return (m_MouseState & SDL_BUTTON(button)) == 1;
+}
+
+bool Input::getMouseButtonUp(int button) {
+    return (m_MouseState & SDL_BUTTON(button)) == 0;
+}
+
+bool Input::getMouseButton(int button) {
+    return (m_MouseState & SDL_BUTTON(button)) != 0;
+}
+
+void Input::getMousePosition(int& x, int& y) {
+    x = m_MouseX;
+    y = m_MouseY;
 }

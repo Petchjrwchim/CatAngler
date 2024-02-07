@@ -1,1 +1,28 @@
-﻿  CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe
+﻿  Cat.cpp
+C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(30,23): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(37,15): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(55,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(55,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(57,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(57,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(129,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(129,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(137,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(137,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  FishingRod.cpp
+C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\FishingRod.cpp(26,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\FishingRod.cpp(27,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\FishingRod.cpp(29,44): warning C4305: '+=': truncation from 'double' to 'float'
+C:\CatAngler\CatAngler\FishingRod.cpp(58,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\FishingRod.cpp(59,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Input.cpp
+  Generating Code...
+  CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe
