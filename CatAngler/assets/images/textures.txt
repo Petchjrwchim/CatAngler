@@ -4,3 +4,5 @@ cat_walkf,assets/images/cat_walkf.png
 cat_fishing,assets/images/cat_fishing.png
 background,assets\images\Sprite-0001.png
 slot,assets\images\Sprite-0001.png
+fishingrod,assets\images\FishingRod.png
+bag,assets\images\bag.png

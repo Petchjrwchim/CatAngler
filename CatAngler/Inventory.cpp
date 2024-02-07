@@ -28,7 +28,7 @@ void Inventory::render(int x, int y) {
     if (!isVisible) return;
 
     SDL_Rect backgroundRect = { 100, 100, 800, 600 }; 
-    TextureManager::GetInstance()->draw("background", x + 200, y + 150, 400, 300);
+    TextureManager::GetInstance()->draw("bag", x + 200, y + 150, 400, 300);
 
     int slotWidth = 51;
     int slotHeight = 50;
@@ -53,7 +53,7 @@ void Inventory::render(int x, int y) {
     }
 }
 
-void Inventory::renderInventoryBar(int x, int y) {
+void Inventory::renderInventoryBar(int x, int y, int usingSlot) {
     int screenWidth;
     SDL_Renderer* renderer = SDL_GetRenderer(SDL_GetWindowFromID(1));
     SDL_GetRendererOutputSize(renderer, &screenWidth, nullptr);
@@ -65,6 +65,9 @@ void Inventory::renderInventoryBar(int x, int y) {
         int x = startX + i * (SLOT_WIDTH + BAR_PADDING);
         SDL_Rect slotRect = { x, startY, SLOT_WIDTH, SLOT_HEIGHT };
         TextureManager::GetInstance()->draw("slot", x, startY, SLOT_WIDTH, SLOT_HEIGHT);
+
+        int usingX = startX + usingSlot * (SLOT_WIDTH + BAR_PADDING);
+        TextureManager::GetInstance()->draw("slot", usingX, startY, SLOT_WIDTH + 10, SLOT_HEIGHT + 10);
 
         if (i < m_items.size() && m_items[i] != nullptr) {
             TextureManager::GetInstance()->draw(m_items[i]->getID(), x, startY, SLOT_WIDTH, SLOT_HEIGHT);

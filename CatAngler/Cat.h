@@ -16,6 +16,7 @@ private:
 	char lastDirection = 'S';
 	bool m_IsFishing;
 	bool m_IsMoving;
+	int m_IsUsing = 0;
 	int current_Equip = 1;
 	SDL_RendererFlip m_Flip;
 

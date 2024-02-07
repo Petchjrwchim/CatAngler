@@ -1,8 +1,24 @@
-﻿  Cat.cpp
+﻿  Animation.cpp
+C:\CatAngler\CatAngler\Animation.cpp(11,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Animation.cpp(11,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Camera.cpp
+C:\CatAngler\CatAngler\Camera.cpp(13,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Camera.cpp(14,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Camera.cpp(32,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\Camera.cpp(32,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Cat.cpp
 C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
 C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
 C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
 C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
 C:\CatAngler\CatAngler\Cat.cpp(30,23): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\CatAngler\CatAngler\Cat.cpp(37,15): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\CatAngler\CatAngler\Cat.cpp(55,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
@@ -13,16 +29,56 @@ C:\CatAngler\CatAngler\Cat.cpp(129,45): warning C4244: 'argument': conversion fr
 C:\CatAngler\CatAngler\Cat.cpp(129,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\CatAngler\CatAngler\Cat.cpp(137,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\CatAngler\CatAngler\Cat.cpp(137,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  CollisionHandler.cpp
+  Engine.cpp
+C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\Engine.cpp(125,12): warning C4101: 'event': unreferenced local variable
   FishingRod.cpp
 C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'FishingRod.cpp')
+  
 C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'FishingRod.cpp')
+  
 C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FishingRod.cpp')
+  
 C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FishingRod.cpp')
+  
 C:\CatAngler\CatAngler\FishingRod.cpp(26,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\CatAngler\CatAngler\FishingRod.cpp(27,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\CatAngler\CatAngler\FishingRod.cpp(29,44): warning C4305: '+=': truncation from 'double' to 'float'
 C:\CatAngler\CatAngler\FishingRod.cpp(58,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\CatAngler\CatAngler\FishingRod.cpp(59,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Input.cpp
+  Inventory.cpp
+  Item.cpp
+  TextureManager.cpp
+C:\CatAngler\CatAngler\TextureManager.cpp(60,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(60,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(60,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(60,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(67,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(67,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(67,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(67,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(77,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(77,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(77,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(77,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Tile.cpp
+  main.cpp
   Generating Code...
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

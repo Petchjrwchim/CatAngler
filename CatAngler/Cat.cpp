@@ -54,7 +54,7 @@ void Cat::drawInv() {
 	if (m_Inventory->checkVisible()) {
 		m_Inventory->render(cam.X, cam.Y);
 	}
-	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530);
+	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530, m_IsUsing);
 }
 
 void Cat::update(float dt)
@@ -149,8 +149,25 @@ void Cat::update(float dt)
 
 void Cat::equip() {
 	
-	if (!m_Inventory->getItems().empty()) {
-		m_Inventory->getItems()[0]->use(lastDirection, getX(), getY());
+	
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_1) || m_IsUsing == 0) {
+		m_IsUsing = 0;
+	}
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_2) || m_IsUsing == 1) {
+		m_IsUsing = 1;
+	}
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_3) || m_IsUsing == 2) {
+		m_IsUsing = 2;
+	}
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_4) || m_IsUsing == 3) {
+		m_IsUsing = 3;
+	}
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_5) || m_IsUsing == 4) {
+		m_IsUsing = 4;
+	}
+
+	if (m_Inventory->getItems().size() > m_IsUsing) {
+		m_Inventory->getItems()[m_IsUsing]->use(lastDirection, getX(), getY());
 	}
 
 }

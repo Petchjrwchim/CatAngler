@@ -24,7 +24,7 @@ public:
     void removeItem(int itemID);
     void toggleVisibility();
     void render(int x, int y);
-    void renderInventoryBar(int x, int y);
+    void renderInventoryBar(int x, int y, int usingSlot);
     bool checkVisible() { return isVisible; }
 };
 

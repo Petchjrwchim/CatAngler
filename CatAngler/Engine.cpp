@@ -19,7 +19,7 @@ void addFishingRodToCatInventory(Cat* cat) {
 	int id = 1; 
 	std::string name = "Fishing Rod";
 	std::string type = "Rod";
-	std::string texture = "fishing_rod_texture_id";
+	std::string texture = "fishingrod";
 	FishingRod* fishingRod = new FishingRod(id, name, type, texture);
 
 	cat->getInventory()->addItem(fishingRod);
