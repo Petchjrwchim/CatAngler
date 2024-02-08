@@ -12,15 +12,12 @@
 
 Engine* Engine::s_Instance = nullptr;
 Cat* cat = nullptr;
+FishingManager* fish_mng = nullptr;
 Tile* m_Tile;
 
 void addFishingRodToCatInventory(Cat* cat) {
 
-	int id = 1; 
-	std::string name = "Fishing Rod";
-	std::string type = "Rod";
-	std::string texture = "fishingrod";
-	FishingRod* fishingRod = new FishingRod(id, name, type, texture);
+	FishingRod* fishingRod = new FishingRod(1, "Fishing Rod", "Rod", "fishingrod");
 
 	cat->getInventory()->addItem(fishingRod);
 }
@@ -67,7 +64,8 @@ bool Engine::init()
 	cat = new Cat(new Properties("cat", 200 , 200, 32, 32));
 	Camera::GetInstance()->setTarget(cat->getOrigin());
 	addFishingRodToCatInventory(cat);
-	
+
+	fish_mng = new FishingManager(cat->getInventory());
 
 	return m_IsRunning = true;
 }

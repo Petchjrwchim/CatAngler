@@ -7,3 +7,5 @@ background,assets\images\Sprite-0001.png
 slot,assets\images\Sprite-0001.png
 fishingrod,assets\images\FishingRod.png
 bag,assets\images\bag.png
+aim_point,assets\images\aim_point.png
+point,assets\images\point.png

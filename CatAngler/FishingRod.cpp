@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "Engine.h"
 #include "FishingManager.h"
+#include "TextureManager.h"
 #include "Cat.h"
 #include <iostream>
 
@@ -18,8 +19,6 @@ void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float
 
     if (direction == 'A') length *= -1;
 
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-
     const int endX = startX + length;
     const int endY = startY + 20;
 
@@ -29,19 +28,34 @@ void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float
     for (float t = 0.0; t <= 1.0; t += 0.01) {
         float x = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * (*controlX) + t * t * endX;
         float y = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * (*controlY) + t * t * endY;
-        SDL_RenderDrawPoint(renderer, (int)x, (int)y);
+        TextureManager::GetInstance()->draw("point", x, y, 1, 1);
     }
 
-    int radius = 5; 
-    for (int w = 0; w < radius * 2; w++) {
-        for (int h = 0; h < radius * 2; h++) {
-            int dx = radius - w; 
-            int dy = radius - h; 
-            if ((dx * dx + dy * dy) <= (radius * radius)) {
-                SDL_RenderDrawPoint(renderer, endX + dx, endY + dy);
-            }
+    TextureManager::GetInstance()->draw("aim_point", endX - 15, endY - 15, 32, 32);
+
+}
+
+void drawLine(SDL_Renderer* renderer, int startX, int startY, int length, float* controlX, float* controlY, char direction) {
+    if (length < 0) return;
+
+    if (direction == 'W') length *= -1;
+
+    const int endX = startX;
+    const int endY = startY + length;
+    
+    if (direction == 'W') {
+        for (int i(0); i >= length; i--) {
+            TextureManager::GetInstance()->draw("point", startX, startY + i, 1, 1);
         }
     }
+    else {
+        for (int i(0); i <= length; i++) {
+            TextureManager::GetInstance()->draw("point", startX, startY + i, 1, 1);
+        }
+    }
+
+
+    TextureManager::GetInstance()->draw("aim_point", endX - 15, endY - 15, 32, 32);
 }
 
 void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction) {
@@ -58,23 +72,46 @@ void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length
     controlX = startX + length / 2;
     controlY = startY - abs(length) / 4;
 
-    //for (float t = 0.0; t <= 1.0; t += 0.01) {
-    //    float x = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * (controlX) + t * t * endX;
-    //    float y = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * (controlY) + t * t * endY;
-    //    SDL_RenderDrawPoint(renderer, (int)x, (int)y);
-    //}
-
-    int radius = 5; 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    for (int w = -radius; w <= radius; w++) {
-        for (int h = -radius; h <= radius; h++) {
-            if (w * w + h * h <= radius * radius) {
-                SDL_RenderDrawPoint(renderer, (int)x + w, (int)y + h);
-            }
-        }
+    const int segmentSize = 1; 
+    const float lineLength = sqrt(pow((float)endX - startX, 2) + pow((float)endY - startY, 2));
+    const int numSegments = (int)(lineLength / segmentSize);
+    float segmentX{};
+    float segmentY{};
+    for (int i = 0; i <= numSegments; i++) {
+        float segmentProgress = (float)i / numSegments;
+        segmentX = startX + segmentProgress * (x - startX);
+        segmentY = startY + segmentProgress * (y - startY);
+        TextureManager::GetInstance()->draw("point", segmentX, segmentY, segmentSize, segmentSize);
     }
 
-    SDL_RenderDrawLine(renderer, startX, startY, (int)x, (int)y);
+    TextureManager::GetInstance()->draw("aim_point", segmentX - 15, segmentY - 15, 32, 32);
+    
+}
+
+
+void drawMovingLine(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction) {
+    if (length < 0 || animationProgress < 0.0f || animationProgress > 1.0f) return;
+
+    if (direction == 'W') length *= -1;
+
+    const int endX = startX;
+    const int endY = startY + length;
+
+    float x = startX; 
+    float y = startY + length * animationProgress;
+
+    const int segmentSize = 1;
+    const float lineLength = sqrt(pow((float)endX - startX, 2) + pow((float)endY - startY, 2));
+    const int numSegments = (int)(lineLength / segmentSize);
+    float segmentX{};
+    float segmentY{};
+    for (int i = 0; i <= numSegments; i++) {
+        float segmentProgress = (float)i / numSegments;
+        segmentX = startX + segmentProgress * (x - startX);
+        segmentY = startY + segmentProgress * (y - startY);
+        TextureManager::GetInstance()->draw("point", segmentX, segmentY, segmentSize, segmentSize);
+    }
+    TextureManager::GetInstance()->draw("aim_point", segmentX - 15, segmentY - 15, 32, 32);
 }
 
 
@@ -99,8 +136,13 @@ void FishingRod::use(char direction, int x, int y)
     }
 
     if (isFKeyPressed && ropeLength > 0) {
-        
-        drawCurve(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, & controlX, & controlY, direction);
+        if (direction == 'S' || direction == 'W') {
+            drawLine(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, &controlX, &controlY, direction);
+        }
+        else {
+            drawCurve(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, &controlX, &controlY, direction);
+        }
+   
     }
 
     if (animate && ropeLength > 1) {
@@ -109,9 +151,14 @@ void FishingRod::use(char direction, int x, int y)
             animationProgress = 0.0f;
             animate = false;
             ropeLength = 0;
-            SDL_Delay(1000);
         }
-        drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY, direction);
+        if (direction == 'S' || direction == 'W') {
+            drawMovingLine(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY, direction);
+        }
+        else {
+            drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY, direction);
+        }
+        
     }
 
     
@@ -123,10 +170,18 @@ std::string FishingRod::getDescription() const
     return std::string();
 }
 
-void FishingRod::draw(int x, int y)
+void FishingRod::draw(char direction, int x, int y)
 {
-    if (animationProgress > 0.9f) {
-        FishingManager::GetInstance()->checkFishingPosition(x + ropeLength, y, "Water");
-    }
     TextureManager::GetInstance()->draw("fishingrod", x, y, 64, 64);
+    if (animationProgress > 0.99f) {
+        int fishCheckX = x, fishCheckY = y;
+        switch (direction) {
+        case 'W': fishCheckY -= ropeLength; break;
+        case 'A': fishCheckX -= ropeLength; break;
+        case 'S': fishCheckY += ropeLength; break;
+        case 'D': fishCheckX += ropeLength; break;
+        }
+
+        FishingManager::GetInstance()->checkFishingPosition(fishCheckX, fishCheckY, "Water");
+    }
 }

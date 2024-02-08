@@ -21,6 +21,7 @@ Cat::Cat(Properties* props) : Character(props)
 	m_Aimation->setProps(m_TextureID, 1, 5, 100);
 
 	m_Inventory = new Inventory(10);
+
 }
 
 int Cat::getX()
@@ -36,6 +37,7 @@ int Cat::getY()
 	SDL_Rect box = m_Collider->get();
 	return box.y - cam.Y;
 }
+
 
 void Cat::draw()
 {
@@ -162,8 +164,8 @@ void Cat::equip() {
 	}
 
 	if (m_Inventory->getItems().size() > m_IsUsing) {
-		m_Inventory->getItems()[m_IsUsing]->draw(m_Transform->X, m_Transform->Y);
-		m_Inventory->getItems()[m_IsUsing]->use(lastDirection, getX(), getY());
+		m_Inventory->getItems()[m_IsUsing]->draw(lastDirection, m_Transform->X, m_Transform->Y);
+		m_Inventory->getItems()[m_IsUsing]->use(lastDirection, m_Transform->X + 15, m_Transform->Y);
 	}
 
 }

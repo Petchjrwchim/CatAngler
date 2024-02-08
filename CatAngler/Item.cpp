@@ -16,7 +16,7 @@ std::string Item::getDescription() const
     return std::string();
 }
 
-void Item::draw(int x, int y) {
+void Item::draw(char direction, int x, int y) {
     
 }
 

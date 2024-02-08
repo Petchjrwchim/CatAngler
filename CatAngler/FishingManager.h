@@ -3,6 +3,7 @@
 #include "Fish.h"
 #include "Vector2D.h"
 #include "FishingRod.h"
+#include "Inventory.h"
 #include "Collider.h"
 #include <vector>
 #include "SDL.h"
@@ -11,14 +12,14 @@
 
 class FishingManager {
     private:
-        FishingRod* rod = new FishingRod(1,"rod","Equipment", "");
-        std::vector<Fish*> fishInArea;
 
+        std::vector<Fish*> fishInArea;
         Collider* m_Collider;
         static FishingManager* s_Instance;
+        Inventory* playerInventory;
 
     public:
-        FishingManager(std::vector<Fish*> fishInArea = {});
+        FishingManager(Inventory* player_Inv = nullptr, std::vector<Fish*> fishInArea = {});
 
         inline static FishingManager* GetInstance() { return s_Instance = (s_Instance != nullptr) ? s_Instance : new FishingManager(); }
 

@@ -7,25 +7,26 @@
 
 FishingManager* FishingManager::s_Instance = nullptr;
 
-FishingManager::FishingManager(std::vector<Fish*> fishInArea)
-	: fishInArea(fishInArea) 
+
+FishingManager::FishingManager(Inventory* player_Inv, std::vector<Fish*> fishInArea)
+    : playerInventory(player_Inv)
 {
 	m_Collider = new Collider();
 	m_Collider->setBuffer(0, 0, 0, 0);
 }
 
-void FishingManager::checkFishingPosition(int  x, int y, std::string map)
+void FishingManager::checkFishingPosition(int x, int y, std::string map)
 {
-	m_Collider->set(x, y, 32, 32);
+    m_Collider->set(x, y, 32, 32);
 
-	Vector2D cam = Camera::GetInstance()->getPosition();
-	SDL_Rect box = m_Collider->get();
-	box.x -= cam.X;
-	box.y -= cam.Y;
-	SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
-	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), map)) {
-		std::cout << "got fish" << std::endl;
-	}
+    if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), map)) {
+        std::cout << "Got fish!" << std::endl;
+        Fish* caughtFish = new Fish( 1, "Salmon", 5, "Common", "fishingrod");
+        if (playerInventory != nullptr) {
+            std::cout << "add fish!" << std::endl;
+            playerInventory->addItem(caughtFish);
+        }
+    }
 }
 
 void FishingManager::update(bool input, int x, int y)
