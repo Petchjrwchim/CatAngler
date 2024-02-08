@@ -1,6 +1,7 @@
 #include "FishingRod.h"
 #include "Input.h"
 #include "Engine.h"
+#include "FishingManager.h"
 #include "Cat.h"
 #include <iostream>
 
@@ -110,7 +111,6 @@ void FishingRod::use(char direction, int x, int y)
             ropeLength = 0;
             SDL_Delay(1000);
         }
-
         drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY, direction);
     }
 
@@ -125,5 +125,8 @@ std::string FishingRod::getDescription() const
 
 void FishingRod::draw(int x, int y)
 {
+    if (animationProgress > 0.9f) {
+        FishingManager::GetInstance()->checkFishingPosition(x + ropeLength, y, "Water");
+    }
     TextureManager::GetInstance()->draw("fishingrod", x, y, 64, 64);
 }

@@ -101,7 +101,7 @@ void Engine::render()
 {
 	int test = 1;
 	SDL_RenderClear(m_Renderer);
-	m_Tile->render("Tile Layer 1");
+	m_Tile->render("Floor");
 	cat->draw();
 	cat->equip();
 	m_Tile->render("tree");
