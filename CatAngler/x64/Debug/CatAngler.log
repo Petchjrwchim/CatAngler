@@ -1,9 +1,75 @@
+<<<<<<< HEAD
+﻿  Animation.cpp
+C:\CatAngler\CatAngler\Animation.cpp(11,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Animation.cpp(11,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Camera.cpp
+C:\CatAngler\CatAngler\Camera.cpp(13,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Camera.cpp(14,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Camera.cpp(32,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\Camera.cpp(32,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Cat.cpp
+C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\Cat.h(37,44): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\Cat.h(38,44): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
+C:\CatAngler\CatAngler\Cat.cpp(34,23): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(41,15): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(60,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(60,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(62,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(62,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(129,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(129,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(137,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(137,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(170,93): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(170,76): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Character.cpp
+  Collider.cpp
+  CollisionHandler.cpp
+  Engine.cpp
+C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\Cat.h(37,44): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\Cat.h(38,44): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Engine.cpp')
+  
+C:\CatAngler\CatAngler\Engine.cpp(118,12): warning C4101: 'event': unreferenced local variable
+  Fish.cpp
+=======
 ﻿  Engine.cpp
 C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\CatAngler\CatAngler\Engine.cpp(122,12): warning C4101: 'event': unreferenced local variable
+>>>>>>> parent of 42b3a85 (fishing_almost_finish)
   FishingManager.cpp
   FishingRod.cpp
 C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -30,5 +96,43 @@ C:\CatAngler\CatAngler\FishingRod.cpp(112,64): warning C4244: 'argument': conver
 C:\CatAngler\CatAngler\FishingRod.cpp(112,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\CatAngler\CatAngler\FishingRod.cpp(114,78): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\CatAngler\CatAngler\FishingRod.cpp(114,63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+<<<<<<< HEAD
+  GameObject.cpp
+C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'GameObject.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'GameObject.cpp')
+  
+  Input.cpp
+  Inventory.cpp
+  Item.cpp
+  main.cpp
+  Point.cpp
+  RigidBody.cpp
+  TextureManager.cpp
+C:\CatAngler\CatAngler\TextureManager.cpp(60,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(60,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(60,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(60,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(67,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(67,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(67,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(67,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(77,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(77,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\TextureManager.cpp(77,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\TextureManager.cpp(77,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Tile.cpp
+  Timer.cpp
+C:\CatAngler\CatAngler\Timer.cpp(13,27): warning C4244: '=': conversion from 'Uint32' to 'float', possible loss of data
+  Generating Code...
+C:\CatAngler\CatAngler\FishingRod.cpp(199): warning C4715: 'FishingRod::getValueY': not all control paths return a value
+C:\CatAngler\CatAngler\FishingRod.cpp(187): warning C4715: 'FishingRod::getValueX': not all control paths return a value
+  Compiling...
+  Transform.cpp
+  Vector2D.cpp
+=======
+>>>>>>> parent of 42b3a85 (fishing_almost_finish)
   Generating Code...
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe
