@@ -9,3 +9,4 @@ fishingrod,assets\images\FishingRod.png
 bag,assets\images\bag.png
 aim_point,assets\images\aim_point.png
 point,assets\images\point.png
+slot,assets\images\slot.png

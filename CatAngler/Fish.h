@@ -13,17 +13,17 @@ public:
         : Item(id, name, "Fish", texture), size(size), rarity(rarity) {}
 
 
-    virtual std::string getDescription() const override {
-        return "Name: " + m_Name + ", Size: " + std::to_string(size) + ", Rarity: " + rarity;
+    virtual std::string getDescription() override {
+        return "Name: " + Fish::getName() + ", Size: " + std::to_string(size) + ", Rarity: " + rarity;
     }
 
     inline int getSize() const { return size; }
     inline std::string getRarity() const { return rarity; }
 
-    virtual void use(char direction, int x = 0, int y = 0) override {
+    virtual void use() override {
     }
 
-    void draw(char direction, int x, int y) override {
+    void draw() override {
     }
 
 };

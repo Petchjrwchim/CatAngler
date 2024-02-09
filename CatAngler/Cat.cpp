@@ -1,10 +1,13 @@
 #include "Cat.h"
 #include "Engine.h"
 #include "CollisionHandler.h"
+#include "FishingManager.h"
 #include "TextureManager.h"
 #include "Input.h"
 #include "Camera.h"
 #include "SDL.h"
+
+FishingManager* fish_manager;
 
 
 Cat::Cat(Properties* props) : Character(props)
@@ -22,6 +25,7 @@ Cat::Cat(Properties* props) : Character(props)
 
 	m_Inventory = new Inventory(10);
 
+	fish_manager = new FishingManager(m_Inventory);
 }
 
 int Cat::getX()
@@ -164,8 +168,14 @@ void Cat::equip() {
 	}
 
 	if (m_Inventory->getItems().size() > m_IsUsing) {
-		m_Inventory->getItems()[m_IsUsing]->draw(lastDirection, m_Transform->X, m_Transform->Y);
-		m_Inventory->getItems()[m_IsUsing]->use(lastDirection, m_Transform->X + 15, m_Transform->Y);
+		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y);
+		m_Inventory->getItems()[m_IsUsing]->draw();
+		m_Inventory->getItems()[m_IsUsing]->use();
+		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Rod") {
+			int xPos = m_Inventory->getItems()[m_IsUsing]->getX();
+			int yPos = m_Inventory->getItems()[m_IsUsing]->getY();
+			fish_manager->checkFishing(xPos, yPos,"Water");
+		}
 	}
 
 }

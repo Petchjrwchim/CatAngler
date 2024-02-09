@@ -15,7 +15,7 @@ FishingManager::FishingManager(Inventory* player_Inv, std::vector<Fish*> fishInA
 	m_Collider->setBuffer(0, 0, 0, 0);
 }
 
-void FishingManager::checkFishingPosition(int x, int y, std::string map)
+void FishingManager::checkFishing(int x, int y, std::string map)
 {
     m_Collider->set(x, y, 32, 32);
 

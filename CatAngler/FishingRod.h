@@ -10,9 +10,13 @@ class FishingRod : public Item {
 public:
     FishingRod(int id, const std::string& name, const std::string& type, const std::string& texture);
 
-    void use(char direction, int x, int y) override;
-    std::string getDescription() const override;
-    void draw(char direction, int x, int y) override;
+    std::string getDescription() override;
+
+    void use() override;
+    void draw() override;
+
+    int getX() override;
+    int getY() override;
 
 private:
     bool isFKeyPressed;

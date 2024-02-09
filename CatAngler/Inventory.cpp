@@ -12,6 +12,7 @@ Inventory::~Inventory() {
     }
 }
 
+
 void Inventory::addItem(Item* item) {
     m_items.push_back(item);
 }
@@ -27,8 +28,14 @@ void Inventory::toggleVisibility() {
 void Inventory::render(int x, int y) {
     if (!isVisible) return;
 
-    SDL_Rect backgroundRect = { 100, 100, 800, 600 }; 
-    TextureManager::GetInstance()->draw("bag", x + 200, y + 150, 400, 300);
+    int screenWidth;
+    SDL_Renderer* renderer = SDL_GetRenderer(SDL_GetWindowFromID(1));
+    SDL_GetRendererOutputSize(renderer, &screenWidth, nullptr);
+
+    int startX = (screenWidth) / 2 - 320;
+
+    std::cout << x << "," << y << std::endl;
+    TextureManager::GetInstance()->draw("bag", (screenWidth) / 2 - 320 + x, y , 640, 640);
 
     int slotWidth = 51;
     int slotHeight = 50;

@@ -1,7 +1,6 @@
 #include "FishingRod.h"
 #include "Input.h"
 #include "Engine.h"
-#include "FishingManager.h"
 #include "TextureManager.h"
 #include "Cat.h"
 #include <iostream>
@@ -115,7 +114,7 @@ void drawMovingLine(SDL_Renderer* renderer, int startX, int startY, int length, 
 }
 
 
-void FishingRod::use(char direction, int x, int y)
+void FishingRod::use()
 {
     
     if (Input::GetInstance()->getMouseButtonDown(1) && !isFKeyPressed) {
@@ -136,11 +135,11 @@ void FishingRod::use(char direction, int x, int y)
     }
 
     if (isFKeyPressed && ropeLength > 0) {
-        if (direction == 'S' || direction == 'W') {
-            drawLine(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, &controlX, &controlY, direction);
+        if (m_Direction == 'S' || m_Direction == 'W') {
+            drawLine(Engine::GetInstance()->GetRenderer(), m_X, m_Y, ropeLength, &controlX, &controlY, m_Direction);
         }
         else {
-            drawCurve(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, &controlX, &controlY, direction);
+            drawCurve(Engine::GetInstance()->GetRenderer(), m_X, m_Y, ropeLength, &controlX, &controlY, m_Direction);
         }
    
     }
@@ -152,11 +151,11 @@ void FishingRod::use(char direction, int x, int y)
             animate = false;
             ropeLength = 0;
         }
-        if (direction == 'S' || direction == 'W') {
-            drawMovingLine(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY, direction);
+        if (m_Direction == 'S' || m_Direction == 'W') {
+            drawMovingLine(Engine::GetInstance()->GetRenderer(), m_X, m_Y, ropeLength, animationProgress, controlX, controlY, m_Direction);
         }
         else {
-            drawMovingCircle(Engine::GetInstance()->GetRenderer(), x, y, ropeLength, animationProgress, controlX, controlY, direction);
+            drawMovingCircle(Engine::GetInstance()->GetRenderer(), m_X, m_Y, ropeLength, animationProgress, controlX, controlY, m_Direction);
         }
         
     }
@@ -164,24 +163,39 @@ void FishingRod::use(char direction, int x, int y)
     
 }
 
-
-std::string FishingRod::getDescription() const
+std::string FishingRod::getDescription()
 {
     return std::string();
 }
 
-void FishingRod::draw(char direction, int x, int y)
+void FishingRod::draw()
 {
-    TextureManager::GetInstance()->draw("fishingrod", x, y, 64, 64);
+    TextureManager::GetInstance()->draw("fishingrod", m_X, m_Y, 64, 64);
+
+}
+
+int FishingRod::getX()
+{
     if (animationProgress > 0.99f) {
-        int fishCheckX = x, fishCheckY = y;
-        switch (direction) {
-        case 'W': fishCheckY -= ropeLength; break;
-        case 'A': fishCheckX -= ropeLength; break;
-        case 'S': fishCheckY += ropeLength; break;
-        case 'D': fishCheckX += ropeLength; break;
+        int fishCheckX = m_X, fishCheckY = m_Y;
+        switch (m_Direction) {
+        case 'A': return fishCheckX -= ropeLength; break;
+        case 'D': return fishCheckX += ropeLength; break;
+        default :  return fishCheckX;
         }
 
-        FishingManager::GetInstance()->checkFishingPosition(fishCheckX, fishCheckY, "Water");
+    }
+}
+
+int FishingRod::getY()
+{
+    if (animationProgress > 0.99f) {
+        int fishCheckX = m_X, fishCheckY = m_Y;
+        switch (m_Direction) {
+        case 'W': return fishCheckY -= ropeLength; break;
+        case 'S': return fishCheckY += ropeLength; break;
+        default : return fishCheckY;
+        }
+
     }
 }

@@ -2,7 +2,7 @@
 
 #include "Engine.h"
 #include "TextureManager.h"
-#include "FishingManager.h"
+#include "FishingRod.h"
 #include "Transform.h"
 #include "Input.h"
 #include "Timer.h"
@@ -12,7 +12,6 @@
 
 Engine* Engine::s_Instance = nullptr;
 Cat* cat = nullptr;
-FishingManager* fish_mng = nullptr;
 Tile* m_Tile;
 
 void addFishingRodToCatInventory(Cat* cat) {
@@ -65,8 +64,6 @@ bool Engine::init()
 	Camera::GetInstance()->setTarget(cat->getOrigin());
 	addFishingRodToCatInventory(cat);
 
-	fish_mng = new FishingManager(cat->getInventory());
-
 	return m_IsRunning = true;
 }
 
@@ -91,7 +88,7 @@ void Engine::update()
 	float dt = Timer::GetInstance()->getDeltaTime();
 
 	cat->update(dt);
-
+	
 	Camera::GetInstance()->update(dt);
 }
 
