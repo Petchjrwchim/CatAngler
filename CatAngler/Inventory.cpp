@@ -1,6 +1,9 @@
 #include "Inventory.h"
 #include "Inventory.h"
+#include <algorithm>
+#include <sstream>
 #include "TextureManager.h" 
+#include "TextManager.h" 
 
 Inventory::Inventory( int capacity)
     :  capacity(capacity), isVisible(false) {
@@ -14,7 +17,17 @@ Inventory::~Inventory() {
 
 
 void Inventory::addItem(Item* item) {
-    m_items.push_back(item);
+    bool found = false;
+    for (Item* i : m_items) {
+        if (i->getName() == item->getName()) {
+            i->additems(item->getQuantity());
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        m_items.push_back(item);
+    }
 }
 
 void Inventory::removeItem(int itemID) {
@@ -34,16 +47,15 @@ void Inventory::render(int x, int y) {
 
     int startX = (screenWidth) / 2 - 320;
 
-    std::cout << x << "," << y << std::endl;
     TextureManager::GetInstance()->draw("bag", (screenWidth) / 2 - 320 + x, y , 640, 640);
 
-    int slotWidth = 51;
-    int slotHeight = 50;
-    int padding = 11;
+    int slotWidth = 32;
+    int slotHeight = 32;
+    int padding = 10;
 
     for (int i = 0; i < capacity; ++i) {
-        int newX = x + (i % 5) * (slotWidth + padding) + 250; 
-        int newY = y + (i / 5) * (slotHeight + padding) + 170;
+        int newX = x + (i % 5) * (slotWidth + padding) + 300; 
+        int newY = y + (i / 5) * (slotHeight + padding) + 260;
 
         SDL_Rect slotRect = { newX, newY, slotWidth, slotHeight };
         TextureManager::GetInstance()->draw("slot", newX, newY, slotWidth, slotHeight);
@@ -51,8 +63,8 @@ void Inventory::render(int x, int y) {
 
     for (int i = 0; i < m_items.size(); ++i) {
         if (m_items[i] != nullptr) {
-            int newX = x + (i % 6) * (slotWidth + padding) + 250;
-            int newY = y + (i / 6) * (slotHeight + padding) + 170;
+            int newX = x + (i % 5) * (slotWidth + padding) + 300;
+            int newY = y + (i / 5) * (slotHeight + padding) + 260;
 
             SDL_Rect itemRect = { x, y, slotWidth, slotHeight };
             TextureManager::GetInstance()->draw(m_items[i]->getID(), newX, newY, slotWidth, slotHeight);
@@ -74,10 +86,13 @@ void Inventory::renderInventoryBar(int x, int y, int usingSlot) {
         TextureManager::GetInstance()->draw("slot", x, startY, SLOT_WIDTH, SLOT_HEIGHT);
 
         int usingX = startX + usingSlot * (SLOT_WIDTH + BAR_PADDING);
-        TextureManager::GetInstance()->draw("slot", usingX, startY, SLOT_WIDTH + 10, SLOT_HEIGHT + 10);
+        TextureManager::GetInstance()->draw("usingslot", usingX, startY, SLOT_WIDTH , SLOT_HEIGHT);
 
         if (i < m_items.size() && m_items[i] != nullptr) {
             TextureManager::GetInstance()->draw(m_items[i]->getID(), x, startY, SLOT_WIDTH, SLOT_HEIGHT);
+            std::stringstream strm;
+            strm << m_items[i]->getQuantity();
+            TextManager::GetInstance()->renderText(strm.str().c_str(), x + 10, startY, "assets/fonts/PixelifySans.ttf", 30);
         }
     }
 }

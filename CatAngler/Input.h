@@ -18,6 +18,8 @@ class Input
 		bool getKeyDown(SDL_Scancode key);
 		bool getKeyUp(SDL_Scancode key);
 
+		bool getMouseButtonDownOnetime(int button);
+		bool getMouseButtonUpOnetime(int button);
 		bool getMouseButtonDown(int button);
 		bool getMouseButtonUp(int button);
 		bool getMouseButton(int button);

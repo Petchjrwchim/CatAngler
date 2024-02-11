@@ -2,8 +2,11 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+
+#include <vector>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 
 
 #define SCREEN_WIDTH 800
@@ -37,6 +40,7 @@ private:
     static Engine* s_Instance;
 
     void toggleFullscreen(); 
+
 };
 
 

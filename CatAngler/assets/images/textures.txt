@@ -10,3 +10,6 @@ bag,assets\images\bag.png
 aim_point,assets\images\aim_point.png
 point,assets\images\point.png
 slot,assets\images\slot.png
+usingslot,assets\images\usingslot.png
+bait,assets\images\bait.png
+fish,assets\images\fish.png

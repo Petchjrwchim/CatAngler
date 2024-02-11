@@ -1,2 +1,15 @@
-﻿  LINK : C:\CatAngler\x64\Debug\CatAngler.exe not found or not built by the last incremental link; performing full link
+﻿  Enemy.cpp
+C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Enemy.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Enemy.cpp')
+  
+C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Enemy.cpp')
+  
+C:\CatAngler\CatAngler\Enemy.cpp(60,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Enemy.cpp(60,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Enemy.cpp(65,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Enemy.cpp(65,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

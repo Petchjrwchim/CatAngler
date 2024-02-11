@@ -7,9 +7,12 @@
 
 
 
-FishingRod::FishingRod(int id, const std::string& name, const std::string& type, const std::string& texture)
-    : Item(id, name, type, texture), isFKeyPressed(false), fKeyPressStartTime(0), animationProgress(0.0f), animate(false), ropeLength(1), controlX(0), controlY(0) {
-   
+FishingRod::FishingRod(int quantity, const std::string& name, const std::string& type, const std::string& texture)
+    : Item(quantity, name, type, texture), isMousePressed(false), fKeyPressStartTime(0), animationProgress(0.0f), animate(false), ropeLength(1), controlX(0), controlY(0) {
+
+    m_Aimation = new Animation();
+    m_Aimation->setProps("bait", 1, 1, 100);
+
 }
 
 
@@ -57,8 +60,8 @@ void drawLine(SDL_Renderer* renderer, int startX, int startY, int length, float*
     TextureManager::GetInstance()->draw("aim_point", endX - 15, endY - 15, 32, 32);
 }
 
-void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction) {
-    if (length < 0 || animationProgress < 0.0f || animationProgress > 1.0f) return;
+void FishingRod::drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction) {
+    if (length < 0 || animationProgress < 0.0f) return;
 
     if (direction == 'A') length *= -1;
 
@@ -83,13 +86,14 @@ void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length
         TextureManager::GetInstance()->draw("point", segmentX, segmentY, segmentSize, segmentSize);
     }
 
-    TextureManager::GetInstance()->draw("aim_point", segmentX - 15, segmentY - 15, 32, 32);
+    m_Aimation->draw(segmentX - 15, segmentY - 15, 32, 32);
+    //TextureManager::GetInstance()->draw("bait", segmentX - 15, segmentY - 15, 32, 32);
     
 }
 
 
-void drawMovingLine(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction) {
-    if (length < 0 || animationProgress < 0.0f || animationProgress > 1.0f) return;
+void FishingRod::drawMovingLine(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction) {
+    if (length < 0 || animationProgress < 0.0f) return;
 
     if (direction == 'W') length *= -1;
 
@@ -110,31 +114,36 @@ void drawMovingLine(SDL_Renderer* renderer, int startX, int startY, int length, 
         segmentY = startY + segmentProgress * (y - startY);
         TextureManager::GetInstance()->draw("point", segmentX, segmentY, segmentSize, segmentSize);
     }
-    TextureManager::GetInstance()->draw("aim_point", segmentX - 15, segmentY - 15, 32, 32);
+
+    m_Aimation->draw(segmentX - 15, segmentY - 15, 32, 32);
+    //TextureManager::GetInstance()->draw("aim_point", segmentX - 15, segmentY - 15, 32, 32);
 }
 
 
 void FishingRod::use()
 {
+    srand(time(NULL));
     
-    if (Input::GetInstance()->getMouseButtonDown(1) && !isFKeyPressed) {
-        isFKeyPressed = true;
+    if (Input::GetInstance()->getMouseButtonDown(1) && !isMousePressed && QTEstate == 0 ) {
+        m_Aimation->setProps("bait", 1, 1, 100);
+        isMousePressed = true;
         fKeyPressStartTime = SDL_GetTicks();
+        oldPressStartTime = fKeyPressStartTime;
+        waitTime = rand() % 20 + 5;
         animate = false;
         animationProgress = 0.0f;
     }
-    if (Input::GetInstance()->getMouseButtonUp(1)) {
-        isFKeyPressed = false;
+    if (Input::GetInstance()->getMouseButtonUp(1) && QTEstate == 0) {
+        isMousePressed = false;
         animate = true;
     }
 
-
-    if (isFKeyPressed) {
-        //std::cout << SDL_GetTicks << ", " << fKeyPressStartTime << ", " << ropeLength << std::endl;
+    if (isMousePressed && QTEstate == 0) {
+        //std::cout << SDL_GetTicks << ", " << fKeyPressStartTime << ", " << ropeLength << std::endl;as
         ropeLength = (SDL_GetTicks() - fKeyPressStartTime) / 10;
     }
 
-    if (isFKeyPressed && ropeLength > 0) {
+    if (isMousePressed && ropeLength > 10 && QTEstate == 0) {
         if (m_Direction == 'S' || m_Direction == 'W') {
             drawLine(Engine::GetInstance()->GetRenderer(), m_X, m_Y, ropeLength, &controlX, &controlY, m_Direction);
         }
@@ -144,13 +153,19 @@ void FishingRod::use()
    
     }
 
-    if (animate && ropeLength > 1) {
-        animationProgress += 0.01f;
+    if (animate && ropeLength > 10) {
+ 
         if (animationProgress > 1.0f) {
-            animationProgress = 0.0f;
-            animate = false;
-            ropeLength = 0;
+            qteEvent();
         }
+        else {
+            animationProgress += 0.01f;
+        }
+
+        if (animationProgress == 0.99f) {
+            QTEstate += 1;
+        }
+        
         if (m_Direction == 'S' || m_Direction == 'W') {
             drawMovingLine(Engine::GetInstance()->GetRenderer(), m_X, m_Y, ropeLength, animationProgress, controlX, controlY, m_Direction);
         }
@@ -160,7 +175,7 @@ void FishingRod::use()
         
     }
 
-    
+    m_Aimation->update();
 }
 
 std::string FishingRod::getDescription()
@@ -176,26 +191,86 @@ void FishingRod::draw()
 
 int FishingRod::getX()
 {
-    if (animationProgress > 0.99f) {
+    if (animationProgress > 0.99f && isSuccess) {
         int fishCheckX = m_X, fishCheckY = m_Y;
+        animationProgress = 0.0f;
+        isSuccess = false;
         switch (m_Direction) {
-        case 'A': return fishCheckX -= ropeLength; break;
-        case 'D': return fishCheckX += ropeLength; break;
-        default :  return fishCheckX;
+        case 'A': fishCheckX -= ropeLength; break;
+        case 'D': fishCheckX += ropeLength; break;
+        default : fishCheckX;
         }
-
+        ropeLength = 0;
+        return fishCheckX;
+    }
+    else {
+        return m_X;
     }
 }
 
 int FishingRod::getY()
 {
-    if (animationProgress > 0.99f) {
+    if (animationProgress > 0.99f && isSuccess) {
         int fishCheckX = m_X, fishCheckY = m_Y;
+        animationProgress = 0.0f;
+        isSuccess = false;
         switch (m_Direction) {
-        case 'W': return fishCheckY -= ropeLength; break;
-        case 'S': return fishCheckY += ropeLength; break;
-        default : return fishCheckY;
+        case 'W': fishCheckY -= ropeLength; break;
+        case 'S': fishCheckY += ropeLength; break;
+        default : fishCheckY;
+        }
+        ropeLength = 0;
+        return fishCheckY;
+    }
+    else {
+        return  m_Y;
+    }
+}
+
+void FishingRod::qteEvent(int x, int y) {
+
+    std::cout << waitTime << std::endl;
+
+    if (QTEstate <= 3 && (SDL_GetTicks() - oldPressStartTime) / 1000 > ropeLength/100 + waitTime) {
+
+        
+        if (Input::GetInstance()->getMouseButtonDown(1)) {
+            m_Aimation->setProps("bait", 1, 1, 100);
+            if (QTEstate <= 2) {
+                int hookTime = rand() % 3 + 1;
+                waitTime += hookTime;
+            }
+            isMousePressed = false;
         }
 
+        if (Input::GetInstance()->getMouseButtonUp(1) && !isMousePressed) {
+            m_Aimation->setProps("bait", 1, 4, 100);
+            isMousePressed = true;
+            QTEstate += 1;
+            fKeyPressStartTime = SDL_GetTicks();
+        }
+
+        if (shakeTime > 2) {
+            std::cout << "unsuccess hook" << std::endl;
+            isMousePressed = false;
+            isSuccess = false;
+            animate = false;
+            animationProgress = 0.0f;
+            ropeLength = 0;
+            QTEstate = 0;
+        }
+
+        if (isMousePressed) {
+            shakeTime = (SDL_GetTicks() - fKeyPressStartTime) / 1000;
+        }
+
+        std::cout << "hook, " << QTEstate <<", "<< shakeTime << ", " << waitTime << std::endl;
+
+    }
+    if (QTEstate > 3) {
+        std::cout << "qte > 3" << animationProgress << std::endl;
+        isSuccess = true;
+        animate = false;
+        QTEstate = 0;
     }
 }

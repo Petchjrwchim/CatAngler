@@ -32,11 +32,16 @@ public:
 	Inventory* getInventory() { return m_Inventory; }
 	bool getFishing() { return m_IsFishing; }
 	char getDirection() { return lastDirection; }
+	
 	int getX();
 	int getY();
-	virtual void draw();
+	int getTX();
+	int getTY();
+
 	void drawInv();
 	void equip();
+
+	virtual void draw();
 	virtual void update(float dt);
 	virtual void clean();
 

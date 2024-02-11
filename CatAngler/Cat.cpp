@@ -42,12 +42,22 @@ int Cat::getY()
 	return box.y - cam.Y;
 }
 
+int Cat::getTX()
+{
+	return m_Transform->X;
+}
+
+int Cat::getTY()
+{
+	return m_Transform->Y;
+}
+
 
 void Cat::draw()
 {
 	
 	m_Aimation->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
-	
+
 	//Vector2D cam = Camera::GetInstance()->getPosition();
 	//SDL_Rect box = m_Collider->get();
 	//box.x -= cam.X;

@@ -71,6 +71,16 @@ void Input::keyDown()
     m_KeyState = SDL_GetKeyboardState(nullptr);
 }
 
+bool Input::getMouseButtonDownOnetime(int button)
+{
+    return (m_MouseState & SDL_BUTTON(button)) == 1 && (m_PrevMouseState & SDL_BUTTON(button)) == 0;
+}
+
+bool Input::getMouseButtonUpOnetime(int button)
+{
+    return false;
+}
+
 bool Input::getMouseButtonDown(int button) {
     return (m_MouseState & SDL_BUTTON(button)) == 1;
 }
