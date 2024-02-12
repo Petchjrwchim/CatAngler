@@ -19,6 +19,7 @@ private:
 	bool m_IsMoving;
 
 	SDL_RendererFlip m_Flip;
+	SDL_Rect target;
 
 	Collider* m_Collider;
 	Animation* m_Aimation;
@@ -28,8 +29,10 @@ private:
 public:
 	Enemy(Properties* props);
 
+	void setTarget(int x, int y, SDL_Rect target);
+	int getHealth() { return health; }
+
 	virtual void draw();
-	void setTarget(int x, int y);
 	virtual void update(float dt);
 	virtual void clean();
 };

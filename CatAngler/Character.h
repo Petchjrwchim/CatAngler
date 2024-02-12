@@ -18,6 +18,7 @@ class Character : public GameObject {
 
 	protected:
 		std::string m_Name;
+		int health = 10;
 };
 
 #endif // !CHARACTER.H

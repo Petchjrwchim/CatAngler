@@ -129,7 +129,7 @@ void FishingRod::use()
         isMousePressed = true;
         fKeyPressStartTime = SDL_GetTicks();
         oldPressStartTime = fKeyPressStartTime;
-        waitTime = rand() % 20 + 5;
+        waitTime = 5;
         animate = false;
         animationProgress = 0.0f;
     }
@@ -229,7 +229,7 @@ int FishingRod::getY()
 
 void FishingRod::qteEvent(int x, int y) {
 
-    std::cout << waitTime << std::endl;
+    //std::cout << waitTime << std::endl;
 
     if (QTEstate <= 3 && (SDL_GetTicks() - oldPressStartTime) / 1000 > ropeLength/100 + waitTime) {
 
@@ -251,7 +251,7 @@ void FishingRod::qteEvent(int x, int y) {
         }
 
         if (shakeTime > 2) {
-            std::cout << "unsuccess hook" << std::endl;
+            //std::cout << "unsuccess hook" << std::endl;
             isMousePressed = false;
             isSuccess = false;
             animate = false;
@@ -264,11 +264,11 @@ void FishingRod::qteEvent(int x, int y) {
             shakeTime = (SDL_GetTicks() - fKeyPressStartTime) / 1000;
         }
 
-        std::cout << "hook, " << QTEstate <<", "<< shakeTime << ", " << waitTime << std::endl;
+        //std::cout << "hook, " << QTEstate <<", "<< shakeTime << ", " << waitTime << std::endl;
 
     }
     if (QTEstate > 3) {
-        std::cout << "qte > 3" << animationProgress << std::endl;
+        //std::cout << "qte > 3" << animationProgress << std::endl;
         isSuccess = true;
         animate = false;
         QTEstate = 0;

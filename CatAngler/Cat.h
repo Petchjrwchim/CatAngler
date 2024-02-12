@@ -38,6 +38,7 @@ public:
 	int getTX();
 	int getTY();
 
+
 	void drawInv();
 	void equip();
 

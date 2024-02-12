@@ -7,13 +7,11 @@
 #include "Input.h"
 #include "Timer.h"
 #include "Cat.h"
-#include "Enemy.h"
 #include "Camera.h"
 #include "Tile.h"
 
 Engine* Engine::s_Instance = nullptr;
 Cat* cat = nullptr;
-Enemy* shark = nullptr;
 Tile* m_Tile;
 
 void addFishingRodToCatInventory(Cat* cat) {
@@ -73,8 +71,6 @@ bool Engine::init()
 	Camera::GetInstance()->setTarget(cat->getOrigin());
 	addFishingRodToCatInventory(cat);
 
-	shark = new Enemy(new Properties("slot", 300, 300, 32, 32));
-
 	return m_IsRunning = true;
 }
 
@@ -100,8 +96,7 @@ void Engine::update()
 	float dt = Timer::GetInstance()->getDeltaTime();
 
 	cat->update(dt);
-	shark->setTarget(cat->getTX(), cat->getTY());
-	shark->update(dt);
+
 	
 	Camera::GetInstance()->update(dt);
 }
@@ -111,7 +106,6 @@ void Engine::render()
 	SDL_RenderClear(m_Renderer);
 	m_Tile->render("Floor");
 	cat->draw();
-	shark->draw();
 	cat->equip();
 	m_Tile->render("tree");
 

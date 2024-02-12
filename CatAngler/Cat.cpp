@@ -57,6 +57,7 @@ void Cat::draw()
 {
 	
 	m_Aimation->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
+	FishingManager::GetInstance()->draw();
 
 	//Vector2D cam = Camera::GetInstance()->getPosition();
 	//SDL_Rect box = m_Collider->get();
@@ -154,7 +155,7 @@ void Cat::update(float dt)
 	m_Origin->y = m_Transform->Y + m_Height / 2;
 	m_Aimation->update();
 
-
+	fish_manager->update(dt, m_Transform->X, m_Transform->Y, m_Collider->get());
 
 }
 

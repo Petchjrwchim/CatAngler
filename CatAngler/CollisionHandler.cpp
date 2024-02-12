@@ -10,7 +10,10 @@ CollisionHandler::CollisionHandler() {
 
 bool CollisionHandler::checkCollision(const SDL_Rect& a, const SDL_Rect& b) {
     bool x_overlaps = (a.x < b.x + b.w) && (a.x + a.w > b.x);
+    std::cout << a.x << ", " << b.x + b.w << ", " << a.x + a.w << ", " << b.x << std::endl;
     bool y_overlaps = (a.y < b.y + b.h) && (a.y + a.h > b.y);
+
+    //std::cout << x_overlaps << ", " << y_overlaps << std::endl;
     return x_overlaps && y_overlaps;
 }
 

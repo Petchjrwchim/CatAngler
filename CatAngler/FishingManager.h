@@ -24,5 +24,7 @@ class FishingManager {
 
         void checkFishing(int  x,int y, std::string map);
 
-        void update(bool input, int x, int y);
+        void update(float dt, int x, int y, SDL_Rect target);
+
+        void draw();
 };
