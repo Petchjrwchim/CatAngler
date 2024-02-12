@@ -19,7 +19,16 @@ FishingRod::FishingRod(int quantity, const std::string& name, const std::string&
 void drawCurve(SDL_Renderer* renderer, int startX, int startY, int length, float* controlX, float* controlY, char direction) {
     if (length < 0) return;
 
-    if (direction == 'A') length *= -1;
+    startY += 3;
+
+    if (direction == 'A') {
+        length *= -1;
+        startX -= 23;
+    }
+    else {
+        startX += 23;
+    }
+        
 
     const int endX = startX + length;
     const int endY = startY + 20;
@@ -63,7 +72,15 @@ void drawLine(SDL_Renderer* renderer, int startX, int startY, int length, float*
 void FishingRod::drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction) {
     if (length < 0 || animationProgress < 0.0f) return;
 
-    if (direction == 'A') length *= -1;
+    startY += 3;
+
+    if (direction == 'A') {
+        length *= -1;
+        startX -= 23;
+    }
+    else {
+        startX += 23;
+    }
 
     const int endX = startX + length;
     const int endY = startY + 20;
@@ -185,12 +202,18 @@ std::string FishingRod::getDescription()
 
 void FishingRod::draw()
 {
-    TextureManager::GetInstance()->draw("fishingrod", m_X, m_Y, 64, 64);
+    if (m_Direction == 'D') {
+        TextureManager::GetInstance()->draw("fishingrod", m_X -5, m_Y, 32, 32);
+    }
+    if (m_Direction == 'A') {
+        TextureManager::GetInstance()->draw("fishingrod", m_X - 27, m_Y, 32, 32, SDL_FLIP_HORIZONTAL);
+    }
 
 }
 
 int FishingRod::getX()
 {
+
     if (animationProgress > 0.99f && isSuccess) {
         int fishCheckX = m_X, fishCheckY = m_Y;
         animationProgress = 0.0f;

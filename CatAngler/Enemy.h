@@ -6,7 +6,7 @@
 #include "RigidBody.h"
 #include "Vector2D.h"
 
-#define SPEED 20.0f
+#define SPEED 0.2f
 
 class Enemy : public Character
 {
@@ -18,8 +18,10 @@ private:
 
 	bool m_IsMoving;
 
+	int m_Health;
+
 	SDL_RendererFlip m_Flip;
-	SDL_Rect target;
+	SDL_Rect m_Target;
 
 	Collider* m_Collider;
 	Animation* m_Aimation;
@@ -27,7 +29,7 @@ private:
 	Vector2D m_LastSafePosition;
 
 public:
-	Enemy(Properties* props);
+	Enemy(Properties* props, int health);
 
 	void setTarget(int x, int y, SDL_Rect target);
 	int getHealth() { return health; }

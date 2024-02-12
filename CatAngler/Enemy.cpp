@@ -4,7 +4,7 @@
 #include "TextureManager.h"
 #include "Camera.h"
 
-Enemy::Enemy(Properties* props) : Character(props)
+Enemy::Enemy(Properties* props, int health) : Character(props), m_Health(health)
 {
 	m_Flip = SDL_FLIP_NONE;
 
@@ -14,7 +14,7 @@ Enemy::Enemy(Properties* props) : Character(props)
 	m_Collider->setBuffer(-10, -10, 20, 15);
 
 	m_Aimation = new Animation();
-	m_Aimation->setProps(m_TextureID, 1, 1, 100);
+	m_Aimation->setProps(m_TextureID, 1, 4, 150);
 
 }
 
@@ -29,51 +29,55 @@ void Enemy::setTarget(int x, int y, SDL_Rect target)
 {
 	t_X = x;
 	t_Y = y;
-	target = target;
+	m_Target = target;
 
 }
 
 void Enemy::update(float dt)
 {
-
+	int time = 1;
 	//std::cout << m_Transform->X << "," << m_Transform->Y << std::endl;
 	
-	if (t_Y > m_Transform->Y) {
-		lastDirection = 'W';
-		m_Transform->Y += 1;
-	}
-	
-	if (t_Y < m_Transform->Y) {
-		lastDirection = 'S';
-		m_Transform->Y -= 1;
+	if (!CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
+		if (t_Y > m_Transform->Y) {
+			lastDirection = 'W';
+			m_Transform->Y += 1 * SPEED;
+		}
+
+		if (t_Y < m_Transform->Y) {
+			lastDirection = 'S';
+			m_Transform->Y -= 1 * SPEED;
+		}
+
+		if (t_X < m_Transform->X) {
+			lastDirection = 'A';
+			m_Flip = SDL_FLIP_NONE;
+			m_Aimation->setProps(m_TextureID, 1, 4, 150, m_Flip);
+			m_Transform->X -= 1 * SPEED;
+		}
+
+		if (t_X > m_Transform->X) {
+			lastDirection = 'D';
+			m_Flip = SDL_FLIP_HORIZONTAL;
+			m_Aimation->setProps(m_TextureID, 1, 4, 150, m_Flip);
+			m_Transform->X += 1 * SPEED;
+		}
+
+		m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
+		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
+			m_Transform->X -= 1;
+		}
+
+		m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
+		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
+			m_Transform->Y -= 1;
+		}
 	}
 
-	if (t_X < m_Transform->X) {
-		lastDirection = 'A';
-		m_Flip = SDL_FLIP_HORIZONTAL;
-		m_Transform->X -= 1;
-	}
-
-	if (t_X > m_Transform->X) {
-		lastDirection = 'D';
-		m_Flip = SDL_FLIP_NONE;
-		m_Transform->X += 1;
-	}
-
-	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
-		m_Transform->X -=1;
-	}
-
-	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
-		m_Transform->Y -= 1;
-	}
-
-	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), target)) {
-		health -= 1;
-	}
+	//m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
+	//if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
+	//	health -= 1;
+	//}
 
 	m_Origin->x = m_Transform->X + m_Width / 2;
 	m_Origin->y = m_Transform->Y + m_Height / 2;
