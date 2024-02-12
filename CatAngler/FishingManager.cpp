@@ -25,7 +25,7 @@ void FishingManager::checkFishing(int x, int y, std::string map)
 
     if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), map)) {
 
-        Enemy* shark = new Enemy(new Properties("shark", 300, 300, 32, 32), 10);
+        Enemy* shark = new Enemy(new Properties("shark_walk", 300, 300, 32, 32), 10);
         enemies.push_back(shark);
         
         std::cout << "Got fish!" << std::endl;

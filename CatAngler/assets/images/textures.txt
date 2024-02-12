@@ -13,4 +13,5 @@ slot,assets\images\slot.png
 usingslot,assets\images\usingslot.png
 bait,assets\images\bait.png
 fish,assets\images\fish.png
-shark,assets\images\shark.png
+shark_walk,assets\images\shark.png
+shark_attack,assets\images\shark_attack.png

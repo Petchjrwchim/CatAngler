@@ -39,6 +39,7 @@ void Enemy::update(float dt)
 	//std::cout << m_Transform->X << "," << m_Transform->Y << std::endl;
 	
 	if (!CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
+		
 		if (t_Y > m_Transform->Y) {
 			lastDirection = 'W';
 			m_Transform->Y += 1 * SPEED;
@@ -74,10 +75,10 @@ void Enemy::update(float dt)
 		}
 	}
 
-	//m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-	//if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
-	//	health -= 1;
-	//}
+	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
+	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
+		m_Aimation->setProps("shark_attack", 1, 4, 150, m_Flip);
+	}
 
 	m_Origin->x = m_Transform->X + m_Width / 2;
 	m_Origin->y = m_Transform->Y + m_Height / 2;
