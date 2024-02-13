@@ -5,6 +5,7 @@
 #include <vector>
 #include "Engine.h"
 #include "tileson.hpp"
+#include "Collider.h"
 
 class CollisionHandler
 {
@@ -18,6 +19,7 @@ public:
     }
 
     bool checkCollision(const SDL_Rect& a, const SDL_Rect& b);
+    bool checkCollisionVec(Collider* a, std::vector<Collider*> b);
     bool mapCollision(const SDL_Rect& a, std::string layerName = "Collision");
 
 private:

@@ -1,13 +1,8 @@
 #pragma once
 
-#include "Fish.h"
-#include "Vector2D.h"
 #include "Inventory.h"
 #include "Collider.h"
-#include <vector>
-#include "SDL.h"
-
-
+#include "Fish.h"
 
 class FishingManager {
     private:
@@ -17,10 +12,15 @@ class FishingManager {
         static FishingManager* s_Instance;
         Inventory* playerInventory;
 
+        std::vector<Collider*>* colliderVec;
+        std::vector<Enemy*> spawned_enemies;
+
     public:
-        FishingManager(Inventory* player_Inv = nullptr, std::vector<Fish*> fishInArea = {});
+        FishingManager(Inventory* player_Inv = nullptr , std::vector<Collider*>* colliderVec = {}, std::vector<Fish*> fishInArea = {});
 
         inline static FishingManager* GetInstance() { return s_Instance = (s_Instance != nullptr) ? s_Instance : new FishingManager(); }
+
+        std::vector<Enemy*> getEnemies() { return spawned_enemies; }
 
         void checkFishing(int  x,int y, std::string map);
 

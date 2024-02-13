@@ -4,13 +4,17 @@
 
 #include "SDL.h"
 #include "TextureManager.h"
+#include "Collider.h"
 #include <string>
+#include "Input.h"
+#include "Enemy.h"
 
 class Item {
     public:
 
         int m_X, m_Y;
         char m_Direction;
+        std::vector<Enemy*> m_enemies;
 
         Item(int quantity, const std::string& name, const std::string& type, const std::string& texture)
             : m_Quantity(quantity), m_Name(name), m_Type(type), m_TextureID(texture) {}
@@ -20,10 +24,11 @@ class Item {
         virtual void draw() = 0;
         virtual int getX() { return m_X; }
         virtual int getY() { return m_Y; }
-        void update(char direction, int x = 0, int y = 0) {
+        void update(char direction, int x = 0, int y = 0, std::vector<Enemy*> enemies = {}) {
             m_Direction = direction;
             m_X = x;
             m_Y = y;
+            m_enemies = enemies;
         }
 
         void additems(int amount) {
@@ -36,6 +41,8 @@ class Item {
         std::string getType() { return m_Type; }
 
     private:
+
+        
         
         int m_Quantity;
         std::string m_Type;

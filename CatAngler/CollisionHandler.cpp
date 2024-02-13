@@ -17,6 +17,18 @@ bool CollisionHandler::checkCollision(const SDL_Rect& a, const SDL_Rect& b) {
     return x_overlaps && y_overlaps;
 }
 
+bool CollisionHandler::checkCollisionVec(Collider* a, std::vector<Collider*> b)
+{
+    
+    for (Collider* i : b) {
+	    if (a != i && checkCollision(a->get(), i->get())) {
+            return true;
+	    }
+    }
+    return false;
+
+}
+
 bool CollisionHandler::mapCollision(const SDL_Rect& a, std::string layerName) {
 
     m_CollisionMap = Tile::GetInstance()->getLayerTilesetIDsByName(layerName);

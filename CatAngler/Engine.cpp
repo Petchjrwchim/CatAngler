@@ -3,6 +3,7 @@
 #include "Engine.h"
 #include "TextureManager.h"
 #include "FishingRod.h"
+#include "Sword.h"
 #include "Transform.h"
 #include "Input.h"
 #include "Timer.h"
@@ -17,8 +18,10 @@ Tile* m_Tile;
 void addFishingRodToCatInventory(Cat* cat) {
 
 	FishingRod* fishingRod = new FishingRod(1, "Fishing Rod", "Rod", "fishingrod");
+	Sword* sword = new Sword(1, "Sword", "Weapon", "sword");
 
 	cat->getInventory()->addItem(fishingRod);
+	cat->getInventory()->addItem(sword);
 }
 
 bool Engine::init()

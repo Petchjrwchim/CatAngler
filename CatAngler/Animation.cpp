@@ -4,6 +4,7 @@
 void Animation::update()
 {
 	m_SpriteFrame = (SDL_GetTicks() / m_AnimSpeed) % m_FrameCount;
+	
 }
 
 void Animation::draw(float x, float y, int spriteWidth, int spriteHeight)
@@ -18,4 +19,5 @@ void Animation::setProps(std::string textureID, int spriteRow, int frame, int an
 	m_FrameCount = frame;
 	m_AnimSpeed = animSpeed;
 	m_Flip = flip;
+
 }

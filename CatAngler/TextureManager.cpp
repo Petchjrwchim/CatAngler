@@ -53,11 +53,11 @@ bool TextureManager::parseTexture(std::string source) {
 }
 
 
-void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip)
+void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip, float f)
 {
-	SDL_Rect srcRect = { 0, 0, width, height };
+	SDL_Rect srcRect = { 0, 0, width, height};
 	Vector2D cam = Camera::GetInstance()->getPosition();
-	SDL_Rect dstRect = { x - cam.X, y - cam.Y, width, height };
+	SDL_Rect dstRect = { x - cam.X, y - cam.Y, width * f, height * f};
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRenderer(), m_TextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 }
 

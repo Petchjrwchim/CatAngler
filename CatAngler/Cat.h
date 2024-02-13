@@ -26,6 +26,8 @@ private:
 	RigidBody* m_RigidBody;
 	Vector2D m_LastSafePosition;
 
+	std::vector<Collider*> colliderVec;
+
 public:
 
 	Cat(Properties* props);

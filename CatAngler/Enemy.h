@@ -24,7 +24,7 @@ private:
 	SDL_Rect m_Target;
 
 	Collider* m_Collider;
-	Animation* m_Aimation;
+	Animation* m_AimationE;
 	RigidBody* m_RigidBody;
 	Vector2D m_LastSafePosition;
 
@@ -34,6 +34,9 @@ public:
 	void setTarget(int x, int y, SDL_Rect target);
 	int getHealth() { return health; }
 
+	void reduceHealth(int dmg) { health -= dmg; }
+
+	Collider* getCollider() { return m_Collider; };
 	virtual void draw();
 	virtual void update(float dt);
 	virtual void clean();

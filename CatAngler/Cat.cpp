@@ -25,7 +25,11 @@ Cat::Cat(Properties* props) : Character(props)
 
 	m_Inventory = new Inventory(10);
 
-	fish_manager = new FishingManager(m_Inventory);
+	colliderVec.push_back(m_Collider);
+
+	fish_manager = new FishingManager(m_Inventory, &colliderVec);
+
+	
 }
 
 int Cat::getX()
@@ -76,35 +80,41 @@ void Cat::drawInv() {
 
 void Cat::update(float dt)
 {
+	//for (Collider* i : colliderVec) {
+	//	if (m_Collider == i) {
+	//		std::cout << "yes";
+	//	}
+	//	std::cout << i->get().x << ", ";
+	//}
+	//std::cout << colliderVec.size();
+
 	int frame = 5;
 	SDL_RendererFlip m_Flip = SDL_FLIP_NONE;
 	m_IsMoving = false;
 	m_RigidBody->unsetForce();
 
-	if (Input::GetInstance()->getMouseButtonUp(1)) {
-		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_W)) {
-			m_IsMoving = true;
-			lastDirection = 'W';
-			m_RigidBody->applyForceY(SPEED * BACKWARD);
-		}
+	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_W)) {
+		m_IsMoving = true;
+		lastDirection = 'W';
+		m_RigidBody->applyForceY(SPEED * BACKWARD);
+	}
 
-		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_S)) {
-			m_IsMoving = true;
-			lastDirection = 'S';
-			m_RigidBody->applyForceY(SPEED * FORWARD);
-		}
+	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_S)) {
+		m_IsMoving = true;
+		lastDirection = 'S';
+		m_RigidBody->applyForceY(SPEED * FORWARD);
+	}
 
-		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_A)) {
-			m_IsMoving = true;
-			lastDirection = 'A';
-			m_RigidBody->applyForceX(SPEED * BACKWARD);
-		}
+	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_A)) {
+		m_IsMoving = true;
+		lastDirection = 'A';
+		m_RigidBody->applyForceX(SPEED * BACKWARD);
+	}
 
-		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_D)) {
-			m_IsMoving = true;
-			lastDirection = 'D';
-			m_RigidBody->applyForceX(SPEED * FORWARD);
-		}
+	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_D)) {
+		m_IsMoving = true;
+		lastDirection = 'D';
+		m_RigidBody->applyForceX(SPEED * FORWARD);
 	}
 
 
@@ -151,6 +161,12 @@ void Cat::update(float dt)
 		m_Transform->Y = m_LastSafePosition.Y;
 	}
 
+	if (CollisionHandler::GetInstance()->checkCollisionVec(m_Collider, colliderVec)) {
+		m_Transform->X = m_LastSafePosition.X;
+		m_Transform->Y = m_LastSafePosition.Y;
+	}
+
+
 	m_Origin->x = m_Transform->X + m_Width / 2;
 	m_Origin->y = m_Transform->Y + m_Height / 2;
 	m_Aimation->update();
@@ -179,7 +195,7 @@ void Cat::equip() {
 	}
 
 	if (m_Inventory->getItems().size() > m_IsUsing) {
-		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y);
+		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y, fish_manager->getEnemies());
 		m_Inventory->getItems()[m_IsUsing]->draw();
 		m_Inventory->getItems()[m_IsUsing]->use();
 		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Rod") {

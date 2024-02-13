@@ -15,3 +15,4 @@ bait,assets\images\bait.png
 fish,assets\images\fish.png
 shark_walk,assets\images\shark.png
 shark_attack,assets\images\shark_attack.png
+sword,assets\images\sword.png

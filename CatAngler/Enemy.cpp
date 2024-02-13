@@ -13,15 +13,15 @@ Enemy::Enemy(Properties* props, int health) : Character(props), m_Health(health)
 	m_Collider = new Collider();
 	m_Collider->setBuffer(-10, -10, 20, 15);
 
-	m_Aimation = new Animation();
-	m_Aimation->setProps(m_TextureID, 1, 4, 150);
+	m_AimationE = new Animation();
+	m_AimationE->setProps(m_TextureID, 1, 4, 150);
 
 }
 
 void Enemy::draw()
 {
-	m_Aimation->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
-	Vector2D cam = Camera::GetInstance()->getPosition();
+	m_AimationE->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
+	TextureManager::GetInstance()->draw("shark", m_Transform->X, m_Transform->Y, 32, 32, SDL_FLIP_HORIZONTAL);
 
 }
 
@@ -53,14 +53,14 @@ void Enemy::update(float dt)
 		if (t_X < m_Transform->X) {
 			lastDirection = 'A';
 			m_Flip = SDL_FLIP_NONE;
-			m_Aimation->setProps(m_TextureID, 1, 4, 150, m_Flip);
+			m_AimationE->setProps(m_TextureID, 1, 4, 150, m_Flip);
 			m_Transform->X -= 1 * SPEED;
 		}
 
 		if (t_X > m_Transform->X) {
 			lastDirection = 'D';
 			m_Flip = SDL_FLIP_HORIZONTAL;
-			m_Aimation->setProps(m_TextureID, 1, 4, 150, m_Flip);
+			m_AimationE->setProps(m_TextureID, 1, 4, 150, m_Flip);
 			m_Transform->X += 1 * SPEED;
 		}
 
@@ -77,12 +77,12 @@ void Enemy::update(float dt)
 
 	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
 	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
-		m_Aimation->setProps("shark_attack", 1, 4, 150, m_Flip);
+		m_AimationE->setProps("shark_attack", 1, 4, 150, m_Flip);
 	}
 
 	m_Origin->x = m_Transform->X + m_Width / 2;
 	m_Origin->y = m_Transform->Y + m_Height / 2;
-	m_Aimation->update();
+	m_AimationE->update();
 }
 
 void Enemy::clean()
