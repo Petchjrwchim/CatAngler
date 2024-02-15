@@ -28,6 +28,8 @@ private:
 
 	std::vector<Collider*> colliderVec;
 
+	int checkX, checkY;
+
 public:
 
 	Cat(Properties* props);

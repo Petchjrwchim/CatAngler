@@ -12,7 +12,7 @@ FishingManager* fish_manager;
 
 Cat::Cat(Properties* props) : Character(props)
 {
-
+	int xPos;
 	m_Flip = SDL_FLIP_NONE;
 
 	m_RigidBody = new RigidBody();
@@ -93,39 +93,37 @@ void Cat::update(float dt)
 	m_IsMoving = false;
 	m_RigidBody->unsetForce();
 
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_W)) {
-		m_IsMoving = true;
-		lastDirection = 'W';
-		m_RigidBody->applyForceY(SPEED * BACKWARD);
-	}
 
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_S)) {
-		m_IsMoving = true;
-		lastDirection = 'S';
-		m_RigidBody->applyForceY(SPEED * FORWARD);
-	}
+	if (Input::GetInstance()->getMouseButtonUp(1) && checkX == 0 && checkY == 0) {
+		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_W)) {
+			m_IsMoving = true;
+			lastDirection = 'W';
+			m_RigidBody->applyForceY(SPEED * BACKWARD);
+		}
 
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_A)) {
-		m_IsMoving = true;
-		lastDirection = 'A';
-		m_RigidBody->applyForceX(SPEED * BACKWARD);
-	}
+		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_S)) {
+			m_IsMoving = true;
+			lastDirection = 'S';
+			m_RigidBody->applyForceY(SPEED * FORWARD);
+		}
 
-	if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_D)) {
-		m_IsMoving = true;
-		lastDirection = 'D';
-		m_RigidBody->applyForceX(SPEED * FORWARD);
-	}
+		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_A)) {
+			m_IsMoving = true;
+			lastDirection = 'A';
+			m_RigidBody->applyForceX(SPEED * BACKWARD);
+		}
 
+		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_D)) {
+			m_IsMoving = true;
+			lastDirection = 'D';
+			m_RigidBody->applyForceX(SPEED * FORWARD);
+		}
+	}
 
 	if (m_IsMoving) frame = 5; else frame = 1;
 
 	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_I)) {
 		m_Inventory->toggleVisibility();
-	}
-
-	if (Input::GetInstance()->getMouseButtonDown(1)) {
-		m_RigidBody->unsetForce();
 	}
 
 	if (lastDirection == 'W') {
@@ -197,11 +195,14 @@ void Cat::equip() {
 	if (m_Inventory->getItems().size() > m_IsUsing) {
 		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y, fish_manager->getEnemies());
 		m_Inventory->getItems()[m_IsUsing]->draw();
-		m_Inventory->getItems()[m_IsUsing]->use();
+		if (!Input::GetInstance()->getKeyDown(SDL_NUM_SCANCODES)) {
+			m_Inventory->getItems()[m_IsUsing]->use();
+		}
 		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Rod") {
-			int xPos = m_Inventory->getItems()[m_IsUsing]->getX();
-			int yPos = m_Inventory->getItems()[m_IsUsing]->getY();
-			fish_manager->checkFishing(xPos, yPos,"Water");
+			checkX = m_Inventory->getItems()[m_IsUsing]->getX();
+			checkY = m_Inventory->getItems()[m_IsUsing]->getY();
+			std::cout << checkX << ", " << checkY << std::endl;
+			fish_manager->checkFishing(checkX, checkY,"Water");
 		}
 	}
 

@@ -214,26 +214,26 @@ int FishingRod::getX()
 {
 
     if (animationProgress > 0.99f && isSuccess) {
-        int fishCheckX = m_X, fishCheckY = m_Y;
-        animationProgress = 0.0f;
-        isSuccess = false;
+        int fishCheckX = m_X;
         switch (m_Direction) {
         case 'A': fishCheckX -= ropeLength; break;
         case 'D': fishCheckX += ropeLength; break;
         default : fishCheckX;
         }
-        ropeLength = 0;
         return fishCheckX;
     }
-    else {
+    else if (ropeLength > 10) {
         return m_X;
+    }
+    else {
+        return 0;;
     }
 }
 
 int FishingRod::getY()
 {
     if (animationProgress > 0.99f && isSuccess) {
-        int fishCheckX = m_X, fishCheckY = m_Y;
+        int fishCheckY = m_Y;
         animationProgress = 0.0f;
         isSuccess = false;
         switch (m_Direction) {
@@ -244,8 +244,11 @@ int FishingRod::getY()
         ropeLength = 0;
         return fishCheckY;
     }
-    else {
+    else if (ropeLength > 10) {
         return  m_Y;
+    }
+    else {
+        return 0;
     }
 }
 
