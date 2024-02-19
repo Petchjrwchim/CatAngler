@@ -50,7 +50,7 @@ bool Engine::init()
 	}
 
 	m_Tile = Tile::GetInstance(); // This should assign to the class member
-	if (!m_Tile->load("yourMapID", "assets/images/map.json")) {
+	if (!m_Tile->load("yourMapID", "assets/images/map2.json")) {
 		std::cerr << "Failed to load the map." << std::endl;
 		return false;
 	}
@@ -70,7 +70,7 @@ bool Engine::init()
 
 	Camera::GetInstance()->setSceneLimit(width, height);
 
-	cat = new Cat(new Properties("cat", 200 , 200, 32, 32));
+	cat = new Cat(new Properties("cat", 400 , 400, 32, 32));
 	Camera::GetInstance()->setTarget(cat->getOrigin());
 	addFishingRodToCatInventory(cat);
 
@@ -107,23 +107,31 @@ void Engine::update()
 void Engine::render()
 {
 	SDL_RenderClear(m_Renderer);
-	m_Tile->render("Floor");
+	if (!cat->getInteract()) {
+		m_Tile->render("Floor");
+	}
+	else {
+		m_Tile->render("House");
+	}
 	cat->draw();
+
 	cat->equip();
-	m_Tile->render("tree");
+	if (!cat->getInteract()) {
+		m_Tile->render("Tree");
+	}
 
 	cat->drawInv();
-
+ 
 	SDL_RenderPresent(m_Renderer);
 }
 
 void Engine::toggleFullscreen() {
-	m_IsFullscreen = !m_IsFullscreen; // Toggle the fullscreen state
+	m_IsFullscreen = !m_IsFullscreen;
 	if (m_IsFullscreen) {
-		SDL_SetWindowFullscreen(m_Window, SDL_WINDOW_FULLSCREEN); // Set to fullscreen
+		SDL_SetWindowFullscreen(m_Window, SDL_WINDOW_FULLSCREEN);
 	}
 	else {
-		SDL_SetWindowFullscreen(m_Window, 0); // Set to windowed mode
+		SDL_SetWindowFullscreen(m_Window, 0);
 	}
 }
 

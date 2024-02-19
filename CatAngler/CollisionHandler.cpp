@@ -19,9 +19,12 @@ bool CollisionHandler::checkCollision(const SDL_Rect& a, const SDL_Rect& b) {
 
 bool CollisionHandler::checkCollisionVec(Collider* a, std::vector<Collider*> b)
 {
-    
+    bool after = false;
     for (Collider* i : b) {
-	    if (a != i && checkCollision(a->get(), i->get())) {
+        if (i == a) {
+            after = true;
+        }
+	    if (a != i && checkCollision(a->get(), i->get()) && after) {
             return true;
 	    }
     }

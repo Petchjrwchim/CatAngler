@@ -66,18 +66,23 @@ void Enemy::update(float dt)
 
 		m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
 		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
-			m_Transform->X -= 1;
+			m_Transform->X -= 1 * SPEED;
 		}
 
 		m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
 		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
-			m_Transform->Y -= 1;
+			m_Transform->Y -= 1 * SPEED;
 		}
 	}
 
 	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
 	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
 		m_AimationE->setProps("shark_attack", 1, 4, 150, m_Flip);
+	}
+
+	if (CollisionHandler::GetInstance()->checkCollisionVec(m_Collider, getColliderVec())) {
+		m_Transform->X -= 1 * SPEED;
+		m_Transform->Y -= 1 * SPEED;
 	}
 
 	m_Origin->x = m_Transform->X + m_Width / 2;

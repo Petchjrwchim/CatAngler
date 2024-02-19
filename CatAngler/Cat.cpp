@@ -61,7 +61,9 @@ void Cat::draw()
 {
 	
 	m_Aimation->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
-	FishingManager::GetInstance()->draw();
+	if (!m_IsInteract) {
+		FishingManager::GetInstance()->draw();
+	}
 
 	//Vector2D cam = Camera::GetInstance()->getPosition();
 	//SDL_Rect box = m_Collider->get();
@@ -80,13 +82,6 @@ void Cat::drawInv() {
 
 void Cat::update(float dt)
 {
-	//for (Collider* i : colliderVec) {
-	//	if (m_Collider == i) {
-	//		std::cout << "yes";
-	//	}
-	//	std::cout << i->get().x << ", ";
-	//}
-	//std::cout << colliderVec.size();
 
 	int frame = 5;
 	SDL_RendererFlip m_Flip = SDL_FLIP_NONE;
@@ -126,6 +121,19 @@ void Cat::update(float dt)
 		m_Inventory->toggleVisibility();
 	}
 
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_F)) {
+		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Interact")) {
+			m_IsInteract = true;
+			m_Transform->X = 379;
+			m_Transform->Y = 639;
+		}
+		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Door")) {
+			m_IsInteract = false;
+			m_Transform->X = 672;
+			m_Transform->Y = 347;
+		}
+	}
+
 	if (lastDirection == 'W') {
 		m_Aimation->setProps("cat_walkb", 1, frame, 100, m_Flip);
 	}
@@ -141,13 +149,20 @@ void Cat::update(float dt)
 		m_Aimation->setProps("cat_walk", 1, frame, 100, m_Flip);
 	}
 
+	std::string currentMap;
+	if (m_IsInteract) {
+		currentMap = "HouseCollision";
+	}
+	else {
+		currentMap = "Collision";
+	}
 
 
 	m_RigidBody->update(dt);
 	m_LastSafePosition.X = m_Transform->X;
 	m_Transform->X += m_RigidBody->position().X;
 	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
+	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), currentMap)) {
 		m_Transform->X = m_LastSafePosition.X;
 	}
 		
@@ -155,7 +170,7 @@ void Cat::update(float dt)
 	m_LastSafePosition.Y = m_Transform->Y;
 	m_Transform->Y += m_RigidBody->position().Y;
 	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
+	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), currentMap)) {
 		m_Transform->Y = m_LastSafePosition.Y;
 	}
 
@@ -198,10 +213,9 @@ void Cat::equip() {
 		if (!Input::GetInstance()->getKeyDown(SDL_NUM_SCANCODES)) {
 			m_Inventory->getItems()[m_IsUsing]->use();
 		}
-		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Rod") {
+		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Rod" && !m_IsInteract) {
 			checkX = m_Inventory->getItems()[m_IsUsing]->getX();
 			checkY = m_Inventory->getItems()[m_IsUsing]->getY();
-			std::cout << checkX << ", " << checkY << std::endl;
 			fish_manager->checkFishing(checkX, checkY,"Water");
 		}
 	}

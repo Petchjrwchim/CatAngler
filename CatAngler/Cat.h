@@ -16,6 +16,7 @@ private:
 	char lastDirection = 'S';
 	bool m_IsFishing;
 	bool m_IsMoving;
+	bool m_IsInteract = false;;
 	int m_IsUsing = 0;
 	int current_Equip = 1;
 	SDL_RendererFlip m_Flip;
@@ -37,6 +38,9 @@ public:
 	bool getFishing() { return m_IsFishing; }
 	char getDirection() { return lastDirection; }
 	
+	bool getInteract() { return m_IsInteract; }
+	void setInteract(bool set) { m_IsInteract = set; }
+
 	int getX();
 	int getY();
 	int getTX();

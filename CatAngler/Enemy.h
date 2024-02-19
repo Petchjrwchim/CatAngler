@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Character.h"
+#include <vector>
 #include "Collider.h"
 #include "Animation.h"
 #include "RigidBody.h"
 #include "Vector2D.h"
 
-#define SPEED 0.2f
+#define SPEED 2.0f
 
 class Enemy : public Character
 {
@@ -28,8 +29,13 @@ private:
 	RigidBody* m_RigidBody;
 	Vector2D m_LastSafePosition;
 
+	std::vector<Collider*> colliderVec;
+
 public:
 	Enemy(Properties* props, int health);
+
+	void setColliderVec(std::vector<Collider*> v) { colliderVec = v; }
+	std::vector<Collider*> getColliderVec() { return colliderVec; }
 
 	void setTarget(int x, int y, SDL_Rect target);
 	int getHealth() { return health; }
