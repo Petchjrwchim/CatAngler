@@ -156,6 +156,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="TextManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="Shop.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="TextManager.h" />
     <ClInclude Include="TextureManager.h" />

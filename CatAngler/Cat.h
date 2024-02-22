@@ -19,6 +19,7 @@ private:
 	bool m_IsInteract = false;;
 	int m_IsUsing = 0;
 	int current_Equip = 1;
+	int money = 100;
 	SDL_RendererFlip m_Flip;
 
 	Collider* m_Collider;
