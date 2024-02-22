@@ -59,8 +59,14 @@ int Cat::getTY()
 
 void Cat::draw()
 {
-	
+
+
 	m_Aimation->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
+
+	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Interact") && m_IsInteract == false || CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Door") && m_IsInteract == true ) {
+		TextureManager::GetInstance()->draw("interact_F", m_Transform->X, m_Transform->Y - 20, 32, 32);
+	}
+
 	if (!m_IsInteract) {
 		FishingManager::GetInstance()->draw();
 	}

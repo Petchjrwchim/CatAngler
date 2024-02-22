@@ -109,9 +109,10 @@ void Engine::render()
 	SDL_RenderClear(m_Renderer);
 	if (!cat->getInteract()) {
 		m_Tile->render("Floor");
+		m_Tile->render("House");
 	}
 	else {
-		m_Tile->render("House");
+		m_Tile->render("Indoor");
 	}
 	cat->draw();
 

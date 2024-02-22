@@ -92,7 +92,7 @@ void Inventory::renderInventoryBar(int x, int y, int usingSlot) {
             TextureManager::GetInstance()->draw(m_items[i]->getID(), x, startY, 32, 32, SDL_FLIP_NONE, 2.0);
             std::stringstream strm;
             strm << m_items[i]->getQuantity();
-            TextManager::GetInstance()->renderText(strm.str().c_str(), x + 10, startY, "assets/fonts/PixelifySans.ttf", 30);
+            TextManager::GetInstance()->renderText(strm.str().c_str(), x + 48, startY + 36, "assets/fonts/PixelifySans.ttf", 20);
         }
     }
 }

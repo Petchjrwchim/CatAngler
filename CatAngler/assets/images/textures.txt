@@ -6,6 +6,7 @@ cat_fishing,assets/images/cat_fishing.png
 background,assets\images\Sprite-0001.png
 slot,assets\images\Sprite-0001.png
 fishingrod,assets\images\FishingRod.png
+fishingrod_front,assets\images\FishingRod_front.png
 bag,assets\images\bag.png
 aim_point,assets\images\aim_point.png
 point,assets\images\point.png
@@ -14,5 +15,7 @@ usingslot,assets\images\usingslot.png
 bait,assets\images\bait.png
 fish,assets\images\fish.png
 shark_walk,assets\images\shark.png
+shark_dive,assets\images\shark_dive.png
 shark_attack,assets\images\shark_attack.png
 sword,assets\images\sword.png
+interact_F,assets\images\interact_F.png

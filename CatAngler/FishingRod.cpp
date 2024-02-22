@@ -201,11 +201,18 @@ std::string FishingRod::getDescription()
 
 void FishingRod::draw()
 {
-    if (m_Direction == 'D') {
-        TextureManager::GetInstance()->draw("fishingrod", m_X -5, m_Y, 32, 32);
+    if (m_Direction == 'W') {
+        TextureManager::GetInstance()->draw("fishingrod_front", m_X - 15, m_Y - 3, 32, 10);
     }
     if (m_Direction == 'A') {
         TextureManager::GetInstance()->draw("fishingrod", m_X - 27, m_Y, 32, 32, SDL_FLIP_HORIZONTAL);
+    }
+    if (m_Direction == 'S') {
+        TextureManager::GetInstance()->draw("fishingrod_front", m_X - 15, m_Y, 32, 32);
+    }
+    if (m_Direction == 'D') {
+        TextureManager::GetInstance()->draw("fishingrod", m_X - 5, m_Y, 32, 32);
+        
     }
 
 }

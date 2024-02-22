@@ -41,6 +41,23 @@ void Sword::use()
 
 void Sword::draw()
 {
+	if (m_Direction == 'W') {
+		m_AimationS->setProps("sword", 1, 4, 100);
+		m_Y -= 10;
+		m_X -= 16;
+	}
+	if (m_Direction == 'A') {
+		m_AimationS->setProps("sword", 1, 4, 100, SDL_FLIP_HORIZONTAL);
+		m_X -= 32;
+	}
+	if (m_Direction == 'S') {
+		m_AimationS->setProps("sword", 1, 4, 100, SDL_FLIP_VERTICAL);
+		m_Y += 10;
+		m_X -= 16;
+	}
+	if (m_Direction == 'D') {
+		m_AimationS->setProps("sword", 1, 4, 100);
+	}
 	m_AimationS->draw(m_X, m_Y, 32, 32);
 }
 

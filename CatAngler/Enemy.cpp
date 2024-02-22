@@ -80,6 +80,10 @@ void Enemy::update(float dt)
 		m_AimationE->setProps("shark_attack", 1, 4, 150, m_Flip);
 	}
 
+	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Water")) {
+		m_AimationE->setProps("shark_dive", 1, 4, 150, m_Flip);
+	}
+
 	if (CollisionHandler::GetInstance()->checkCollisionVec(m_Collider, getColliderVec())) {
 		m_Transform->X -= 1 * SPEED;
 		m_Transform->Y -= 1 * SPEED;

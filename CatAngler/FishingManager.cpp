@@ -26,7 +26,7 @@ void FishingManager::checkFishing(int x, int y, std::string map)
 
     if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), map) && x !=0) {
 
-        if ( chance > 2) {
+        if ( chance > 5) {
             std::cout << "Got fish!" << std::endl;
             Fish* caughtFish = new Fish(1, "Salmon", 5, "Common", "fish");
             if (playerInventory != nullptr) {
@@ -35,7 +35,7 @@ void FishingManager::checkFishing(int x, int y, std::string map)
             }
         }
         else {
-            Enemy* shark = new Enemy(new Properties("shark_walk", 300, 300, 32, 32), 10);
+            Enemy* shark = new Enemy(new Properties("shark_walk", x, y, 32, 32), 10);
             enemies.push_back(shark);
             spawned_enemies.push_back(shark);
             colliderVec->push_back(shark->getCollider());
@@ -48,7 +48,7 @@ void FishingManager::checkFishing(int x, int y, std::string map)
 void FishingManager::update(float dt, int x, int y, SDL_Rect target)
 {
     if (!enemies.empty()) {
-        for (unsigned int i = 0; i != enemies.size(); i++) {
+        for (unsigned int i = 0; i < enemies.size(); i++) {
             enemies[i]->setTarget(x, y, target);
             enemies[i]->setColliderVec(*colliderVec);
             enemies[i]->update(dt);
@@ -59,12 +59,11 @@ void FishingManager::update(float dt, int x, int y, SDL_Rect target)
 void FishingManager::draw()
 {
     if (!enemies.empty()) {
-        for (unsigned int i = 0; i != enemies.size(); i++) {
-            if (enemies[i]->getHealth() > 0) {
-                enemies[i]->draw();
-            }
-            else {
-                enemies[i] == nullptr;
+        for (unsigned int i = 0; i < enemies.size(); i++) {
+            enemies[i]->draw();
+            if (enemies[i]->getHealth() < 1) {
+                enemies[i]->getCollider()->set(0, 0, 0, 0);
+                enemies.erase(enemies.begin() + i, enemies.begin() + i + 1);
             }
         }
     }
