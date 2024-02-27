@@ -3,6 +3,7 @@
 #include "CollisionHandler.h"
 #include "FishingManager.h"
 #include "TextureManager.h"
+#include "TextManager.h"
 #include "Input.h"
 #include "Camera.h"
 #include "SDL.h"
@@ -56,14 +57,18 @@ int Cat::getTY()
 	return m_Transform->Y;
 }
 
+Vector2D Cat::getCam()
+{
+	return Camera::GetInstance()->getPosition();
+}
+
 
 void Cat::draw()
 {
 
-
 	m_Aimation->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
 
-	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Interact") && m_IsInteract == false || CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Door") && m_IsInteract == true ) {
+	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Interact") && m_IsInteract == false || CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Door") || CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Shop") && m_IsInteract == true ) {
 		TextureManager::GetInstance()->draw("interact_F", m_Transform->X, m_Transform->Y - 20, 32, 32);
 	}
 
@@ -84,6 +89,12 @@ void Cat::drawInv() {
 		m_Inventory->render(cam.X, cam.Y);
 	}
 	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530, m_IsUsing);
+
+	TextureManager::GetInstance()->draw("coin", cam.X + 20, cam.Y + 18, 32, 32);
+
+	std::stringstream strm;
+	strm << m_Coin;
+	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 50 , cam.Y + 20 , "assets/fonts/PixelifySans.ttf", 20);
 }
 
 void Cat::update(float dt)
@@ -95,7 +106,7 @@ void Cat::update(float dt)
 	m_RigidBody->unsetForce();
 
 
-	if (Input::GetInstance()->getMouseButtonUp(1) && checkX == 0 && checkY == 0) {
+	if (Input::GetInstance()->getMouseButtonUp(1) && checkX == 0 && checkY == 0 && !m_IsShopping) {
 		if (Input::GetInstance()->getKeyDown(SDL_SCANCODE_W)) {
 			m_IsMoving = true;
 			lastDirection = 'W';
@@ -137,6 +148,10 @@ void Cat::update(float dt)
 			m_IsInteract = false;
 			m_Transform->X = 672;
 			m_Transform->Y = 347;
+		}
+
+		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Shop")) {
+			m_IsShopping = !m_IsShopping;
 		}
 	}
 
@@ -196,7 +211,6 @@ void Cat::update(float dt)
 
 void Cat::equip() {
 	
-	
 	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_1) || m_IsUsing == 0) {
 		m_IsUsing = 0;
 	}
@@ -213,7 +227,7 @@ void Cat::equip() {
 		m_IsUsing = 4;
 	}
 
-	if (m_Inventory->getItems().size() > m_IsUsing) {
+	if (m_Inventory->getItems().size() > m_IsUsing && !m_IsShopping) {
 		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y, fish_manager->getEnemies());
 		m_Inventory->getItems()[m_IsUsing]->draw();
 		if (!Input::GetInstance()->getKeyDown(SDL_NUM_SCANCODES)) {

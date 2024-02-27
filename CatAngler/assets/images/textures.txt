@@ -19,3 +19,7 @@ shark_dive,assets\images\shark_dive.png
 shark_attack,assets\images\shark_attack.png
 sword,assets\images\sword.png
 interact_F,assets\images\interact_F.png
+coin,assets\images\coin.png
+shopkeeper,assets\images\Shopkeeper.png
+sell_tab,assets\images\sell_tab.png
+buy_tab,assets\images\buy_tab.png

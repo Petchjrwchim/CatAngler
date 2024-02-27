@@ -1,37 +1,11 @@
-﻿  FishingRod.cpp
+﻿  Inventory.cpp
 C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'FishingRod.cpp')
+  (compiling source file 'Inventory.cpp')
   
 C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'FishingRod.cpp')
+  (compiling source file 'Inventory.cpp')
   
 C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'FishingRod.cpp')
+  (compiling source file 'Inventory.cpp')
   
-C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'FishingRod.cpp')
-  
-C:\CatAngler\CatAngler\Cat.h(10,1): warning C4005: 'SPEED': macro redefinition
-  (compiling source file 'FishingRod.cpp')
-  C:\CatAngler\CatAngler\Enemy.h(10,1):
-  see previous definition of 'SPEED'
-  
-C:\CatAngler\CatAngler\FishingRod.cpp(35,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(36,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(38,44): warning C4305: '+=': truncation from 'double' to 'float'
-C:\CatAngler\CatAngler\FishingRod.cpp(41,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(41,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(90,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(91,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(94,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(94,28): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(102,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(102,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(119,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(123,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(123,28): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(131,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(131,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(141,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\CatAngler\CatAngler\FishingRod.cpp(266,70): warning C4018: '>': signed/unsigned mismatch
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

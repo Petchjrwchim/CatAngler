@@ -15,6 +15,12 @@ private:
     static const int SLOT_HEIGHT = 64;
     static const int BAR_PADDING = 10;
 
+    bool isDragging;
+    Item* selectedItem;
+    int selectedItemIndex;
+    SDL_Rect dragItemRect; // Position for rendering the item being dragged
+    int dragOffsetX, dragOffsetY;
+
 public:
     Inventory(int capacity);
     ~Inventory();
@@ -26,6 +32,10 @@ public:
     void render(int x, int y);
     void renderInventoryBar(int x, int y, int usingSlot);
     bool checkVisible() { return isVisible; }
+
+    void handleMouseEvent(SDL_Event& e);
+    int findItemIndexAtPosition(int x, int y);
+    void swapItems(int firstIndex, int secondIndex);
 };
 
 #endif // INVENTORY_H

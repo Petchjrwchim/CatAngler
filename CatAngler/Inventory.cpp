@@ -20,7 +20,7 @@ void Inventory::addItem(Item* item) {
     bool found = false;
     for (Item* i : m_items) {
         if (i->getName() == item->getName()) {
-            i->additems(item->getQuantity());
+            i->additems(1);
             found = true;
             break;
         }
@@ -47,7 +47,7 @@ void Inventory::render(int x, int y) {
 
     int startX = (screenWidth) / 2 - 320;
 
-    TextureManager::GetInstance()->draw("bag", (screenWidth) / 2 - 320 + x, y , 640, 640);
+    TextureManager::GetInstance()->draw("bag", startX + x, y , 640, 640);
 
     int slotWidth = 32;
     int slotHeight = 32;
@@ -70,6 +70,11 @@ void Inventory::render(int x, int y) {
             TextureManager::GetInstance()->draw(m_items[i]->getID(), newX, newY, slotWidth, slotHeight);
         }
     }
+
+    if (isDragging && selectedItem) {
+        TextureManager::GetInstance()->draw(selectedItem->getID(), dragItemRect.x, dragItemRect.y, dragItemRect.w, dragItemRect.h);
+    }
+
 }
 
 void Inventory::renderInventoryBar(int x, int y, int usingSlot) {
@@ -95,4 +100,44 @@ void Inventory::renderInventoryBar(int x, int y, int usingSlot) {
             TextManager::GetInstance()->renderText(strm.str().c_str(), x + 48, startY + 36, "assets/fonts/PixelifySans.ttf", 20);
         }
     }
+}
+
+void Inventory::handleMouseEvent(SDL_Event& e) {
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    if (e.type == SDL_MOUSEBUTTONDOWN) {
+        int index = findItemIndexAtPosition(mouseX, mouseY);
+        if (index != -1) {
+            isDragging = true;
+            selectedItem = m_items[index];
+            selectedItemIndex = index;
+            dragOffsetX = mouseX - dragItemRect.x;
+            dragOffsetY = mouseY - dragItemRect.y;
+        }
+    }
+    else if (e.type == SDL_MOUSEMOTION && isDragging) {
+        dragItemRect.x = mouseX - dragOffsetX;
+        dragItemRect.y = mouseY - dragOffsetY;
+    }
+    else if (e.type == SDL_MOUSEBUTTONUP && isDragging) {
+        int newIndex = findItemIndexAtPosition(mouseX, mouseY);
+        if (newIndex != -1 && newIndex != selectedItemIndex) {
+            swapItems(selectedItemIndex, newIndex);
+        }
+        isDragging = false;
+    }
+}
+
+int Inventory::findItemIndexAtPosition(int x, int y) {
+    // Implement logic to determine which item index, if any, is at the given x, y position
+    // This will depend on your inventory layout and slot positioning 
+    return -1; // Placeholder: replace with actual logic
+}
+
+void Inventory::swapItems(int firstIndex, int secondIndex) {
+    if (firstIndex < 0 || firstIndex >= m_items.size() || secondIndex < 0 || secondIndex >= m_items.size()) {
+        return; // Invalid indices
+    }
+    std::swap(m_items[firstIndex], m_items[secondIndex]);
 }

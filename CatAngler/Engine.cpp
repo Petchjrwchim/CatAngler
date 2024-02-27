@@ -2,27 +2,19 @@
 
 #include "Engine.h"
 #include "TextureManager.h"
-#include "FishingRod.h"
-#include "Sword.h"
+#include "TextManager.h"
 #include "Transform.h"
 #include "Input.h"
 #include "Timer.h"
 #include "Cat.h"
 #include "Camera.h"
 #include "Tile.h"
+#include "Shop.h"
 
 Engine* Engine::s_Instance = nullptr;
 Cat* cat = nullptr;
+Shop* shop = nullptr;
 Tile* m_Tile;
-
-void addFishingRodToCatInventory(Cat* cat) {
-
-	FishingRod* fishingRod = new FishingRod(1, "Fishing Rod", "Rod", "fishingrod");
-	Sword* sword = new Sword(1, "Sword", "Weapon", "sword");
-
-	cat->getInventory()->addItem(fishingRod);
-	cat->getInventory()->addItem(sword);
-}
 
 bool Engine::init()
 {
@@ -72,13 +64,16 @@ bool Engine::init()
 
 	cat = new Cat(new Properties("cat", 400 , 400, 32, 32));
 	Camera::GetInstance()->setTarget(cat->getOrigin());
-	addFishingRodToCatInventory(cat);
+
+	shop = new Shop(cat->getInventory());
 
 	return m_IsRunning = true;
 }
 
 bool Engine::clean()
 {	
+	delete shop;
+	shop = nullptr;
 	TextureManager::GetInstance()->clean();
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_DestroyWindow(m_Window);
@@ -99,7 +94,15 @@ void Engine::update()
 	float dt = Timer::GetInstance()->getDeltaTime();
 
 	cat->update(dt);
+	
+	if (cat->getIs_Shopping() && !shop->get_IsVisible()) {
+		shop->toggleShopUI();
+	}
+	else if (!cat->getIs_Shopping() && shop->get_IsVisible()) {
+		shop->toggleShopUI();
+	}
 
+	shop->update(cat->getCam().X, cat->getCam().Y);
 	
 	Camera::GetInstance()->update(dt);
 }
@@ -113,12 +116,22 @@ void Engine::render()
 	}
 	else {
 		m_Tile->render("Indoor");
+		TextureManager::GetInstance()->draw("shopkeeper", 440, 550, 36, 36);
+		m_Tile->render("Shop");
 	}
-	cat->draw();
 
+	cat->draw();
 	cat->equip();
+
 	if (!cat->getInteract()) {
 		m_Tile->render("Tree");
+	}
+	else {
+		m_Tile->render("Shopkeeper");
+	}
+
+	if (shop->get_IsVisible()) {
+		shop->render(m_Renderer);
 	}
 
 	cat->drawInv();

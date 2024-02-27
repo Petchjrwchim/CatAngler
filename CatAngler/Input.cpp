@@ -1,5 +1,6 @@
 #include "Input.h"
 #include "Engine.h"
+#include <cstring>
 #include <map>
 
 Input* Input::s_Instance = nullptr;
@@ -96,4 +97,29 @@ bool Input::getMouseButton(int button) {
 void Input::getMousePosition(int& x, int& y) {
     x = m_MouseX;
     y = m_MouseY;
+}
+
+void Input::addButton(int x, int y, int w, int h, std::function<void()> onClick) {
+    m_Buttons.emplace_back(x, y, w, h, onClick);
+}
+
+void Input::handleButtonEvents() {
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+
+    for (auto& button : m_Buttons) {
+        bool isInside = (x >= button.rect.x) && (x <= (button.rect.x + button.rect.w)) &&
+            (y >= button.rect.y) && (y <= (button.rect.y + button.rect.h));
+
+        if (isInside && getMouseButtonDownOnetime(SDL_BUTTON_LEFT)) {
+            button.onClick();
+        }
+    }
+}
+
+void Input::renderButtons(SDL_Renderer* renderer) {
+    for (const auto& button : m_Buttons) {
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderFillRect(renderer, &button.rect);
+    }
 }

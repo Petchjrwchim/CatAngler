@@ -16,10 +16,11 @@ private:
 	char lastDirection = 'S';
 	bool m_IsFishing;
 	bool m_IsMoving;
-	bool m_IsInteract = false;;
+	bool m_IsInteract = false;
+	bool m_IsShopping = false;
 	int m_IsUsing = 0;
 	int current_Equip = 1;
-	int money = 100;
+	int m_Coin = 100;
 	SDL_RendererFlip m_Flip;
 
 	Collider* m_Collider;
@@ -40,12 +41,15 @@ public:
 	char getDirection() { return lastDirection; }
 	
 	bool getInteract() { return m_IsInteract; }
+	bool getIs_Shopping() const {return m_IsShopping;}
 	void setInteract(bool set) { m_IsInteract = set; }
 
+	int getCoin() { return m_Coin; }
 	int getX();
 	int getY();
 	int getTX();
 	int getTY();
+	Vector2D getCam();
 
 
 	void drawInv();
