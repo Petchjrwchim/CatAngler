@@ -1,8 +1,8 @@
 #include "Sword.h"
 #include "CollisionHandler.h"
 
-Sword::Sword(int quantity, const std::string& name, const std::string& type, const std::string& texture)
-	: Item(quantity, name, type, texture)
+Sword::Sword(int quantity, const std::string& name, const std::string& type, const std::string& texture, int price)
+	: Item(quantity, name, type, texture, price)
 {
 
 	m_AimationS = new Animation();

@@ -1,6 +1,7 @@
 #include "Input.h"
 #include "Engine.h"
 #include <cstring>
+#include <iostream>
 #include <map>
 
 Input* Input::s_Instance = nullptr;
@@ -100,7 +101,13 @@ void Input::getMousePosition(int& x, int& y) {
 }
 
 void Input::addButton(int x, int y, int w, int h, std::function<void()> onClick) {
-    m_Buttons.emplace_back(x, y, w, h, onClick);
+    bool offset = true;
+    for (Button i : m_Buttons) {
+        if (i.rect.x == x && i.rect.y == y && i.rect.w == w && i.rect.h == h && !m_Buttons.empty()) {
+            offset = false;
+        }
+    }
+    if (offset) m_Buttons.emplace_back(x, y, w, h, onClick);
 }
 
 void Input::handleButtonEvents() {

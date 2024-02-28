@@ -34,17 +34,19 @@ private:
 	int checkX, checkY;
 
 public:
-
+	
 	Cat(Properties* props);
 	Inventory* getInventory() { return m_Inventory; }
-	bool getFishing() { return m_IsFishing; }
-	char getDirection() { return lastDirection; }
-	
-	bool getInteract() { return m_IsInteract; }
+	bool getFishing() const { return m_IsFishing; }
+	char getDirection() const { return lastDirection; }
+	bool getInteract() const { return m_IsInteract; }
 	bool getIs_Shopping() const {return m_IsShopping;}
+
+	int& getCoin() { return m_Coin; }
+
+	void setCoin(int coin) { m_Coin = coin; }
 	void setInteract(bool set) { m_IsInteract = set; }
 
-	int getCoin() { return m_Coin; }
 	int getX();
 	int getY();
 	int getTX();

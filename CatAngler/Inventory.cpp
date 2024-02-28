@@ -11,7 +11,7 @@ Inventory::Inventory( int capacity)
 
 Inventory::~Inventory() {
     for (Item* item : m_items) {
-        delete item; // Clean up item objects
+        delete item;
     }
 }
 
@@ -30,8 +30,20 @@ void Inventory::addItem(Item* item) {
     }
 }
 
-void Inventory::removeItem(int itemID) {
-
+void Inventory::removeItem(Item* item) {
+    int count = 0;
+    for (Item* i : m_items) {
+        //std::cout << i->getName() << ", " << item->getName() << std::endl;
+        if (i->getName() == item->getName()) {
+            if (i->getQuantity() == 1) {
+                m_items.erase(m_items.begin() + count, m_items.begin() + count + 1);
+            }
+            if (i->getQuantity() > 1) {
+                i->removeitems(1);
+            }
+        }
+        count++;
+    }
 }
 
 void Inventory::toggleVisibility() {

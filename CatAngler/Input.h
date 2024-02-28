@@ -54,7 +54,7 @@ private:
     const Uint8* m_KeyState;
     static Input* s_Instance;
 
-    std::vector<Button> m_Buttons; // List of buttons
+    std::vector<Button> m_Buttons;
 };
 
 #endif

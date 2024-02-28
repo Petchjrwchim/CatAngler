@@ -27,7 +27,7 @@ public:
 
     inline std::vector<Item*> getItems() const { return m_items; }
     void addItem(Item* item);
-    void removeItem(int itemID);
+    void removeItem(Item* item);
     void toggleVisibility();
     void render(int x, int y);
     void renderInventoryBar(int x, int y, int usingSlot);

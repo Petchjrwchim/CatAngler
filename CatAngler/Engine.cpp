@@ -65,7 +65,7 @@ bool Engine::init()
 	cat = new Cat(new Properties("cat", 400 , 400, 32, 32));
 	Camera::GetInstance()->setTarget(cat->getOrigin());
 
-	shop = new Shop(cat->getInventory());
+	shop = new Shop(cat->getInventory(), cat->getCoin());
 
 	return m_IsRunning = true;
 }
@@ -90,7 +90,7 @@ void Engine::quit()
 
 void Engine::update()
 {
-
+	Vector2D cam = Camera::GetInstance()->getPosition();
 	float dt = Timer::GetInstance()->getDeltaTime();
 
 	cat->update(dt);
@@ -102,7 +102,7 @@ void Engine::update()
 		shop->toggleShopUI();
 	}
 
-	shop->update(cat->getCam().X, cat->getCam().Y);
+	shop->update(cam.X, cam.Y);
 	
 	Camera::GetInstance()->update(dt);
 }
@@ -116,7 +116,7 @@ void Engine::render()
 	}
 	else {
 		m_Tile->render("Indoor");
-		TextureManager::GetInstance()->draw("shopkeeper", 440, 550, 36, 36);
+		TextureManager::GetInstance()->draw("shopkeeper", 445, 550, 36, 36);
 		m_Tile->render("Shop");
 	}
 

@@ -6,8 +6,8 @@
 
 
 
-FishingRod::FishingRod(int quantity, const std::string& name, const std::string& type, const std::string& texture)
-    : Item(quantity, name, type, texture), isMousePressed(false), fKeyPressStartTime(0), animationProgress(0.0f), animate(false), ropeLength(1), controlX(0), controlY(0) {
+FishingRod::FishingRod(int quantity, const std::string& name, const std::string& type, const std::string& texture, int price)
+    : Item(quantity, name, type, texture, price), isMousePressed(false), fKeyPressStartTime(0), animationProgress(0.0f), animate(false), ropeLength(1), controlX(0), controlY(0) {
 
     m_Aimation = new Animation();
     m_Aimation->setProps("bait", 1, 1, 100);

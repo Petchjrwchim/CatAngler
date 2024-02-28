@@ -27,7 +27,7 @@ private:
     float controlX, controlY;
 
 public:
-    FishingRod(int quantity, const std::string& name, const std::string& type, const std::string& texture);
+    FishingRod(int quantity, const std::string& name, const std::string& type, const std::string& texture, int price);
 
     std::string getDescription() override;
 

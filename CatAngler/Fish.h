@@ -9,8 +9,8 @@ private:
 
 public:
 
-    Fish(int id, const std::string& name, int size, const std::string& rarity, const std::string& texture)
-        : Item(id, name, "Fish", texture), size(size), rarity(rarity) {}
+    Fish(int quantity, const std::string& name, int size, const std::string& rarity, const std::string& texture, int price)
+        : Item(quantity, name, "Fish", texture, price), size(size), rarity(rarity) {}
 
 
     virtual std::string getDescription() override {
