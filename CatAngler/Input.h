@@ -36,6 +36,7 @@ public:
     void getMousePosition(int& x, int& y);
 
     void addButton(int x, int y, int w, int h, std::function<void()> onClick);
+    void deleteButton(int n);
     void handleButtonEvents();
     void renderButtons(SDL_Renderer* renderer);
 

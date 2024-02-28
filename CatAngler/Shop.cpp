@@ -4,6 +4,7 @@
 #include "Input.h"
 #include "FishingRod.h"
 #include "Sword.h"
+#include <sstream>
 
 Shop::Shop(Inventory* inv, int& coin) : m_PlayerInventory(inv), playerCoin(coin), m_isVisible(false) {
     
@@ -46,7 +47,7 @@ void Shop::render(SDL_Renderer* renderer) {
 
     renderItems(renderer);
 
-    Input::GetInstance()->renderButtons(renderer);
+    //Input::GetInstance()->renderButtons(renderer);
 }
 
 void Shop::update(int x, int y) {
@@ -57,59 +58,101 @@ void Shop::update(int x, int y) {
     }
 }
 
+void Shop::addMultipleButton(std::vector<Item*> items) {
+    int slotWidth = 64;
+    int slotHeight = 64;
+    int padding = 10;
+
+    for (int i = 0; i < items.size(); ++i) {
+        int newX = (i % 4) * (slotWidth + padding) + 120;
+        int newY = (i / 4) * (slotHeight + padding) + 160;
+
+        Input::GetInstance()->addButton(newX, newY, slotWidth, slotHeight, [this, i]() {
+            this->setSelection(i);
+            });
+    }
+}
+
 void Shop::initButtons() {
 
     Input::GetInstance()->addButton( m_X + 405, m_Y + 80, 295, 50, [this]() {
         this->setTab("sell");
         current_Items = m_PlayerInventory->getItems();
         std::cout << "Sell tab clicked" << std::endl;
+
+        Input::GetInstance()->deleteButton(3);
+
+        addMultipleButton(current_Items);
+
         });
 
     Input::GetInstance()->addButton( m_X + 105, m_Y + 80 , 295, 50, [this]() {
         this->setTab("buy");
         current_Items = m_items;
         std::cout << "Buy tab clicked" << std::endl;
+
+        Input::GetInstance()->deleteButton(3);
+
+        addMultipleButton(current_Items);
+
         });
 
     Input::GetInstance()->addButton(m_X + 600, m_Y + 400, 64, 64, [this]() {
         if (get_CurrentTab() == "buy") {
             std::cout << "Buy" << std::endl;
-            playerCoin -= m_items[this->get_Selecting()]->getPrice();
-            m_PlayerInventory->addItem(m_items[this->get_Selecting()]);
+            playerCoin -= current_Items[this->get_Selecting()]->getPrice();
+            m_PlayerInventory->addItem(current_Items[this->get_Selecting()]);
         }
         else if (get_CurrentTab() == "sell") {
             std::cout << "Sell" << std::endl;
-            playerCoin += m_items[this->get_Selecting()]->getPrice() * 0.6;
-            m_PlayerInventory->removeItem(m_PlayerInventory->getItems()[this->get_Selecting()]);
+            if (!current_Items.empty() && m_Selecting < current_Items.size()) {
+                playerCoin += current_Items[this->get_Selecting()]->getPrice() * 0.6;
+                m_PlayerInventory->removeItem(current_Items[this->get_Selecting()]);
+            }
         }
         });
-    std::cout << m_X << ", " << m_Y << std::endl;
+
+    addMultipleButton(current_Items);
 }
 
 void Shop::renderItems(SDL_Renderer* renderer) {
 
-    std::cout << m_X << ", " << m_Y << std::endl;
-
     int slotWidth = 32;
     int slotHeight = 32;
     int padding = 40;
+
+    if (m_currentTab == "sell") current_Items = m_PlayerInventory->getItems();
+    if (m_currentTab == "buy") current_Items = m_items;;
 
     for (int i = 0; i < current_Items.size(); ++i) {
         int newX = m_X + (i % 4) * (slotWidth + padding) + 120;
         int newY = m_Y + (i / 4) * (slotHeight + padding) + 160;
 
         TextureManager::GetInstance()->draw("slot", newX, newY, slotWidth, slotHeight, SDL_FLIP_NONE, 2.0);
+
     }
 
-    int selectingX = m_X + (m_Selecting % 4) * (slotWidth + padding) + 120;
-    int selectingY = m_Y + (m_Selecting / 4) * (slotHeight + padding) + 160;
-    TextureManager::GetInstance()->draw("usingslot", selectingX, selectingY, slotWidth, slotHeight, SDL_FLIP_NONE, 2.0);
+    if (!current_Items.empty() && m_Selecting < current_Items.size() ) {
+        int selectingX = m_X + (m_Selecting % 4) * (slotWidth + padding) + 120;
+        int selectingY = m_Y + (m_Selecting / 4) * (slotHeight + padding) + 160;
+        TextureManager::GetInstance()->draw("usingslot", selectingX, selectingY, slotWidth, slotHeight, SDL_FLIP_NONE, 2.0);
+    }
+    else {
+
+    }
+
 
     for (int i = 0; i < current_Items.size(); ++i) {
         if (current_Items[i] != nullptr) {
             int newX = m_X + (i % 4) * (slotWidth + padding) + 120;
             int newY = m_Y + (i / 4) * (slotHeight + padding) + 160;
             TextureManager::GetInstance()->draw(current_Items[i]->getID(), newX, newY, slotWidth, slotHeight, SDL_FLIP_NONE, 2.0);
+
+            if (m_currentTab == "sell") {
+                std::stringstream strm;
+                strm << current_Items[i]->getQuantity();
+                TextManager::GetInstance()->renderText(strm.str().c_str(), newX + 48, newY + 36, "assets/fonts/PixelifySans.ttf", 20);
+            }
         }
     }
 }

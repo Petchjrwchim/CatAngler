@@ -19,6 +19,7 @@ public:
     int get_Selecting() const { return m_Selecting; }
     std::string get_CurrentTab() const{ return m_currentTab; }
 
+    void addMultipleButton(std::vector<Item*> items);
     void setTab(const std::string& tab) { m_currentTab = tab; }
     void toggleShopUI();    
     void render(SDL_Renderer* renderer);     

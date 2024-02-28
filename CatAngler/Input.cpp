@@ -110,6 +110,11 @@ void Input::addButton(int x, int y, int w, int h, std::function<void()> onClick)
     if (offset) m_Buttons.emplace_back(x, y, w, h, onClick);
 }
 
+void Input::deleteButton(int n)
+{
+    if (m_Buttons.size() > n) m_Buttons.erase(m_Buttons.begin() + n, m_Buttons.end());
+}
+
 void Input::handleButtonEvents() {
     int x, y;
     SDL_GetMouseState(&x, &y);
@@ -122,6 +127,7 @@ void Input::handleButtonEvents() {
             button.onClick();
         }
     }
+    std::cout << m_Buttons.size() << std::endl;
 }
 
 void Input::renderButtons(SDL_Renderer* renderer) {
