@@ -196,7 +196,7 @@ void FishingRod::use()
 
 std::string FishingRod::getDescription()
 {
-    return std::string();
+    return "Use for fishing";
 }
 
 void FishingRod::draw()

@@ -23,3 +23,5 @@ coin,assets\images\coin.png
 shopkeeper,assets\images\Shopkeeper.png
 sell_tab,assets\images\sell_tab.png
 buy_tab,assets\images\buy_tab.png
+button,assets\images\button.png
+badge,assets\images\badge.png

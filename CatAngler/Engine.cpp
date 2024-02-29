@@ -116,7 +116,6 @@ void Engine::render()
 	}
 	else {
 		m_Tile->render("Indoor");
-		TextureManager::GetInstance()->draw("shopkeeper", 445, 550, 36, 36);
 		m_Tile->render("Shop");
 	}
 
@@ -127,6 +126,7 @@ void Engine::render()
 		m_Tile->render("Tree");
 	}
 	else {
+		TextureManager::GetInstance()->draw("shopkeeper", 445, 520, 36, 36);
 		m_Tile->render("Shopkeeper");
 	}
 

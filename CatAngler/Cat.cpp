@@ -68,7 +68,7 @@ void Cat::draw()
 
 	m_Aimation->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
 
-	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Interact") && m_IsInteract == false || CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Door") || CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Shop") && m_IsInteract == true ) {
+	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Interact") && m_IsInteract == false || CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Door") && m_IsInteract == true || CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Shop") && m_IsInteract == true ) {
 		TextureManager::GetInstance()->draw("interact_F", m_Transform->X, m_Transform->Y - 20, 32, 32);
 	}
 
@@ -90,11 +90,12 @@ void Cat::drawInv() {
 	}
 	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530, m_IsUsing);
 
-	TextureManager::GetInstance()->draw("coin", cam.X + 20, cam.Y + 18, 32, 32);
+	TextureManager::GetInstance()->draw("badge", cam.X + 10, cam.Y - 13, 64, 64, SDL_FLIP_NONE, 1.5);
+	TextureManager::GetInstance()->draw("coin", cam.X + 30, cam.Y + 20, 32, 32);
 
 	std::stringstream strm;
 	strm << m_Coin;
-	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 50 , cam.Y + 20 , "assets/fonts/PixelifySans.ttf", 20);
+	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 60 , cam.Y + 22 , "assets/fonts/PixelifySans.ttf", 20);
 }
 
 void Cat::update(float dt)

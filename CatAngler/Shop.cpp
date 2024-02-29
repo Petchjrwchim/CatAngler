@@ -40,8 +40,6 @@ void Shop::render(SDL_Renderer* renderer) {
         TextureManager::GetInstance()->draw("buy_tab", screenWidth / 2 - 400 + m_X, m_Y, 800, 600);
     }
 
-    TextureManager::GetInstance()->draw("slot", m_X + 600, m_Y + 400, 32, 32, SDL_FLIP_NONE, 2.0);
-
     TextManager::GetInstance()->renderText("Buy", screenWidth / 2 - 170 + m_X, m_Y + 90, "assets/fonts/PixelifySans.ttf", 30);
     TextManager::GetInstance()->renderText("Sell", screenWidth / 2 + 120 + m_X, m_Y + 90, "assets/fonts/PixelifySans.ttf", 30);
 
@@ -97,11 +95,13 @@ void Shop::initButtons() {
 
         });
 
-    Input::GetInstance()->addButton(m_X + 600, m_Y + 400, 64, 64, [this]() {
+    Input::GetInstance()->addButton(m_X + 568, m_Y + 437, 98, 54, [this]() {
         if (get_CurrentTab() == "buy") {
-            std::cout << "Buy" << std::endl;
-            playerCoin -= current_Items[this->get_Selecting()]->getPrice();
-            m_PlayerInventory->addItem(current_Items[this->get_Selecting()]);
+            if (playerCoin - current_Items[this->get_Selecting()]->getPrice() >= 0) {
+                std::cout << "Buy" << std::endl;
+                playerCoin -= current_Items[this->get_Selecting()]->getPrice();
+                m_PlayerInventory->addItem(current_Items[this->get_Selecting()]);
+            }
         }
         else if (get_CurrentTab() == "sell") {
             std::cout << "Sell" << std::endl;
@@ -132,10 +132,22 @@ void Shop::renderItems(SDL_Renderer* renderer) {
 
     }
 
-    if (!current_Items.empty() && m_Selecting < current_Items.size() ) {
+    if (!current_Items.empty() && m_Selecting < current_Items.size()) {
         int selectingX = m_X + (m_Selecting % 4) * (slotWidth + padding) + 120;
         int selectingY = m_Y + (m_Selecting / 4) * (slotHeight + padding) + 160;
         TextureManager::GetInstance()->draw("usingslot", selectingX, selectingY, slotWidth, slotHeight, SDL_FLIP_NONE, 2.0);
+
+        TextureManager::GetInstance()->draw("slot", m_X + 480, m_Y + 150, slotWidth, slotHeight, SDL_FLIP_NONE, 4.0);
+        TextureManager::GetInstance()->draw(current_Items[m_Selecting]->getID(), m_X + 480, m_Y + 150, slotWidth, slotHeight, SDL_FLIP_NONE, 4.0);
+
+        TextManager::GetInstance()->renderText("Description: ", m_X + 450, m_Y + 300, "assets/fonts/PixelifySans.ttf", 20);
+        TextManager::GetInstance()->renderText(current_Items[m_Selecting]->getDescription().c_str(), m_X + 450, m_Y + 320, "assets/fonts/PixelifySans.ttf", 20);
+
+        TextureManager::GetInstance()->draw("button", m_X + 550, m_Y + 400, 64, 64, SDL_FLIP_NONE, 2.0);
+        TextureManager::GetInstance()->draw("coin", m_X + 560, m_Y + 435, 32, 32, SDL_FLIP_NONE, 2.0);
+        std::stringstream strm;
+        strm << current_Items[m_Selecting]->getPrice();
+        TextManager::GetInstance()->renderText(strm.str().c_str(), m_X + 620, m_Y + 452, "assets/fonts/PixelifySans.ttf", 20);
     }
     else {
 

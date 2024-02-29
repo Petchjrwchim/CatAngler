@@ -132,7 +132,7 @@ void Input::handleButtonEvents() {
 
 void Input::renderButtons(SDL_Renderer* renderer) {
     for (const auto& button : m_Buttons) {
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 10);
         SDL_RenderFillRect(renderer, &button.rect);
     }
 }
