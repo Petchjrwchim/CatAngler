@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "Input.h" 
+#include "Animation.h"
 #include "SDL_Image.h"
 #include "GameState.h"
 
@@ -17,6 +18,8 @@ public:
 
 private:
 	
+	Animation* m_Aimation;
+
 	static void startGame();
 	static void settings();
 	static void quit();

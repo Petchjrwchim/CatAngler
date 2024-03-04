@@ -50,9 +50,9 @@ void Shop::render(SDL_Renderer* renderer) {
 
 void Shop::update(int x, int y) {
     if (m_isVisible) {
+        Input::GetInstance()->setCurrentWindow("shop");
         m_X = x;
         m_Y = y;
-        Input::GetInstance()->handleButtonEvents();
     }
 }
 
@@ -65,7 +65,7 @@ void Shop::addMultipleButton(std::vector<Item*> items) {
         int newX = (i % 4) * (slotWidth + padding) + 120;
         int newY = (i / 4) * (slotHeight + padding) + 160;
 
-        Input::GetInstance()->addButton(newX, newY, slotWidth, slotHeight, [this, i]() {
+        Input::GetInstance()->addButton(newX, newY, slotWidth, slotHeight, "shop", [this, i]() {
             this->setSelection(i);
             });
     }
@@ -73,29 +73,25 @@ void Shop::addMultipleButton(std::vector<Item*> items) {
 
 void Shop::initButtons() {
 
-    Input::GetInstance()->addButton( m_X + 405, m_Y + 80, 295, 50, [this]() {
+    Input::GetInstance()->addButton( m_X + 405, m_Y + 80, 295, 50, "shop", [this]() {
         this->setTab("sell");
         current_Items = m_PlayerInventory->getItems();
         std::cout << "Sell tab clicked" << std::endl;
-
-        Input::GetInstance()->deleteButton(3);
-
+        Input::GetInstance()->deleteButton(6);
         addMultipleButton(current_Items);
 
         });
 
-    Input::GetInstance()->addButton( m_X + 105, m_Y + 80 , 295, 50, [this]() {
+    Input::GetInstance()->addButton( m_X + 105, m_Y + 80 , 295, 50, "shop", [this]() {
         this->setTab("buy");
         current_Items = m_items;
         std::cout << "Buy tab clicked" << std::endl;
-
-        Input::GetInstance()->deleteButton(3);
-
+        Input::GetInstance()->deleteButton(6);
         addMultipleButton(current_Items);
 
         });
 
-    Input::GetInstance()->addButton(m_X + 568, m_Y + 437, 98, 54, [this]() {
+    Input::GetInstance()->addButton(m_X + 568, m_Y + 437, 98, 54, "shop", [this]() {
         if (get_CurrentTab() == "buy") {
             if (playerCoin - current_Items[this->get_Selecting()]->getPrice() >= 0) {
                 std::cout << "Buy" << std::endl;

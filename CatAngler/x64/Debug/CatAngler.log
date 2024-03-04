@@ -1,26 +1,2 @@
-﻿  Engine.cpp
-C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Engine.cpp')
-  
-C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Engine.cpp')
-  
-C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Engine.cpp')
-  
-C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Engine.cpp')
-  
-C:\CatAngler\CatAngler\Cat.h(10,1): warning C4005: 'SPEED': macro redefinition
-  (compiling source file 'Engine.cpp')
-  C:\CatAngler\CatAngler\Enemy.h(10,1):
-  see previous definition of 'SPEED'
-  
-C:\CatAngler\CatAngler\Engine.cpp(106,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Engine.cpp(106,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Engine.cpp(154,12): warning C4101: 'event': unreferenced local variable
-  GameState.cpp
-  Menu.cpp
-  Play.cpp
-  Generating Code...
+﻿  Menu.cpp
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

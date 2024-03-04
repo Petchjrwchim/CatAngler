@@ -25,3 +25,4 @@ sell_tab,assets\images\sell_tab.png
 buy_tab,assets\images\buy_tab.png
 button,assets\images\button.png
 badge,assets\images\badge.png
+wallpaper,assets\images\wallpaper.png

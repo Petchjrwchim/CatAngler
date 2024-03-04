@@ -3,6 +3,7 @@
 #define INPUT_H
 
 #include "SDL.h"
+#include <iostream>
 #include <functional>
 #include <vector>
 
@@ -11,11 +12,12 @@ public:
     struct Button {
         SDL_Rect rect; // Position and size of the button
         std::function<void()> onClick; // Callback function for click event
+        std::string page;
         bool isHovered = false;
         bool isClicked = false;
 
-        Button(int x, int y, int w, int h, std::function<void()> onClickFunc)
-            : rect{ x, y, w, h }, onClick(onClickFunc) {}
+        Button(int x, int y, int w, int h, std::string page, std::function<void()> onClickFunc)
+            : rect{ x, y, w, h }, onClick(onClickFunc), page(page) {}
     };
 
     static Input* GetInstance() {
@@ -35,17 +37,23 @@ public:
     bool getMouseButton(int button);
     void getMousePosition(int& x, int& y);
 
-    void addButton(int x, int y, int w, int h, std::function<void()> onClick);
+    void addButton(int x, int y, int w, int h, std::string p, std::function<void()> onClick);
     void deleteButton(int n);
     void handleButtonEvents();
     void renderButtons(SDL_Renderer* renderer);
 
+    std::string getCurrentWindow() { return currentWindow; }
+    void setCurrentWindow(std::string s) { currentWindow = s; }
+
     ~Input();
+    Input();
 
 private:
-    Input();
+
     void keyUp();
     void keyDown();
+
+    std::string currentWindow = "menu";
 
     int m_MouseState;
     int m_PrevMouseState;

@@ -27,11 +27,14 @@ class Engine {
 		void render();
 		void event();
 
+		void changeGameState(std::string state) { m_GameState = state; }
+
 		inline bool IsRunning() { return m_IsRunning; }
 		inline SDL_Renderer* GetRenderer() { return m_Renderer; }
 
 private:
     Engine() {}
+	std::string m_GameState = "menu";
     bool m_IsRunning;
     bool m_IsFullscreen = false; 
 
