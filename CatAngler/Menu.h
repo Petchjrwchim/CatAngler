@@ -1,16 +1,32 @@
 #pragma once
 #include "SDL.h"
+#include "Input.h" 
+#include "SDL_Image.h"
+#include "GameState.h"
 
-class Menu
+#include <iostream>
+
+class Menu: public GameState
 {
 public:
-	static Menu* GetInstance() {
-		return s_Instance = (s_Instance != nullptr) ? s_Instance : new Menu();
-	}
-
-	void render();
+	Menu();
+	virtual bool init();
+	virtual bool exit();
+	virtual void update();
+	virtual void render();
 
 private:
-	static Menu* s_Instance;
+	
+	static void startGame();
+	static void settings();
+	static void quit();
+
+	void initButtons();
+	void setCursor(const char* imagePath);
+
+private:
+
+	SDL_Renderer* m_Ctxt;
+	SDL_Cursor* cursor;
 };
 

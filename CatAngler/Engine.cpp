@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "Tile.h"
 #include "Shop.h"
+#include "Menu.h"
 
 Engine* Engine::s_Instance = nullptr;
 Cat* cat = nullptr;
