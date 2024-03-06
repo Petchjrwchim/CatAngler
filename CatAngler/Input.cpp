@@ -23,6 +23,7 @@ Input::~Input() {
 
 void Input::listen()
 {
+    m_MouseMoved = false; // Reset the flag at the start of each frame
     memcpy(m_PrevKeyState, m_KeyState, SDL_NUM_SCANCODES);
     m_PrevMouseState = m_MouseState;
     m_MouseState = SDL_GetMouseState(&m_MouseX, &m_MouseY);
@@ -39,6 +40,9 @@ void Input::listen()
         case SDL_KEYUP:
             keyUp();
             break;
+        case SDL_MOUSEMOTION:
+            m_MouseMoved = true; // Set the flag if mouse motion is detected
+            break;
         }
     }
 }
@@ -51,6 +55,10 @@ bool Input::getKeyDownOnetime(SDL_Scancode key)
 bool Input::getKeyUpOnetime(SDL_Scancode key)
 {
     return m_KeyState[key] == 0 && m_PrevKeyState[key] == 1;
+}
+
+bool Input::getMouseMoved() {
+    return m_MouseMoved;
 }
 
 

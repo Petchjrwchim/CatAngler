@@ -65,6 +65,7 @@ void Menu::initButtons()
 {
 
     Input::GetInstance()->addButton( 300, 220, 200, 50, "menu", [this]() {
+        std::cout << "start" << std::endl;
         startGame();
         });
 
@@ -72,6 +73,7 @@ void Menu::initButtons()
         });
 
     Input::GetInstance()->addButton(300, 420, 200, 50, "menu", [this]() {
+        std::cout << "quit game" << std::endl;
         quit();
         });
 }

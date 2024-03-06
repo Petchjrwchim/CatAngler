@@ -38,6 +38,9 @@ void Enemy::setTarget(int x, int y, int* health, SDL_Rect target)
 
 void Enemy::update(float dt)
 {
+	int lastX = m_Transform->X;
+	int lastY = m_Transform->Y;
+
 	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target) && SDL_GetTicks() / 1000 - attackTime > 1) {
 		m_AimationE->setProps("shark_attack", 1, 4, 150, m_Flip);
 		std::cout << "got attack" << std::endl;
@@ -48,7 +51,6 @@ void Enemy::update(float dt)
 		*m_playerHealth -= 1;
 		attackTime = SDL_GetTicks() / 1000;
 	}
-
 
 	if (!CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
 		attackTime = SDL_GetTicks() / 1000;
@@ -77,13 +79,13 @@ void Enemy::update(float dt)
 		}
 
 		m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
-			m_Transform->X -= 1 * SPEED;
+		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "EnemyCollision")) {
+			m_Transform->X = lastX;
 		}
 
 		m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get())) {
-			m_Transform->Y -= 1 * SPEED;
+		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "EnemyCollision")) {
+			m_Transform->Y = lastY;
 		}
 	}
 
@@ -94,8 +96,8 @@ void Enemy::update(float dt)
 	}
 
 	if (CollisionHandler::GetInstance()->checkCollisionVec(m_Collider, getColliderVec())) {
-		m_Transform->X -= 1.2 * SPEED;
-		m_Transform->Y -= 1.2 * SPEED;
+		m_Transform->X = lastX;
+		m_Transform->Y = lastY;
 	}
 
 	m_Origin->x = m_Transform->X + m_Width / 2;

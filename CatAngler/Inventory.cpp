@@ -3,10 +3,12 @@
 #include <algorithm>
 #include <sstream>
 #include "TextureManager.h" 
+#include "Input.h"
 #include "TextManager.h" 
 
 Inventory::Inventory( int capacity)
     :  capacity(capacity), isVisible(false) {
+    for(int i=0; i<capacity; i++) m_items.push_back(NULL);
 }
 
 Inventory::~Inventory() {
@@ -18,12 +20,19 @@ Inventory::~Inventory() {
 
 void Inventory::addItem(Item* item) {
     bool found = false;
+    int count = 0;
     for (Item* i : m_items) {
-        if (i->getName() == item->getName()) {
+        if (i == NULL) {
+            m_items[count] = item;
+            found = true;
+            break;
+        }
+        if (i != nullptr && i->getName() == item->getName()) {
             i->additems(1);
             found = true;
             break;
         }
+        count++;;
     }
     if (!found) {
         m_items.push_back(item);
@@ -34,7 +43,7 @@ void Inventory::removeItem(Item* item) {
     int count = 0;
     for (Item* i : m_items) {
         //std::cout << i->getName() << ", " << item->getName() << std::endl;
-        if (i->getName() == item->getName()) {
+        if (i != nullptr && i->getName() == item->getName()) {
             if (i->getQuantity() == 1) {
                 m_items.erase(m_items.begin() + count, m_items.begin() + count + 1);
             }
@@ -44,6 +53,7 @@ void Inventory::removeItem(Item* item) {
         }
         count++;
     }
+    for (int i = m_items.size(); i < capacity; i++) m_items.push_back(NULL);
 }
 
 void Inventory::toggleVisibility() {
@@ -117,34 +127,42 @@ void Inventory::renderInventoryBar(int x, int y, int usingSlot) {
 void Inventory::handleMouseEvent(SDL_Event& e) {
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
-
-    if (e.type == SDL_MOUSEBUTTONDOWN) {
+    //std::cout << mouseX << mouseY << std::endl;
+    if (Input::GetInstance()->getMouseButtonDown(1) && !m_items.empty() && !isDragging) {
         int index = findItemIndexAtPosition(mouseX, mouseY);
         if (index != -1) {
+            std::cout << "selecting" << std::endl;
             isDragging = true;
             selectedItem = m_items[index];
             selectedItemIndex = index;
-            dragOffsetX = mouseX - dragItemRect.x;
-            dragOffsetY = mouseY - dragItemRect.y;
         }
     }
-    else if (e.type == SDL_MOUSEMOTION && isDragging) {
-        dragItemRect.x = mouseX - dragOffsetX;
-        dragItemRect.y = mouseY - dragOffsetY;
-    }
-    else if (e.type == SDL_MOUSEBUTTONUP && isDragging) {
+    else if (Input::GetInstance()->getMouseButtonUp(1) && isDragging) {
         int newIndex = findItemIndexAtPosition(mouseX, mouseY);
         if (newIndex != -1 && newIndex != selectedItemIndex) {
+            std::cout << "swap" << std::endl;
             swapItems(selectedItemIndex, newIndex);
         }
         isDragging = false;
     }
+    Vector2D cam = Camera::GetInstance()->getPosition();
+    if (Input::GetInstance()->getMouseButtonDown(1) && selectedItem != NULL) TextureManager::GetInstance()->draw(selectedItem->getID(), cam.X + mouseX - 10, cam.Y + mouseY - 10, 32, 32, SDL_FLIP_NONE);
 }
 
 int Inventory::findItemIndexAtPosition(int x, int y) {
-    // Implement logic to determine which item index, if any, is at the given x, y position
-    // This will depend on your inventory layout and slot positioning 
-    return -1; // Placeholder: replace with actual logic
+    int slotWidth = 32;
+    int slotHeight = 32;
+    int padding = 10;
+
+    for (int i = 0; i < capacity; ++i) {
+        int newX = (i % 5) * (slotWidth + padding) + 300;
+        int newY = (i / 5) * (slotHeight + padding) + 260;
+        if (x >= newX && x <= newX + slotWidth && y >= newY && y <= newY + slotHeight) {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 void Inventory::swapItems(int firstIndex, int secondIndex) {

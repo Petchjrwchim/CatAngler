@@ -4,7 +4,7 @@ Item* LootTable::getRandomItem()
 {
     srand(time(NULL));
     int chance = rand() % 100;
-    int total;
+    int total = 0;
     for (Item* i : itemLists) {
         total += i->getDropChance();
     }

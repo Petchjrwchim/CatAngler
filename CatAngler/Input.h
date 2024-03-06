@@ -29,6 +29,7 @@ public:
     bool getKeyUpOnetime(SDL_Scancode key);
     bool getKeyDown(SDL_Scancode key);
     bool getKeyUp(SDL_Scancode key);
+    bool getMouseMoved();
 
     bool getMouseButtonDownOnetime(int button);
     bool getMouseButtonUpOnetime(int button);
@@ -55,6 +56,7 @@ private:
 
     std::string currentWindow = "menu";
 
+    bool m_MouseMoved = false;
     int m_MouseState;
     int m_PrevMouseState;
     int m_MouseX, m_MouseY;

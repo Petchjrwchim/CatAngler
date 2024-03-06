@@ -26,7 +26,7 @@ void FishingManager::checkFishing(int x, int y, std::string map)
 
     if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), map) && x !=0) {
 
-        if ( chance > 0) {
+        if ( chance > 10) {
             std::cout << "Got fish!" << std::endl;
             Fish* caughtFish = new Fish(1, "Salmon", 5, "Common", "fish", 10);
             if (playerInventory != nullptr) {

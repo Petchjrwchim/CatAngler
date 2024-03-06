@@ -120,6 +120,7 @@ void Engine::render()
 	if (m_GameState == "menu") menu->render();
 
 	if (m_GameState == "play") {
+		Input::GetInstance()->setCurrentWindow("play");
 		if (!cat->getInteract()) {
 			m_Tile->render("Floor");
 			m_Tile->render("House");
@@ -140,7 +141,7 @@ void Engine::render()
 			m_Tile->render("Shopkeeper");
 		}
 
-		if (shop->get_IsVisible()) {
+		if (shop != NULL && shop->get_IsVisible()) {
 			shop->render(m_Renderer);
 		}
 

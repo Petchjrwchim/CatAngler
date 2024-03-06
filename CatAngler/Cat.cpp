@@ -84,9 +84,11 @@ void Cat::draw()
 }
 
 void Cat::drawInv() {
+	SDL_Event event;
 	Vector2D cam = Camera::GetInstance()->getPosition();
 	if (m_Inventory->checkVisible()) {
 		m_Inventory->render(cam.X, cam.Y);
+		m_Inventory->handleMouseEvent(event);
 	}
 	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530, m_IsUsing);
 
@@ -235,7 +237,7 @@ void Cat::equip() {
 		m_IsUsing = 4;
 	}
 
-	if (m_Inventory->getItems().size() > m_IsUsing && !m_IsShopping) {
+	if (m_Inventory->getItems().size() > m_IsUsing && !m_IsShopping && m_Inventory->getItems()[m_IsUsing] != NULL && !m_Inventory->checkVisible()) {
 		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y, fish_manager->getEnemies());
 		m_Inventory->getItems()[m_IsUsing]->draw();
 		if (!Input::GetInstance()->getKeyDown(SDL_NUM_SCANCODES)) {

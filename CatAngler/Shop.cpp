@@ -45,7 +45,7 @@ void Shop::render(SDL_Renderer* renderer) {
 
     renderItems(renderer);
 
-    //Input::GetInstance()->renderButtons(renderer);
+    Input::GetInstance()->renderButtons(renderer);
 }
 
 void Shop::update(int x, int y) {
@@ -101,7 +101,7 @@ void Shop::initButtons() {
         }
         else if (get_CurrentTab() == "sell") {
             std::cout << "Sell" << std::endl;
-            if (!current_Items.empty() && m_Selecting < current_Items.size()) {
+            if (!current_Items.empty() && m_Selecting < current_Items.size() && current_Items[this->get_Selecting()] != NULL) {
                 playerCoin += current_Items[this->get_Selecting()]->getPrice() * 0.6;
                 m_PlayerInventory->removeItem(current_Items[this->get_Selecting()]);
             }
@@ -128,7 +128,7 @@ void Shop::renderItems(SDL_Renderer* renderer) {
 
     }
 
-    if (!current_Items.empty() && m_Selecting < current_Items.size()) {
+    if (!current_Items.empty() && m_Selecting < current_Items.size() && current_Items[m_Selecting] != NULL) {
         int selectingX = m_X + (m_Selecting % 4) * (slotWidth + padding) + 120;
         int selectingY = m_Y + (m_Selecting / 4) * (slotHeight + padding) + 160;
         TextureManager::GetInstance()->draw("usingslot", selectingX, selectingY, slotWidth, slotHeight, SDL_FLIP_NONE, 2.0);
