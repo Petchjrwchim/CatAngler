@@ -21,6 +21,7 @@ private:
 	int m_IsUsing = 0;
 	int current_Equip = 1;
 	int m_Coin = 10000;
+	int* catHealth = NULL;
 	SDL_RendererFlip m_Flip;
 
 	Collider* m_Collider;

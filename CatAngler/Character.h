@@ -7,10 +7,12 @@
 class Character : public GameObject {
 
 	public:
-
 		Character() {}
 
 		Character(Properties* props): GameObject(props) {}
+
+		int getHealth() { return m_Health; }
+		void reduceHealth(int dmg) { m_Health -= dmg; }
 
 		virtual void draw() = 0;
 		virtual void update(float dt) = 0;
@@ -18,7 +20,7 @@ class Character : public GameObject {
 
 	protected:
 		std::string m_Name;
-		int health = 10;
+		int m_Health = 10;
 };
 
 #endif // !CHARACTER.H

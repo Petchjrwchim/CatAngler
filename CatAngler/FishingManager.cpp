@@ -9,7 +9,7 @@ FishingManager* FishingManager::s_Instance = nullptr;
 
 std::vector<Enemy*> enemies;
 
-FishingManager::FishingManager(Inventory* player_Inv, std::vector<Collider*>* colliderVec, std::vector<Fish*> fishInArea)
+FishingManager::FishingManager(Inventory* player_Inv, std::vector<Collider*>* colliderVec)
     : playerInventory(player_Inv), colliderVec(colliderVec)
 {
 	m_Collider = new Collider();
@@ -45,11 +45,11 @@ void FishingManager::checkFishing(int x, int y, std::string map)
 }
 
 
-void FishingManager::update(float dt, int x, int y, SDL_Rect target)
+void FishingManager::update(float dt, int x, int y, int* health,SDL_Rect target)
 {
     if (!enemies.empty()) {
         for (unsigned int i = 0; i < enemies.size(); i++) {
-            enemies[i]->setTarget(x, y, target);
+            enemies[i]->setTarget(x, y, health, target);
             enemies[i]->setColliderVec(*colliderVec);
             enemies[i]->update(dt);
         }

@@ -14,6 +14,7 @@ C:\CatAngler\CatAngler\GameState.cpp;C:\CatAngler\CatAngler\x64\Debug\GameState.
 C:\CatAngler\CatAngler\Input.cpp;C:\CatAngler\CatAngler\x64\Debug\Input.obj
 C:\CatAngler\CatAngler\Inventory.cpp;C:\CatAngler\CatAngler\x64\Debug\Inventory.obj
 C:\CatAngler\CatAngler\Item.cpp;C:\CatAngler\CatAngler\x64\Debug\Item.obj
+C:\CatAngler\CatAngler\LootTable.cpp;C:\CatAngler\CatAngler\x64\Debug\LootTable.obj
 C:\CatAngler\CatAngler\main.cpp;C:\CatAngler\CatAngler\x64\Debug\main.obj
 C:\CatAngler\CatAngler\Menu.cpp;C:\CatAngler\CatAngler\x64\Debug\Menu.obj
 C:\CatAngler\CatAngler\Play.cpp;C:\CatAngler\CatAngler\x64\Debug\Play.obj

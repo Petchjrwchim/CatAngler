@@ -4,7 +4,7 @@
 #include "TextureManager.h"
 #include "Camera.h"
 
-Enemy::Enemy(Properties* props, int health) : Character(props), m_Health(health)
+Enemy::Enemy(Properties* props, int health) : Character(props)
 {
 	m_Flip = SDL_FLIP_NONE;
 
@@ -16,6 +16,8 @@ Enemy::Enemy(Properties* props, int health) : Character(props), m_Health(health)
 	m_AimationE = new Animation();
 	m_AimationE->setProps(m_TextureID, 1, 4, 150);
 
+	m_Health = health;
+
 }
 
 void Enemy::draw()
@@ -25,21 +27,31 @@ void Enemy::draw()
 
 }
 
-void Enemy::setTarget(int x, int y, SDL_Rect target)
+void Enemy::setTarget(int x, int y, int* health, SDL_Rect target)
 {
 	t_X = x;
 	t_Y = y;
+	m_playerHealth = health;
 	m_Target = target;
 
 }
 
 void Enemy::update(float dt)
 {
-	int time = 1;
-	//std::cout << m_Transform->X << "," << m_Transform->Y << std::endl;
-	
+	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target) && SDL_GetTicks() / 1000 - attackTime > 1) {
+		m_AimationE->setProps("shark_attack", 1, 4, 150, m_Flip);
+		std::cout << "got attack" << std::endl;
+	} else {
+		m_AimationE->setProps(m_TextureID, 1, 4, 150, m_Flip);
+	}
+	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target) && SDL_GetTicks() / 1000 - attackTime > 1.75) {
+		*m_playerHealth -= 1;
+		attackTime = SDL_GetTicks() / 1000;
+	}
+
+
 	if (!CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
-		
+		attackTime = SDL_GetTicks() / 1000;
 		if (t_Y > m_Transform->Y) {
 			lastDirection = 'W';
 			m_Transform->Y += 1 * SPEED;
@@ -76,17 +88,14 @@ void Enemy::update(float dt)
 	}
 
 	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
-		m_AimationE->setProps("shark_attack", 1, 4, 150, m_Flip);
-	}
 
 	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Water")) {
 		m_AimationE->setProps("shark_dive", 1, 4, 150, m_Flip);
 	}
 
 	if (CollisionHandler::GetInstance()->checkCollisionVec(m_Collider, getColliderVec())) {
-		m_Transform->X -= 1 * SPEED;
-		m_Transform->Y -= 1 * SPEED;
+		m_Transform->X -= 1.2 * SPEED;
+		m_Transform->Y -= 1.2 * SPEED;
 	}
 
 	m_Origin->x = m_Transform->X + m_Width / 2;

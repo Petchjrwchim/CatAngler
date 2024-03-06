@@ -16,7 +16,8 @@ class FishingManager {
         std::vector<Enemy*> spawned_enemies;
 
     public:
-        FishingManager(Inventory* player_Inv = nullptr , std::vector<Collider*>* colliderVec = {}, std::vector<Fish*> fishInArea = {});
+
+        FishingManager(Inventory* player_Inv = nullptr , std::vector<Collider*>* colliderVec = {});
 
         inline static FishingManager* GetInstance() { return s_Instance = (s_Instance != nullptr) ? s_Instance : new FishingManager(); }
 
@@ -24,7 +25,7 @@ class FishingManager {
 
         void checkFishing(int  x,int y, std::string map);
 
-        void update(float dt, int x, int y, SDL_Rect target);
+        void update(float dt, int x, int y, int* health, SDL_Rect target);
 
         void draw();
 };

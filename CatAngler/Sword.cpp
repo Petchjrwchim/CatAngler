@@ -15,7 +15,7 @@ Sword::Sword(int quantity, const std::string& name, const std::string& type, con
 
 std::string Sword::getDescription()
 {
-	return std::string();
+	return "Use for fighting";
 }
 
 void Sword::use()
@@ -23,7 +23,7 @@ void Sword::use()
 	m_Collider->set(m_X, m_Y, 32, 32);
 
 	m_AimationS->setProps("sword", 1, 1, 100, SDL_FLIP_NONE);
-    if (Input::GetInstance()->getMouseButtonDown(1)) {
+    if (Input::GetInstance()->getMouseButtonDownOnetime(1)) {
 		m_AimationS->setProps("sword", 1, 4, 100);
 		for (Enemy* i : m_enemies) {
 			if (i->getHealth() > 0) {

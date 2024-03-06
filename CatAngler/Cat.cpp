@@ -90,6 +90,13 @@ void Cat::drawInv() {
 	}
 	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530, m_IsUsing);
 
+	
+	SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 255, 0, 10);
+	SDL_Rect healthBar = { 253, 502, floor(m_Health * 141 / 10), 18};
+	SDL_RenderFillRect(Engine::GetInstance()->GetRenderer(), &healthBar);
+
+	TextureManager::GetInstance()->draw("healthbar", cam.X + 220, cam.Y + 415, 64, 64, SDL_FLIP_NONE, 3);
+
 	TextureManager::GetInstance()->draw("badge", cam.X + 10, cam.Y - 13, 64, 64, SDL_FLIP_NONE, 1.5);
 	TextureManager::GetInstance()->draw("coin", cam.X + 30, cam.Y + 20, 32, 32);
 
@@ -197,8 +204,8 @@ void Cat::update(float dt)
 	}
 
 	if (CollisionHandler::GetInstance()->checkCollisionVec(m_Collider, colliderVec)) {
-		m_Transform->X = m_LastSafePosition.X;
-		m_Transform->Y = m_LastSafePosition.Y;
+		//m_Transform->X = m_LastSafePosition.X;
+		//m_Transform->Y = m_LastSafePosition.Y;
 	}
 
 
@@ -206,7 +213,7 @@ void Cat::update(float dt)
 	m_Origin->y = m_Transform->Y + m_Height / 2;
 	m_Aimation->update();
 
-	fish_manager->update(dt, m_Transform->X, m_Transform->Y, m_Collider->get());
+	fish_manager->update(dt, m_Transform->X, m_Transform->Y, &m_Health, m_Collider->get());
 
 }
 

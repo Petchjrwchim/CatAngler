@@ -16,8 +16,8 @@ class Item {
         char m_Direction;
         std::vector<Enemy*> m_enemies;
 
-        Item(int quantity, const std::string& name, const std::string& type, const std::string& texture, const int price)
-            : m_Quantity(quantity), m_Name(name), m_Type(type), m_TextureID(texture), m_Price(price) {}
+        Item(int quantity, const std::string& name, const std::string& type, const std::string& texture, const int price, const int chance = 0)
+            : m_Quantity(quantity), m_Name(name), m_Type(type), m_TextureID(texture), m_Price(price), m_DropChance(chance) {}
 
         virtual void use() = 0;
         virtual std::string getDescription() = 0;
@@ -32,9 +32,7 @@ class Item {
             m_enemies = enemies;
         }
 
-        void additems(int amount) {
-            m_Quantity += amount;
-        }
+        void additems(int amount) { m_Quantity += amount; }
 
         void removeitems(int amount) {
             m_Quantity -= amount;
@@ -43,6 +41,7 @@ class Item {
 
         int getQuantity() { return m_Quantity; }
         int getPrice() { return m_Price; }
+        int getDropChance() { return m_DropChance; }
 
         std::string getID() { return m_TextureID; }
         std::string getName() { return m_Name; }
@@ -50,6 +49,7 @@ class Item {
 
     private:
 
+        int m_DropChance;
         int m_Quantity;
         int m_Price;
         std::string m_Type;

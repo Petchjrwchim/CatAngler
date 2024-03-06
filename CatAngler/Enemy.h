@@ -19,7 +19,8 @@ private:
 
 	bool m_IsMoving;
 
-	int m_Health;
+	int attackTime = 0;
+	bool firstHit = true;
 
 	SDL_RendererFlip m_Flip;
 	SDL_Rect m_Target;
@@ -29,6 +30,8 @@ private:
 	RigidBody* m_RigidBody;
 	Vector2D m_LastSafePosition;
 
+	int* m_playerHealth;
+
 	std::vector<Collider*> colliderVec;
 
 public:
@@ -37,10 +40,7 @@ public:
 	void setColliderVec(std::vector<Collider*> v) { colliderVec = v; }
 	std::vector<Collider*> getColliderVec() { return colliderVec; }
 
-	void setTarget(int x, int y, SDL_Rect target);
-	int getHealth() { return health; }
-
-	void reduceHealth(int dmg) { health -= dmg; }
+	void setTarget(int x, int y, int* health, SDL_Rect target);
 
 	Collider* getCollider() { return m_Collider; };
 	virtual void draw();

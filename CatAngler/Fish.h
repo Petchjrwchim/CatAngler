@@ -23,7 +23,5 @@ public:
     virtual void use() override {
     }
 
-    void draw() override {
-    }
-
+    void draw() override;
 };
