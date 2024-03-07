@@ -2,17 +2,22 @@
 #include "TextureManager.h"
 #include "TextManager.h"
 #include "Input.h"
+
 #include "FishingRod.h"
 #include "Sword.h"
+#include "Food.h"
+
 #include <sstream>
 
 Shop::Shop(Inventory* inv, int& coin) : m_PlayerInventory(inv), playerCoin(coin), m_isVisible(false) {
     
     FishingRod* fishingRod = new FishingRod(1, "Fishing Rod", "Rod", "fishingrod", 50);
     Sword* sword = new Sword(1, "Sword", "Weapon", "sword", 50);
+    Food* fishcan = new Food(1, "Fishcan", "Food", "fishcan", 20, 1);
 
     m_items.push_back(fishingRod);
     m_items.push_back(sword);
+    m_items.push_back(fishcan);
 
     current_Items = m_items;
 

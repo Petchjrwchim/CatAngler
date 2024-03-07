@@ -9,6 +9,7 @@ C:\CatAngler\CatAngler\Engine.cpp;C:\CatAngler\CatAngler\x64\Debug\Engine.obj
 C:\CatAngler\CatAngler\Fish.cpp;C:\CatAngler\CatAngler\x64\Debug\Fish.obj
 C:\CatAngler\CatAngler\FishingManager.cpp;C:\CatAngler\CatAngler\x64\Debug\FishingManager.obj
 C:\CatAngler\CatAngler\FishingRod.cpp;C:\CatAngler\CatAngler\x64\Debug\FishingRod.obj
+C:\CatAngler\CatAngler\Food.cpp;C:\CatAngler\CatAngler\x64\Debug\Food.obj
 C:\CatAngler\CatAngler\GameObject.cpp;C:\CatAngler\CatAngler\x64\Debug\GameObject.obj
 C:\CatAngler\CatAngler\GameState.cpp;C:\CatAngler\CatAngler\x64\Debug\GameState.obj
 C:\CatAngler\CatAngler\Input.cpp;C:\CatAngler\CatAngler\x64\Debug\Input.obj

@@ -238,7 +238,7 @@ void Cat::equip() {
 	}
 
 	if (m_Inventory->getItems().size() > m_IsUsing && !m_IsShopping && m_Inventory->getItems()[m_IsUsing] != NULL && !m_Inventory->checkVisible()) {
-		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y, fish_manager->getEnemies());
+		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y, fish_manager->getEnemies(), &m_Health);
 		m_Inventory->getItems()[m_IsUsing]->draw();
 		if (!Input::GetInstance()->getKeyDown(SDL_NUM_SCANCODES)) {
 			m_Inventory->getItems()[m_IsUsing]->use();
@@ -247,6 +247,9 @@ void Cat::equip() {
 			checkX = m_Inventory->getItems()[m_IsUsing]->getX();
 			checkY = m_Inventory->getItems()[m_IsUsing]->getY();
 			fish_manager->checkFishing(checkX, checkY,"Water");
+		}
+		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Food" && Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_E)) {
+			m_Inventory->removeItem(m_Inventory->getItems()[m_IsUsing]);
 		}
 	}
 

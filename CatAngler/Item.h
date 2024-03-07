@@ -13,6 +13,7 @@ class Item {
     public:
 
         int m_X, m_Y;
+        int* m_PlayerHealth;
         char m_Direction;
         std::vector<Enemy*> m_enemies;
 
@@ -25,11 +26,12 @@ class Item {
         virtual int getX() { return m_X; }
         virtual int getY() { return m_Y; }
 
-        void update(char direction, int x = 0, int y = 0, std::vector<Enemy*> enemies = {}) {
+        void update(char direction, int x = 0, int y = 0, std::vector<Enemy*> enemies = {}, int* health = 0) {
             m_Direction = direction;
             m_X = x;
             m_Y = y;
             m_enemies = enemies;
+            m_PlayerHealth = health;
         }
 
         void additems(int amount) { m_Quantity += amount; }

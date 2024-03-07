@@ -212,9 +212,7 @@ void FishingRod::draw()
     }
     if (m_Direction == 'D') {
         TextureManager::GetInstance()->draw("fishingrod", m_X - 5, m_Y, 32, 32);
-        
     }
-
 }
 
 int FishingRod::getX()

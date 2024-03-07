@@ -1,14 +1,48 @@
-﻿  Inventory.cpp
+﻿  Cat.cpp
+C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
 C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Inventory.cpp')
+  (compiling source file 'Cat.cpp')
   
 C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Inventory.cpp')
+  (compiling source file 'Cat.cpp')
   
 C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Inventory.cpp')
+  (compiling source file 'Cat.cpp')
   
-C:\CatAngler\CatAngler\Inventory.cpp(56,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Inventory.cpp(149,173): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Inventory.cpp(149,152): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.h(10,1): warning C4005: 'SPEED': macro redefinition
+  (compiling source file 'Cat.cpp')
+  C:\CatAngler\CatAngler\Enemy.h(10,1):
+  see previous definition of 'SPEED'
+  
+C:\CatAngler\CatAngler\Cat.cpp(16,6): warning C4101: 'xPos': unreferenced local variable
+C:\CatAngler\CatAngler\Cat.cpp(40,23): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(47,15): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(52,20): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(57,20): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(72,84): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(72,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(90,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(90,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(93,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(93,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(97,40): warning C4838: conversion from 'double' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\Cat.cpp(97,40): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(100,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(100,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(102,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(102,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(103,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(103,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(107,80): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(107,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(195,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(195,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(203,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(203,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(218,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(218,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(241,93): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Cat.cpp(241,76): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

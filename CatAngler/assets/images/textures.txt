@@ -27,3 +27,4 @@ button,assets\images\button.png
 badge,assets\images\badge.png
 wallpaper,assets\images\wallpaper.png
 healthbar,assets\images\healthbar.png
+fishcan,assets\images\FishCan.png
