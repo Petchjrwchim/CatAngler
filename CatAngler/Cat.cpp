@@ -26,8 +26,6 @@ Cat::Cat(Properties* props) : Character(props)
 
 	m_Inventory = new Inventory(10);
 
-	colliderVec.push_back(m_Collider);
-
 	fish_manager = new FishingManager(m_Inventory, &colliderVec);
 
 	
@@ -76,11 +74,11 @@ void Cat::draw()
 		FishingManager::GetInstance()->draw();
 	}
 
-	//Vector2D cam = Camera::GetInstance()->getPosition();
-	//SDL_Rect box = m_Collider->get();
-	//box.x -= cam.X;
-	//box.y -= cam.Y;
-	//SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
+	Vector2D cam = Camera::GetInstance()->getPosition();
+	SDL_Rect box = m_Collider->get();
+	box.x -= cam.X;
+	box.y -= cam.Y;
+	SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
 }
 
 void Cat::drawInv() {

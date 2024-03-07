@@ -14,7 +14,7 @@ class Enemy : public Character
 private:
 
 	int t_X, t_Y;
-
+	int m_Frame;
 	char lastDirection = 'S';
 
 	bool m_IsMoving;
@@ -35,7 +35,7 @@ private:
 	std::vector<Collider*> colliderVec;
 
 public:
-	Enemy(Properties* props, int health);
+	Enemy(Properties* props, int health, int frame);
 
 	void setColliderVec(std::vector<Collider*> v) { colliderVec = v; }
 	std::vector<Collider*> getColliderVec() { return colliderVec; }

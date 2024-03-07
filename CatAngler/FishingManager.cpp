@@ -35,10 +35,10 @@ void FishingManager::checkFishing(int x, int y, std::string map)
             }
         }
         else {
-            Enemy* shark = new Enemy(new Properties("shark_walk", x, y, 32, 32), 10);
-            enemies.push_back(shark);
-            spawned_enemies.push_back(shark);
-            colliderVec->push_back(shark->getCollider());
+            Enemy* shark = new Enemy(new Properties("shark", x, y, 32, 32), 10, 4);
+            Enemy* squid = new Enemy(new Properties("squid", x, y, 64, 64), 10, 7);
+            enemies.push_back(squid);
+            colliderVec->push_back(squid->getCollider());
         }
 
     }

@@ -9,7 +9,7 @@ Food::Food(int quantity, const std::string& name, const std::string& type, const
 
 std::string Food::getDescription()
 {
-	return std::string();
+	return "Use for eating and\n gain health";
 }
 
 void Food::use()

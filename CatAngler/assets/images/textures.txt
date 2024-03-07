@@ -14,9 +14,15 @@ slot,assets\images\slot.png
 usingslot,assets\images\usingslot.png
 bait,assets\images\bait.png
 fish,assets\images\fish.png
+
 shark_walk,assets\images\shark.png
 shark_dive,assets\images\shark_dive.png
 shark_attack,assets\images\shark_attack.png
+
+squid_walk,assets\images\squid.png
+squid_dive,assets\images\squid.png
+squid_attack,assets\images\squid.png
+
 sword,assets\images\sword.png
 interact_F,assets\images\interact_F.png
 coin,assets\images\coin.png
@@ -27,4 +33,5 @@ button,assets\images\button.png
 badge,assets\images\badge.png
 wallpaper,assets\images\wallpaper.png
 healthbar,assets\images\healthbar.png
+
 fishcan,assets\images\FishCan.png
