@@ -50,7 +50,7 @@ void Shop::render(SDL_Renderer* renderer) {
 
     renderItems(renderer);
 
-    Input::GetInstance()->renderButtons(renderer);
+    //Input::GetInstance()->renderButtons(renderer);
 }
 
 void Shop::update(int x, int y) {
@@ -58,6 +58,9 @@ void Shop::update(int x, int y) {
         Input::GetInstance()->setCurrentWindow("shop");
         m_X = x;
         m_Y = y;
+    }
+    else {
+        Input::GetInstance()->setCurrentWindow("play");
     }
 }
 
@@ -82,7 +85,7 @@ void Shop::initButtons() {
         this->setTab("sell");
         current_Items = m_PlayerInventory->getItems();
         std::cout << "Sell tab clicked" << std::endl;
-        Input::GetInstance()->deleteButton(6);
+        Input::GetInstance()->deleteButton(7);
         addMultipleButton(current_Items);
 
         });
@@ -91,7 +94,7 @@ void Shop::initButtons() {
         this->setTab("buy");
         current_Items = m_items;
         std::cout << "Buy tab clicked" << std::endl;
-        Input::GetInstance()->deleteButton(6);
+        Input::GetInstance()->deleteButton(7);
         addMultipleButton(current_Items);
 
         });

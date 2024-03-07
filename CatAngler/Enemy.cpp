@@ -59,39 +59,40 @@ void Enemy::update(float dt)
 
 	if (!CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
 		attackTime = SDL_GetTicks() / 1000;
-		if (t_Y > m_Transform->Y ) {
-			lastDirection = 'W';
-			m_Transform->Y += 1 * SPEED;
-		}
+	}
 
-		if (t_Y < m_Transform->Y) {
-			lastDirection = 'S';
-			m_Transform->Y -= 1 * SPEED;
-		}
+	if (t_Y - m_Target.h / 2 > m_Transform->Y ) {
+		lastDirection = 'W';
+		m_Transform->Y += 1 * SPEED;
+	}
 
-		if (t_X < m_Transform->X) {
-			lastDirection = 'A';
-			m_Flip = SDL_FLIP_NONE;
-			m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
-			m_Transform->X -= 1 * SPEED;
-		}
+	if (t_Y - m_Target.h/2 < m_Transform->Y) {
+		lastDirection = 'S';
+		m_Transform->Y -= 1 * SPEED;
+	}
 
-		if (t_X > m_Transform->X) {
-			lastDirection = 'D';
-			m_Flip = SDL_FLIP_HORIZONTAL;
-			m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
-			m_Transform->X += 1 * SPEED;
-		}
+	if (t_X - m_Target.w / 2 < m_Transform->X) {
+		lastDirection = 'A';
+		m_Flip = SDL_FLIP_NONE;
+		m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
+		m_Transform->X -= 1 * SPEED;
+	}
 
-		m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "EnemyCollision")) {
-			m_Transform->X = lastX;
-		}
+	if (t_X - m_Target.w / 2 > m_Transform->X) {
+		lastDirection = 'D';
+		m_Flip = SDL_FLIP_HORIZONTAL;
+		m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
+		m_Transform->X += 1 * SPEED;
+	}
 
-		m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
-		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "EnemyCollision")) {
-			m_Transform->Y = lastY;
-		}
+	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
+	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "EnemyCollision")) {
+		m_Transform->X = lastX;
+	}
+
+	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);
+	if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "EnemyCollision")) {
+		m_Transform->Y = lastY;
 	}
 
 	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);

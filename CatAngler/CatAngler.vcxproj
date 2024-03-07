@@ -141,7 +141,6 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cat.cpp" />
-    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionHandler.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -161,6 +160,7 @@
     <ClCompile Include="Play.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="TextManager.cpp" />
@@ -193,6 +193,7 @@
     <ClInclude Include="Play.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="SaveManager.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="TextManager.h" />

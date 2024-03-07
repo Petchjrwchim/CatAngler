@@ -1,25 +1,6 @@
-﻿  Enemy.cpp
+﻿  Shop.cpp
 C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Enemy.cpp')
-  
 C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Enemy.cpp')
-  
 C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Enemy.cpp')
-  
-C:\CatAngler\CatAngler\Enemy.cpp(30,14): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(31,14): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(46,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(47,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(86,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(86,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(88,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(91,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(91,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(93,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(97,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(97,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(104,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\Enemy.cpp(105,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\CatAngler\CatAngler\Shop.cpp(113,80): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

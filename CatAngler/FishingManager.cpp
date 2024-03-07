@@ -37,7 +37,8 @@ void FishingManager::checkFishing(int x, int y, std::string map)
         else {
             Enemy* shark = new Enemy(new Properties("shark", x, y, 32, 32), 10, 4);
             Enemy* squid = new Enemy(new Properties("squid", x, y, 64, 64), 10, 7);
-            enemies.push_back(squid);
+            enemies.push_back(squid);// for render enemies in this class in this class
+            spawned_enemies.push_back(squid); //for checking with sword
             colliderVec->push_back(squid->getCollider());
         }
 

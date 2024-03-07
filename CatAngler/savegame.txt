@@ -1,0 +1,4 @@
+Health:-13
+Coin:98936
+PosX:607
+PosY:391

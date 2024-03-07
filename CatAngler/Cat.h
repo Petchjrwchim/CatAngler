@@ -36,7 +36,7 @@ private:
 
 public:
 	
-	Cat(Properties* props);
+	Cat(Properties* props, int health);
 	Inventory* getInventory() { return m_Inventory; }
 	bool getFishing() const { return m_IsFishing; }
 	char getDirection() const { return lastDirection; }

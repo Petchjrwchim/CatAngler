@@ -9,11 +9,12 @@
 class Play : public GameState
 {
 public:
-	Play();
+	Play(){}
 	virtual bool init();
 	virtual bool exit();
 	virtual void update();
 	virtual void render();
+	void initButton();
 
 private:
 

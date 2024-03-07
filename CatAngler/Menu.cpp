@@ -29,18 +29,20 @@ void Menu::update()
 
 void Menu::render()
 {
-    m_Aimation->draw(16, 115, 800, 600);
+    Vector2D cam = Camera::GetInstance()->getPosition();
+
+    m_Aimation->draw(cam.X, cam.Y, 800, 600);
     m_Aimation->setProps("wallpaper", 1, 2, 1000);
     m_Aimation->update();
 
 
-    TextureManager::GetInstance()->draw("badge", 314, 268, 64, 64, SDL_FLIP_NONE, 3);
-    TextureManager::GetInstance()->draw("badge", 314, 368, 64, 64, SDL_FLIP_NONE, 3);
-    TextureManager::GetInstance()->draw("badge", 314, 468, 64, 64, SDL_FLIP_NONE, 3);
+    TextureManager::GetInstance()->draw("badge", 314 + cam.X, 148 + cam.Y, 64, 64, SDL_FLIP_NONE, 3);
+    TextureManager::GetInstance()->draw("badge", 314 + cam.X, 248 + cam.Y, 64, 64, SDL_FLIP_NONE, 3);
+    TextureManager::GetInstance()->draw("badge", 314 + cam.X, 348 + cam.Y, 64, 64, SDL_FLIP_NONE, 3);
 
-    TextManager::GetInstance()->renderText("Start", 380, 344, "assets/fonts/PixelifySans.ttf", 30);
-    TextManager::GetInstance()->renderText("Settings", 350, 444, "assets/fonts/PixelifySans.ttf", 30);
-    TextManager::GetInstance()->renderText("Exit", 400, 544, "assets/fonts/PixelifySans.ttf", 30);
+    TextManager::GetInstance()->renderText("Start", 380 + cam.X, 224 + cam.Y, "assets/fonts/PixelifySans.ttf", 30);
+    TextManager::GetInstance()->renderText("Settings", 350 + cam.X, 324 + cam.Y, "assets/fonts/PixelifySans.ttf", 30);
+    TextManager::GetInstance()->renderText("Exit", 400 + cam.X, 424 + cam.Y, "assets/fonts/PixelifySans.ttf", 30);
 
     //Input::GetInstance()->renderButtons(m_Ctxt);
 

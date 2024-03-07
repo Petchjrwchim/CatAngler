@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Inventory.h"
-#include "Collider.h"
+//#include "Collider.h"
 #include "Fish.h"
 
 class FishingManager {

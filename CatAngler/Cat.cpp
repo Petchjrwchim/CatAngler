@@ -1,7 +1,7 @@
+#include "FishingManager.h"
 #include "Cat.h"
 #include "Engine.h"
 #include "CollisionHandler.h"
-#include "FishingManager.h"
 #include "TextureManager.h"
 #include "TextManager.h"
 #include "Input.h"
@@ -11,7 +11,7 @@
 FishingManager* fish_manager;
 
 
-Cat::Cat(Properties* props) : Character(props)
+Cat::Cat(Properties* props, int health) : Character(props)
 {
 	int xPos;
 	m_Flip = SDL_FLIP_NONE;
@@ -28,7 +28,9 @@ Cat::Cat(Properties* props) : Character(props)
 
 	fish_manager = new FishingManager(m_Inventory, &colliderVec);
 
-	
+	colliderVec.push_back(m_Collider);
+
+	m_Health = health;
 }
 
 int Cat::getX()
@@ -74,11 +76,11 @@ void Cat::draw()
 		FishingManager::GetInstance()->draw();
 	}
 
-	Vector2D cam = Camera::GetInstance()->getPosition();
-	SDL_Rect box = m_Collider->get();
-	box.x -= cam.X;
-	box.y -= cam.Y;
-	SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
+	//Vector2D cam = Camera::GetInstance()->getPosition();
+	//SDL_Rect box = m_Collider->get();
+	//box.x -= cam.X;
+	//box.y -= cam.Y;
+	//SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
 }
 
 void Cat::drawInv() {

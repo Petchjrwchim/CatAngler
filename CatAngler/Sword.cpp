@@ -28,7 +28,7 @@ void Sword::use()
 		for (Enemy* i : m_enemies) {
 			if (i->getHealth() > 0) {
 				if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), i->getCollider()->get())) {
-					std::cout << "hit" << i->getHealth() << std::endl;
+					std::cout << "hit" << std::endl;
 					i->reduceHealth(1);
 				}
 			}

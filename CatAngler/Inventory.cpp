@@ -1,5 +1,4 @@
 #include "Inventory.h"
-#include "Inventory.h"
 #include <algorithm>
 #include <sstream>
 #include "TextureManager.h" 
