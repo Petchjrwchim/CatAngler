@@ -15,6 +15,9 @@ public:
 	virtual bool exit();
 	virtual void update();
 	virtual void render();
+	void renderSelected();
+
+	std::string IsSelecting;
 
 private:
 	

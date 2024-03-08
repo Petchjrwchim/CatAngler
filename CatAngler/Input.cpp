@@ -108,14 +108,14 @@ void Input::getMousePosition(int& x, int& y) {
     y = m_MouseY;
 }
 
-void Input::addButton(int x, int y, int w, int h, std::string p, std::function<void()> onClick) {
+void Input::addButton(int x, int y, int w, int h, std::string p, std::function<void()> onClick, std::function<void()> onHover) {
     bool offset = true;
     for (Button i : m_Buttons) {
         if (i.rect.x == x && i.rect.y == y && i.rect.w == w && i.rect.h == h && !m_Buttons.empty()) {
             offset = false;
         }
     }
-    if (offset) m_Buttons.emplace_back(x, y, w, h, p, onClick);
+    if (offset) m_Buttons.emplace_back(x, y, w, h, p, onClick, onHover);
 }
 
 void Input::deleteButton(int n)
@@ -130,6 +130,10 @@ void Input::handleButtonEvents() {
     for (auto& button : m_Buttons) {
         bool isInside = (x >= button.rect.x) && (x <= (button.rect.x + button.rect.w)) &&
             (y >= button.rect.y) && (y <= (button.rect.y + button.rect.h));
+
+        if (isInside && !getMouseButtonDownOnetime(SDL_BUTTON_LEFT) && currentWindow == button.page) {
+            button.onHover();
+        }
 
         if (isInside && getMouseButtonDownOnetime(SDL_BUTTON_LEFT) && currentWindow == button.page) {
             button.onClick();

@@ -75,7 +75,7 @@ void Shop::addMultipleButton(std::vector<Item*> items) {
 
         Input::GetInstance()->addButton(newX, newY, slotWidth, slotHeight, "shop", [this, i]() {
             this->setSelection(i);
-            });
+            }, []() { std::cout << "Button hovered\n"; });
     }
 }
 
@@ -87,8 +87,7 @@ void Shop::initButtons() {
         std::cout << "Sell tab clicked" << std::endl;
         Input::GetInstance()->deleteButton(7);
         addMultipleButton(current_Items);
-
-        });
+        }, []() { std::cout << "Button hovered\n"; });
 
     Input::GetInstance()->addButton( m_X + 105, m_Y + 80 , 295, 50, "shop", [this]() {
         this->setTab("buy");
@@ -97,7 +96,7 @@ void Shop::initButtons() {
         Input::GetInstance()->deleteButton(7);
         addMultipleButton(current_Items);
 
-        });
+        }, []() { std::cout << "Button hovered\n"; });
 
     Input::GetInstance()->addButton(m_X + 568, m_Y + 437, 98, 54, "shop", [this]() {
         if (get_CurrentTab() == "buy") {
@@ -114,7 +113,7 @@ void Shop::initButtons() {
                 m_PlayerInventory->removeItem(current_Items[this->get_Selecting()]);
             }
         }
-        });
+        }, []() { std::cout << "Button hovered\n"; });
 
     addMultipleButton(current_Items);
 }

@@ -12,12 +12,13 @@ public:
     struct Button {
         SDL_Rect rect; // Position and size of the button
         std::function<void()> onClick; // Callback function for click event
+        std::function<void()> onHover;
         std::string page;
         bool isHovered = false;
         bool isClicked = false;
 
-        Button(int x, int y, int w, int h, std::string page, std::function<void()> onClickFunc)
-            : rect{ x, y, w, h }, onClick(onClickFunc), page(page) {}
+        Button(int x, int y, int w, int h, std::string page, std::function<void()> onClickFunc, std::function<void()> onHoverFunc)
+            : rect{ x, y, w, h }, onClick(onClickFunc), onHover(onHoverFunc), page(page) {}
     };
 
     static Input* GetInstance() {
@@ -38,7 +39,7 @@ public:
     bool getMouseButton(int button);
     void getMousePosition(int& x, int& y);
 
-    void addButton(int x, int y, int w, int h, std::string p, std::function<void()> onClick);
+    void addButton(int x, int y, int w, int h, std::string p, std::function<void()> onClick, std::function<void()> onHover);
     void deleteButton(int n);
     void handleButtonEvents();
     void renderButtons(SDL_Renderer* renderer);

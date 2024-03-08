@@ -1,4 +1,6 @@
-Health:-13
-Coin:98936
-PosX:607
-PosY:391
+Health:8
+Fishing Rod:1
+Coin:98226
+PosX:683
+PosY:447
+Sword:1

@@ -31,6 +31,7 @@ sell_tab,assets\images\sell_tab.png
 buy_tab,assets\images\buy_tab.png
 button,assets\images\button.png
 pause_button,assets\images\pause_button.png
+arrow,assets\images\arrow.png
 badge,assets\images\badge.png
 wallpaper,assets\images\wallpaper.png
 healthbar,assets\images\healthbar.png

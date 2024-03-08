@@ -80,7 +80,10 @@ void Engine::quit()
 
 void Engine::update()
 {
+	if (m_GameState == "menu") menu->update();
+
 	if (m_GameState == "play") play->update();
+	
 	Input::GetInstance()->handleButtonEvents();
 }
 

@@ -118,7 +118,7 @@ void Play::initButton()
 {
 	Input::GetInstance()->addButton(cam.X + 705, cam.Y + 10, 54, 40, "play", [this]() {
 		std::cout << "Pause" << std::endl;
-		});
+		}, []() { std::cout << "Button hovered\n"; });
 }
 
 void Play::openMenu()

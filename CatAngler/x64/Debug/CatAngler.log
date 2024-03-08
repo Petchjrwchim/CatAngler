@@ -1,6 +1,12 @@
-﻿  Shop.cpp
+﻿  LootTable.cpp
 C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'LootTable.cpp')
+  
 C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'LootTable.cpp')
+  
 C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\CatAngler\CatAngler\Shop.cpp(113,80): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'LootTable.cpp')
+  
+C:\CatAngler\CatAngler\LootTable.cpp(5,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

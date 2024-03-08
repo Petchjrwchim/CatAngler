@@ -24,7 +24,8 @@ bool Menu::exit()
 }
 
 void Menu::update()
-{
+{   
+    IsSelecting = "";
 }
 
 void Menu::render()
@@ -44,8 +45,24 @@ void Menu::render()
     TextManager::GetInstance()->renderText("Settings", 350 + cam.X, 324 + cam.Y, "assets/fonts/PixelifySans.ttf", 30);
     TextManager::GetInstance()->renderText("Exit", 400 + cam.X, 424 + cam.Y, "assets/fonts/PixelifySans.ttf", 30);
 
+    renderSelected();
+
     //Input::GetInstance()->renderButtons(m_Ctxt);
 
+}
+
+void Menu::renderSelected()
+{
+    Vector2D cam = Camera::GetInstance()->getPosition();
+    if (IsSelecting == "start") {
+        TextureManager::GetInstance()->draw("arrow", 330 + cam.X, 212 + cam.Y, 64, 64, SDL_FLIP_NONE);
+    }
+    if (IsSelecting == "settings") {
+        TextureManager::GetInstance()->draw("arrow", 330 + cam.X, 312 + cam.Y, 64, 64, SDL_FLIP_NONE);
+    }
+    if (IsSelecting == "exit") {
+        TextureManager::GetInstance()->draw("arrow", 330 + cam.X, 412 + cam.Y, 64, 64, SDL_FLIP_NONE);
+    }
 }
 
 void Menu::startGame()
@@ -65,18 +82,24 @@ void Menu::quit()
 
 void Menu::initButtons()
 {
-
+    Vector2D cam = Camera::GetInstance()->getPosition();
     Input::GetInstance()->addButton( 300, 220, 200, 50, "menu", [this]() {
         std::cout << "start" << std::endl;
         startGame();
-        });
+    }, [this]() {
+        this->IsSelecting = "start";
+    });
 
     Input::GetInstance()->addButton( 300, 320, 200, 50, "menu", [this]() {
+        }, [this]() {
+            this->IsSelecting = "settings";
         });
 
     Input::GetInstance()->addButton(300, 420, 200, 50, "menu", [this]() {
         std::cout << "quit game" << std::endl;
         quit();
+        }, [this]() {
+            this->IsSelecting = "exit";
         });
 }
 
