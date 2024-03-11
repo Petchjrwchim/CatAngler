@@ -3,16 +3,35 @@
 SaveManager* SaveManager::s_Instance = nullptr;
 
 void SaveManager::saveGame(const std::string& filename, const std::unordered_map<std::string, int>& newData, bool append) {
-    // Load existing data from the file
+
     std::unordered_map<std::string, int> data = loadGame(filename);
 
-    // Update existing data with newData
     for (const auto& pair : newData) {
         data[pair.first] = pair.second; // This will insert or update the value
     }
 
-    // Now, write the updated data back to the file
     std::ofstream outFile(filename, std::ios::trunc); // Use trunc to overwrite the file
+    if (outFile.is_open()) {
+        for (const auto& pair : data) {
+            outFile << pair.first << ":" << pair.second << std::endl;
+        }
+        outFile.close();
+        std::cout << "Game saved to file: " << filename << std::endl;
+    }
+    else {
+        std::cerr << "Unable to open file for writing: " << filename << std::endl;
+    }
+}
+
+void SaveManager::saveGameover(const std::string& filename, const std::unordered_map<std::string, int>& newdata, bool append)
+{
+    std::unordered_map<std::string, int> data = loadGame(filename);
+
+    for (const auto& pair : newdata) {
+        data[pair.first] = pair.second; // This will insert or update the value
+    }
+
+    std::ofstream outFile(filename); // Use trunc to overwrite the file
     if (outFile.is_open()) {
         for (const auto& pair : data) {
             outFile << pair.first << ":" << pair.second << std::endl;

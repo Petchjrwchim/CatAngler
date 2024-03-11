@@ -70,10 +70,10 @@ bool Play::exit()
 	}
 	for (Item* i : FishingManager::GetInstance()->getFishLists()) {
 		gameData.insert({ i->getID() + "caught", f[i->getID() + "caught"] });
-		std::cout << i->getID()  << f[i->getID()] << std::endl;
+		std::cout << i->getID()  << f[i->getID() + "caught"] << std::endl;
 	}
 
-	SaveManager::GetInstance()->saveGame("savegame" + Engine::GetInstance()->getPlayerSlot() + ".txt", gameData);
+	SaveManager::GetInstance()->saveGameover("savegame" + Engine::GetInstance()->getPlayerSlot() + ".txt", gameData);
 	std::cout << "Game close" << std::endl;
 
 	cat = nullptr;
