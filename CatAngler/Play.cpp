@@ -39,7 +39,7 @@ bool Play::init()
 	cat->setCoin(loadedData["Coin"]);
 	
 	Shop();
-
+	shop.setPlayercoin(loadedData["Coin"]);
 	Camera::GetInstance()->setTarget(cat->getOrigin());
 
 	for (Item* i : FishingManager::GetInstance()->getFishLists()) {
@@ -48,7 +48,6 @@ bool Play::init()
 			gameData.insert({ i->getID() + "x",loadedData[i->getID() + "x"] });
 			gameData.insert({ i->getID() + "y",loadedData[i->getID() + "y"] });
 		}
-		
 	}
 
 	SaveManager::GetInstance()->loadItems(loadedData, shop.getShopItems(), cat->getInventory());

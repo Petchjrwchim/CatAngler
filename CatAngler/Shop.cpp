@@ -9,7 +9,7 @@
 
 #include <sstream>
 
-static int test = 1;
+static int test = 100;
 
 Shop::Shop() : m_isVisible(false), playerCoin(test) {
     
