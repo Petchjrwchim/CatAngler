@@ -6,6 +6,7 @@
 #include <vector>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_mixer.h"
 #include "SDL_ttf.h"
 
 
@@ -28,12 +29,18 @@ class Engine {
 		void event();
 
 		void changeGameState(std::string state) { m_GameState = state; }
+		void setPlayerSlot(std::string state) { saveSlot = state; }
+
+		std::string getGameState() { return m_GameState; }
+		std::string getPlayerSlot() { return saveSlot; }
 
 		inline bool IsRunning() { return m_IsRunning; }
 		inline SDL_Renderer* GetRenderer() { return m_Renderer; }
 
 private:
+
     Engine() {}
+	std::string saveSlot;
 	std::string m_GameState = "menu";
     bool m_IsRunning;
     bool m_IsFullscreen = false; 

@@ -71,10 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\sdl\SDL2_image-2.8.2\include;C:\sdl\SDL2_ttf-2.22.0\include;C:\Users\satik\Downloads\tileson-master\tileson-master\include;C:\sdl\SDL2-2.29.3\include;$(ProjectDir)assets\images\;$(IncludePath)</IncludePath>
+    <IncludePath>C:\sdl\SDL2_image-2.8.2\include;C:\sdl\SDL2_ttf-2.22.0\include;C:\Users\satik\Downloads\tileson-master\tileson-master\include;C:\sdl\SDL2-2.29.3\include;$(ProjectDir)assets\images\;$(ProjectDir)include;C:\sdl\SDL2_mixer-2.8.0\include;$(IncludePath)</IncludePath>
     <PublicIncludeDirectories>$(ProjectDir);$(ProjectDir)assets\images;$(PublicIncludeDirectories)</PublicIncludeDirectories>
     <ExcludePath>$(ExcludePath)</ExcludePath>
     <ExternalIncludePath>$(ProjectDir)assets\images\;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(ProjectDir)lib;C:\sdl\SDL2_mixer-2.8.0\lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryWPath>$(ProjectDir)lib;$(LibraryWPath)</LibraryWPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ExternalIncludePath>$(ProjectDir)include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(ProjectDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)include;$(ProjectDir);$(IncludePath)</IncludePath>
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,14 +119,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\sdl\SDL2_ttf-2.20.2\include;C:\sdl\SDL2_image-2.8.2\include;$(ProjectDir);$(ProjectDir)assets\images;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\sdl\SDL2_ttf-2.20.2\include;C:\sdl\SDL2_image-2.8.2\include;$(ProjectDir);$(ProjectDir)assets\images;$(ProjectDir)include;$(ProjectDir)\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\sdl\SDL2-2.29.3\lib\x64;$(ProjectDir)assets\images;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\sdl\SDL2-2.29.3\lib\x64;$(ProjectDir)assets\images;$(ProjectDir)lib;C:\CatAngler\CatAngler\lib;C:\sdl\SDL2_mixer-2.8.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,12 +138,14 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -162,6 +173,7 @@
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="TextManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -195,6 +207,7 @@
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="SaveManager.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="TextManager.h" />
     <ClInclude Include="TextureManager.h" />

@@ -9,11 +9,13 @@
 
 #include <sstream>
 
-Shop::Shop(Inventory* inv, int& coin) : m_PlayerInventory(inv), playerCoin(coin), m_isVisible(false) {
+static int test = 1;
+
+Shop::Shop() : m_isVisible(false), playerCoin(test) {
     
     FishingRod* fishingRod = new FishingRod(1, "Fishing Rod", "Rod", "fishingrod", 50);
     Sword* sword = new Sword(1, "Sword", "Weapon", "sword", 50);
-    Food* fishcan = new Food(1, "Fishcan", "Food", "fishcan", 20, 1);
+    Food* fishcan = new Food(1, "Fishcan", "Food", "fishcan", 20, 2);
 
     m_items.push_back(fishingRod);
     m_items.push_back(sword);
@@ -69,13 +71,13 @@ void Shop::addMultipleButton(std::vector<Item*> items) {
     int slotHeight = 64;
     int padding = 10;
 
-    for (int i = 0; i < items.size(); ++i) {
+    for (int i = 0; i <  items.size(); ++i) {
         int newX = (i % 4) * (slotWidth + padding) + 120;
         int newY = (i / 4) * (slotHeight + padding) + 160;
 
         Input::GetInstance()->addButton(newX, newY, slotWidth, slotHeight, "shop", [this, i]() {
             this->setSelection(i);
-            }, []() { std::cout << "Button hovered\n"; });
+            }, []() {});
     }
 }
 
@@ -85,20 +87,21 @@ void Shop::initButtons() {
         this->setTab("sell");
         current_Items = m_PlayerInventory->getItems();
         std::cout << "Sell tab clicked" << std::endl;
-        Input::GetInstance()->deleteButton(7);
+        Input::GetInstance()->deleteButton(24); // delete excess button
         addMultipleButton(current_Items);
-        }, []() { std::cout << "Button hovered\n"; });
+        }, []() {});
 
     Input::GetInstance()->addButton( m_X + 105, m_Y + 80 , 295, 50, "shop", [this]() {
         this->setTab("buy");
         current_Items = m_items;
         std::cout << "Buy tab clicked" << std::endl;
-        Input::GetInstance()->deleteButton(7);
+        Input::GetInstance()->deleteButton(24); // delete excess button
         addMultipleButton(current_Items);
 
-        }, []() { std::cout << "Button hovered\n"; });
+        }, []() {});
 
     Input::GetInstance()->addButton(m_X + 568, m_Y + 437, 98, 54, "shop", [this]() {
+        std::cout << playerCoin << std::endl;
         if (get_CurrentTab() == "buy") {
             if (playerCoin - current_Items[this->get_Selecting()]->getPrice() >= 0) {
                 std::cout << "Buy" << std::endl;
@@ -113,7 +116,7 @@ void Shop::initButtons() {
                 m_PlayerInventory->removeItem(current_Items[this->get_Selecting()]);
             }
         }
-        }, []() { std::cout << "Button hovered\n"; });
+        }, []() {});
 
     addMultipleButton(current_Items);
 }
@@ -149,7 +152,8 @@ void Shop::renderItems(SDL_Renderer* renderer) {
         TextureManager::GetInstance()->draw("button", m_X + 550, m_Y + 400, 64, 64, SDL_FLIP_NONE, 2.0);
         TextureManager::GetInstance()->draw("coin", m_X + 560, m_Y + 435, 32, 32, SDL_FLIP_NONE, 2.0);
         std::stringstream strm;
-        strm << current_Items[m_Selecting]->getPrice();
+        if (get_CurrentTab() == "buy") strm << current_Items[m_Selecting]->getPrice();
+        if (get_CurrentTab() == "sell") strm << current_Items[m_Selecting]->getPrice() * 0.6;
         TextManager::GetInstance()->renderText(strm.str().c_str(), m_X + 620, m_Y + 452, "assets/fonts/PixelifySans.ttf", 20);
     }
     else {

@@ -7,7 +7,7 @@
 #include "Inventory.h"
 #include "Vector2D.h"
 
-#define SPEED 50.0f
+#define SPEED 10.0f
 
 class Cat : public Character {
 

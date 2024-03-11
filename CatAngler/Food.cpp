@@ -9,14 +9,17 @@ Food::Food(int quantity, const std::string& name, const std::string& type, const
 
 std::string Food::getDescription()
 {
-	return "Use for eating and\n gain health";
+	return "Use for eating + 1hp";
 }
 
 void Food::use()
 {
     if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_E)) {
         std::cout << "Eat" << std::endl;
-        *m_PlayerHealth += m_Heal;
+        if (*m_PlayerHealth + m_Heal <= 10) {
+            *m_PlayerHealth += m_Heal;
+        }
+     
     }
 }
 

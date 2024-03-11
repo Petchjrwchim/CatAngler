@@ -55,6 +55,7 @@ bool TextureManager::parseTexture(std::string source) {
 
 void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip, float f)
 {
+	if (m_TextureMap[id] == NULL) std::cout << "error load texture id: " << m_TextureMap[id] << std::endl;
 	SDL_Rect srcRect = { 0, 0, width, height};
 	Vector2D cam = Camera::GetInstance()->getPosition();
 	SDL_Rect dstRect = { x - cam.X, y - cam.Y, width * f, height * f};
@@ -70,11 +71,11 @@ void TextureManager::drawTile(std::string tilesetID, int tilesize, int x, int y,
 }
 
 
-void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int row, int frame, SDL_RendererFlip flip)
+void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int row, int frame, SDL_RendererFlip flip, float f)
 {
 	SDL_Rect srcRect = { width*frame, height*(row-1), width, height };
 	Vector2D cam = Camera::GetInstance()->getPosition();
-	SDL_Rect dstRect = { x - cam.X, y - cam.Y, width, height };
+	SDL_Rect dstRect = { x - cam.X, y - cam.Y, width * f, height * f };
 
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRenderer(), m_TextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 }

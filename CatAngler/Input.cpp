@@ -28,6 +28,8 @@ void Input::listen()
     m_PrevMouseState = m_MouseState;
     m_MouseState = SDL_GetMouseState(&m_MouseX, &m_MouseY);
 
+    //std::cout << m_MouseX << m_MouseY << std::endl;
+
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
@@ -111,7 +113,7 @@ void Input::getMousePosition(int& x, int& y) {
 void Input::addButton(int x, int y, int w, int h, std::string p, std::function<void()> onClick, std::function<void()> onHover) {
     bool offset = true;
     for (Button i : m_Buttons) {
-        if (i.rect.x == x && i.rect.y == y && i.rect.w == w && i.rect.h == h && !m_Buttons.empty()) {
+        if (i.rect.x == x && i.rect.y == y && i.rect.w == w && i.rect.h == h && i.page == p) {
             offset = false;
         }
     }
@@ -126,6 +128,8 @@ void Input::deleteButton(int n)
 void Input::handleButtonEvents() {
     int x, y;
     SDL_GetMouseState(&x, &y);
+
+    //std::cout << m_Buttons.size() << std::endl;
 
     for (auto& button : m_Buttons) {
         bool isInside = (x >= button.rect.x) && (x <= (button.rect.x + button.rect.w)) &&

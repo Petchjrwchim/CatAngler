@@ -18,23 +18,28 @@ Inventory::~Inventory() {
 
 
 void Inventory::addItem(Item* item) {
-    bool found = false;
-    int count = 0;
-    for (Item* i : m_items) {
-        if (i == NULL) {
-            m_items[count] = item;
-            found = true;
-            break;
-        }
-        if (i != nullptr && i->getName() == item->getName()) {
-            i->additems(1);
-            found = true;
-            break;
-        }
-        count++;;
+    // Check if the item already exists in the inventory
+    auto it = std::find_if(m_items.begin(), m_items.end(), [item](Item* i) {
+        return i != nullptr && i->getName() == item->getName();
+        });
+
+    // If the item exists, increase its quantity
+    if (it != m_items.end()) {
+        (*it)->additems(1);
     }
-    if (!found) {
-        m_items.push_back(item);
+    else {
+        // Find the first nullptr in the inventory
+        auto nullIt = std::find(m_items.begin(), m_items.end(), nullptr);
+
+        // If a nullptr slot is found, replace it with the new item
+        if (nullIt != m_items.end()) {
+            *nullIt = item;
+        }
+        else {
+            std::cout << "full" << std::endl;
+            // If no nullptr slot is found, push the new item to the back of the inventory
+            //m_items.push_back(item);
+        }
     }
 }
 
@@ -89,6 +94,9 @@ void Inventory::render(int x, int y) {
 
             SDL_Rect itemRect = { x, y, slotWidth, slotHeight };
             TextureManager::GetInstance()->draw(m_items[i]->getID(), newX, newY, slotWidth, slotHeight);
+            std::stringstream strm;
+            strm << m_items[i]->getQuantity();
+            TextManager::GetInstance()->renderText(strm.str().c_str(), newX + 23, newY + 20, "assets/fonts/PixelifySans.ttf", 10);
         }
     }
 
@@ -98,21 +106,29 @@ void Inventory::render(int x, int y) {
 
 }
 
-void Inventory::renderInventoryBar(int x, int y, int usingSlot) {
+void Inventory::renderInventoryBar(int x, int y, int *usingSlot) {
     int screenWidth;
     SDL_Renderer* renderer = SDL_GetRenderer(SDL_GetWindowFromID(1));
     SDL_GetRendererOutputSize(renderer, &screenWidth, nullptr);
-
     int startX = (screenWidth - (INVENTORY_BAR_SLOTS * SLOT_WIDTH + (INVENTORY_BAR_SLOTS - 1) * BAR_PADDING)) / 2 + x;
     int startY = y; 
 
+    Vector2D cam = Camera::GetInstance()->getPosition();
     for (int i = 0; i < INVENTORY_BAR_SLOTS; ++i) {
         int x = startX + i * (SLOT_WIDTH + BAR_PADDING);
         SDL_Rect slotRect = { x, startY, SLOT_WIDTH, SLOT_HEIGHT };
         TextureManager::GetInstance()->draw("slot", x, startY, SLOT_WIDTH, SLOT_HEIGHT);
 
-        int usingX = startX + usingSlot * (SLOT_WIDTH + BAR_PADDING);
+        int usingX = startX + *usingSlot * (SLOT_WIDTH + BAR_PADDING);
         TextureManager::GetInstance()->draw("usingslot", usingX, startY, SLOT_WIDTH , SLOT_HEIGHT);
+
+        std::stringstream strm;
+        strm << i+1;
+        TextManager::GetInstance()->renderText(strm.str().c_str(), x + 7, startY + 3,  "assets/fonts/PixelifySans.ttf", 10);
+
+        Input::GetInstance()->addButton(x - cam.X, startY - cam.Y, SLOT_WIDTH, SLOT_HEIGHT, "play", [usingSlot,i]() {
+            *usingSlot = i;
+            }, []() {});
 
         if (i < m_items.size() && m_items[i] != nullptr) {
             TextureManager::GetInstance()->draw(m_items[i]->getID(), x, startY, 32, 32, SDL_FLIP_NONE, 2.0);

@@ -4,6 +4,8 @@
 #include "TextureManager.h"
 #include "Camera.h"
 
+int h;
+
 Enemy::Enemy(Properties* props, int health, int frame) : Character(props), m_Frame(frame)
 {
 	m_Flip = SDL_FLIP_NONE;
@@ -11,7 +13,8 @@ Enemy::Enemy(Properties* props, int health, int frame) : Character(props), m_Fra
 	m_RigidBody = new RigidBody();
 
 	m_Collider = new Collider();
-	m_Collider->setBuffer(-10, -20, -10, 0);
+	if (m_TextureID == "shark") m_Collider->setBuffer(-10, -10, 20, 15);
+	if (m_TextureID == "squid") m_Collider->setBuffer(-10, -20, -10, 0);
 	//shark -10 -10 20 15
 	//squid -10, -20, -10, 0
 
@@ -23,13 +26,9 @@ Enemy::Enemy(Properties* props, int health, int frame) : Character(props), m_Fra
 }
 
 void Enemy::draw()
-{
+{	
 	m_AimationE->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
-	Vector2D cam = Camera::GetInstance()->getPosition();
-	SDL_Rect box = m_Collider->get();
-	box.x -= cam.X;
-	box.y -= cam.Y;
-	SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
+	h = m_Health;
 }
 
 void Enemy::setTarget(int x, int y, int* health, SDL_Rect target)
@@ -43,46 +42,48 @@ void Enemy::setTarget(int x, int y, int* health, SDL_Rect target)
 
 void Enemy::update(float dt)
 {
+	int IsKnockback = 1;
+	if (m_Health != h) IsKnockback = -5;
 	int lastX = m_Transform->X;
 	int lastY = m_Transform->Y;
 
-	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target) && SDL_GetTicks() / 1000 - attackTime > 1) {
+	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target) && SDL_GetTicks() / 100 - attackTime > 1) {
 		m_AimationE->setProps(m_TextureID + "_attack", 1, m_Frame, 100, m_Flip);
-		std::cout << "got attack" << std::endl;
 	} else {
 		m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
 	}
-	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target) && SDL_GetTicks() / 1000 - attackTime > 1.75) {
+	if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target) && SDL_GetTicks() / 100 - attackTime > 2) {
 		*m_playerHealth -= 1;
-		attackTime = SDL_GetTicks() / 1000;
+		attackTime = SDL_GetTicks() / 100;
 	}
 
 	if (!CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
-		attackTime = SDL_GetTicks() / 1000;
+		attackTime = SDL_GetTicks() / 100;
 	}
+	if (!CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), m_Target)) {
+		if (t_Y - m_Target.h / 2 > m_Transform->Y || t_Y > m_Transform->Y) {
+			lastDirection = 'W';
+			m_Transform->Y += 1 * SPEED_ENEMY * IsKnockback;
+		}
 
-	if (t_Y - m_Target.h / 2 > m_Transform->Y ) {
-		lastDirection = 'W';
-		m_Transform->Y += 1 * SPEED;
-	}
+		if (t_Y - m_Target.h / 2 < m_Transform->Y || t_Y < m_Transform->Y) {
+			lastDirection = 'S';
+			m_Transform->Y -= 1 * SPEED_ENEMY * IsKnockback;
+		}
 
-	if (t_Y - m_Target.h/2 < m_Transform->Y) {
-		lastDirection = 'S';
-		m_Transform->Y -= 1 * SPEED;
-	}
+		if (t_X - m_Target.w / 2 < m_Transform->X || t_X < m_Transform->X) {
+			lastDirection = 'A';
+			m_Flip = SDL_FLIP_NONE;
+			m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
+			m_Transform->X -= 1 * SPEED_ENEMY * IsKnockback;
+		}
 
-	if (t_X - m_Target.w / 2 < m_Transform->X) {
-		lastDirection = 'A';
-		m_Flip = SDL_FLIP_NONE;
-		m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
-		m_Transform->X -= 1 * SPEED;
-	}
-
-	if (t_X - m_Target.w / 2 > m_Transform->X) {
-		lastDirection = 'D';
-		m_Flip = SDL_FLIP_HORIZONTAL;
-		m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
-		m_Transform->X += 1 * SPEED;
+		if (t_X - m_Target.w / 2 > m_Transform->X || t_X > m_Transform->X) {
+			lastDirection = 'D';
+			m_Flip = SDL_FLIP_HORIZONTAL;
+			m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150, m_Flip);
+			m_Transform->X += 1 * SPEED_ENEMY * IsKnockback;
+		}
 	}
 
 	m_Collider->set(m_Transform->X, m_Transform->Y, 32, 32);

@@ -12,8 +12,10 @@ bool CollisionHandler::checkCollision(const SDL_Rect& a, const SDL_Rect& b) {
     //std::cout << a.x << ", " << b.x + b.w << ", " << a.x + a.w << ", " << b.x << std::endl;
     bool y_overlaps = (a.y < b.y + b.h) && (a.y + a.h > b.y);
 
+    bool inside = (a.y + a.h < b.y + b.h) && (a.y > b.y) && (a.x < b.x) && (a.x + a.w > b.x + b.w);
+
     //std::cout << x_overlaps << ", " << y_overlaps << std::endl;
-    return x_overlaps && y_overlaps;
+    return x_overlaps && y_overlaps || inside;
 }
 
 bool CollisionHandler::checkCollisionVec(Collider* a, std::vector<Collider*> b)

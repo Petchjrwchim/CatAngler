@@ -2,6 +2,7 @@
 
 #include "Engine.h"
 #include "TextureManager.h"
+#include "SoundManager.h"
 #include "TextManager.h"
 #include "SaveManager.h"
 #include "Transform.h"
@@ -16,7 +17,7 @@
 
 Engine* Engine::s_Instance = nullptr;
 Menu* menu;
-Play* play;
+Play play;
 
 bool Engine::init()
 {
@@ -37,6 +38,14 @@ bool Engine::init()
 		return false;
 	}
 
+	if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+		std::cerr << "SDL could not initialize! SDL Error: " << SDL_GetError() << std::endl;
+	}
+
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+		std::cerr << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
+	}
+
 	m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED);
 	if (m_Renderer == nullptr) {
 		SDL_Log("Failed to create Renderer: %s", SDL_GetError());
@@ -49,21 +58,17 @@ bool Engine::init()
 		return false;
 	}
 
+
 	TextureManager::GetInstance()->parseTexture("assets/images/textures.txt");
 	
 	menu = new Menu();
 	menu->init();
-
-	play = new Play();
-	play->init();
 
 	return m_IsRunning = true;
 }
 
 bool Engine::clean()
 {	
-	play->exit();
-
 	TextureManager::GetInstance()->clean();
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_DestroyWindow(m_Window);
@@ -80,20 +85,31 @@ void Engine::quit()
 
 void Engine::update()
 {
-	if (m_GameState == "menu") menu->update();
+	if (m_GameState == "menu") {
+		menu->update();
+	}
 
-	if (m_GameState == "play") play->update();
+	if (m_GameState == "prepare") {
+		play = Play();
+		play.init();
+		m_GameState = "play";
+	}
+
+
+
+	if (m_GameState == "play") play.update();
 	
 	Input::GetInstance()->handleButtonEvents();
 }
 
 void Engine::render()
 {
+	SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 0, 0, 10);
 	SDL_RenderClear(m_Renderer);
 
 	if (m_GameState == "menu") menu->render();
 
-	if (m_GameState == "play") play->render();
+	if (m_GameState == "play") play.render();
  
 	SDL_RenderPresent(m_Renderer);
 }

@@ -2,19 +2,29 @@
 
 SaveManager* SaveManager::s_Instance = nullptr;
 
-void SaveManager::saveGame(const std::string& filename, const std::unordered_map<std::string, int>& data)
-{
-    std::ofstream file(filename);
-    if (file.is_open()) {
+void SaveManager::saveGame(const std::string& filename, const std::unordered_map<std::string, int>& newData, bool append) {
+    // Load existing data from the file
+    std::unordered_map<std::string, int> data = loadGame(filename);
+
+    // Update existing data with newData
+    for (const auto& pair : newData) {
+        data[pair.first] = pair.second; // This will insert or update the value
+    }
+
+    // Now, write the updated data back to the file
+    std::ofstream outFile(filename, std::ios::trunc); // Use trunc to overwrite the file
+    if (outFile.is_open()) {
         for (const auto& pair : data) {
-            file << pair.first << ":" << pair.second << std::endl;
+            outFile << pair.first << ":" << pair.second << std::endl;
         }
-        std::cout << "Game saved successfully!" << std::endl;
+        outFile.close();
+        std::cout << "Game saved to file: " << filename << std::endl;
     }
     else {
         std::cerr << "Unable to open file for writing: " << filename << std::endl;
     }
 }
+
 
 std::unordered_map<std::string, int> SaveManager::loadGame(const std::string& filename)
 {
@@ -30,10 +40,22 @@ std::unordered_map<std::string, int> SaveManager::loadGame(const std::string& fi
                 data[key] = value;
             }
         }
-        std::cout << "Game loaded" << std::endl;
+        std::cout << "Game loaded from file: " << filename << std::endl;
     }
     else {
         std::cerr << "Unable to open file" << filename << std::endl;
     }
     return data;
+}
+
+void SaveManager::loadItems(std::unordered_map<std::string, int> loaded, std::vector<Item*> sourceItems, Inventory* playerInventory)
+{
+    std::unordered_map<std::string, int> loadedData = loaded;
+    for (Item* i : sourceItems) {
+        if (loadedData.count(i->getID()) > 0) {
+            for (int n = 0; n < loadedData[i->getID()]; n++) {
+                playerInventory->addItem(i);
+            }
+        }
+    }
 }

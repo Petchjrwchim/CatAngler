@@ -12,19 +12,23 @@
 class Shop {
 public:
 
-    Shop(Inventory* inv, int& coin);
+    Shop();
     ~Shop();
 
     bool get_IsVisible() const { return m_isVisible; }
     int get_Selecting() const { return m_Selecting; }
     std::string get_CurrentTab() const{ return m_currentTab; }
 
+    int getShopCoin() { return playerCoin; }
+    void setPlayerInventory(Inventory* inv) { m_PlayerInventory = inv; }
+    void setPlayercoin(int& coin) { playerCoin = coin; }
     void addMultipleButton(std::vector<Item*> items);
     void setTab(const std::string& tab) { m_currentTab = tab; }
     void toggleShopUI();    
     void render(SDL_Renderer* renderer);     
     void setSelection(int i) { m_Selecting = i; }
     void update(int x, int y);
+    std::vector<Item*> getShopItems() { return m_items; }
 
 private:
     
@@ -32,7 +36,7 @@ private:
     int m_Selecting = 0;
 
     Inventory* m_PlayerInventory;
-    int& playerCoin;
+    int &playerCoin;
 
     std::string m_currentTab = "buy";
     bool m_isVisible;     

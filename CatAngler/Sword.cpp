@@ -9,7 +9,7 @@ Sword::Sword(int quantity, const std::string& name, const std::string& type, con
 	m_AimationS->setProps(getID(), 1, 4, 100);
 
 	m_Collider = new Collider();
-	m_Collider->setBuffer(0, 0, 0, 0);
+	m_Collider->setBuffer(5, 5, -10, -10);
 
 }
 
@@ -23,6 +23,7 @@ void Sword::use()
 	m_Collider->set(m_X, m_Y, 32, 32);
 
 	m_AimationS->setProps(getID(), 1, 1, 100, SDL_FLIP_NONE);
+	if (Input::GetInstance()->getMouseButtonDown(1)) m_AimationS->setProps(getID(), 1, 4, 100);
     if (Input::GetInstance()->getMouseButtonDownOnetime(1)) {
 		m_AimationS->setProps(getID(), 1, 4, 100);
 		for (Enemy* i : m_enemies) {

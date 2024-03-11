@@ -4,6 +4,7 @@
 #include "CollisionHandler.h"
 #include "TextureManager.h"
 #include "TextManager.h"
+#include "SaveManager.h"
 #include "Input.h"
 #include "Camera.h"
 #include "SDL.h"
@@ -75,6 +76,7 @@ void Cat::draw()
 	if (!m_IsInteract) {
 		FishingManager::GetInstance()->draw();
 	}
+	fish_manager->renderCatch(m_Transform->X, m_Transform->Y);
 
 	//Vector2D cam = Camera::GetInstance()->getPosition();
 	//SDL_Rect box = m_Collider->get();
@@ -84,13 +86,14 @@ void Cat::draw()
 }
 
 void Cat::drawInv() {
+	
 	SDL_Event event;
 	Vector2D cam = Camera::GetInstance()->getPosition();
 	if (m_Inventory->checkVisible()) {
 		m_Inventory->render(cam.X, cam.Y);
 		m_Inventory->handleMouseEvent(event);
 	}
-	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530, m_IsUsing);
+	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530, &m_IsUsing);
 
 	
 	SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 255, 0, 10);
@@ -216,11 +219,10 @@ void Cat::update(float dt)
 	m_Aimation->update();
 
 	fish_manager->update(dt, m_Transform->X, m_Transform->Y, &m_Health, m_Collider->get());
-
 }
 
 void Cat::equip() {
-	
+	int h = m_Health;
 	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_1) || m_IsUsing == 0) {
 		m_IsUsing = 0;
 	}
@@ -240,15 +242,15 @@ void Cat::equip() {
 	if (m_Inventory->getItems().size() > m_IsUsing && !m_IsShopping && m_Inventory->getItems()[m_IsUsing] != NULL && !m_Inventory->checkVisible()) {
 		m_Inventory->getItems()[m_IsUsing]->update(lastDirection, m_Transform->X + 15, m_Transform->Y, fish_manager->getEnemies(), &m_Health);
 		m_Inventory->getItems()[m_IsUsing]->draw();
-		if (!Input::GetInstance()->getKeyDown(SDL_NUM_SCANCODES)) {
-			m_Inventory->getItems()[m_IsUsing]->use();
-		}
-		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Rod" && !m_IsInteract) {
+		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Rod" && !m_IsInteract && Input::GetInstance()->getCurrentWindow() != "pause") {
 			checkX = m_Inventory->getItems()[m_IsUsing]->getX();
 			checkY = m_Inventory->getItems()[m_IsUsing]->getY();
 			fish_manager->checkFishing(checkX, checkY,"Water");
 		}
-		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Food" && Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_E)) {
+		if (!Input::GetInstance()->getKeyDown(SDL_NUM_SCANCODES)) {
+			m_Inventory->getItems()[m_IsUsing]->use();
+		}
+		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Food" && Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_E) && h != m_Health) {
 			m_Inventory->removeItem(m_Inventory->getItems()[m_IsUsing]);
 		}
 	}

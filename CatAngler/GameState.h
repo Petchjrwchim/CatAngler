@@ -3,6 +3,7 @@
 class GameState
 {
 public:
+
 	virtual bool init() = 0;
 	virtual bool exit() = 0;
 

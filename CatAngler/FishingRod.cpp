@@ -281,11 +281,11 @@ void FishingRod::qteEvent(int x, int y) {
         }
 
         if (isMousePressed) {
-            shakeTime = (SDL_GetTicks() - fKeyPressStartTime) / 1000;
+            shakeTime = (SDL_GetTicks() - fKeyPressStartTime) / 100;
         }
 
 
-        if (shakeTime > 2) {
+        if (shakeTime > 5) {
             //std::cout << "unsuccess hook" << std::endl;
             isMousePressed = true;
             isSuccess = false;

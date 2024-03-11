@@ -25,12 +25,12 @@ public:
     Inventory(int capacity);
     ~Inventory();
 
-    inline std::vector<Item*> getItems() const { return m_items; }
+    inline std::vector<Item*>& getItems() { return m_items; }
     void addItem(Item* item);
     void removeItem(Item* item);
     void toggleVisibility();
     void render(int x, int y);
-    void renderInventoryBar(int x, int y, int usingSlot);
+    void renderInventoryBar(int x, int y, int *usingSlot);
     bool checkVisible() { return isVisible; }
 
     void handleMouseEvent(SDL_Event& e);
