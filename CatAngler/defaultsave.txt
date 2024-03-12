@@ -2,3 +2,4 @@ Health:10
 Coin:100
 PosX:400
 PosY:400
+Day:1

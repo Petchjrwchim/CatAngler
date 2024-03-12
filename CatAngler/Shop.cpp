@@ -47,8 +47,8 @@ void Shop::render(SDL_Renderer* renderer) {
         TextureManager::GetInstance()->draw("buy_tab", screenWidth / 2 - 400 + m_X, m_Y, 800, 600);
     }
 
-    TextManager::GetInstance()->renderText("Buy", screenWidth / 2 - 170 + m_X, m_Y + 90, "assets/fonts/PixelifySans.ttf", 30);
-    TextManager::GetInstance()->renderText("Sell", screenWidth / 2 + 120 + m_X, m_Y + 90, "assets/fonts/PixelifySans.ttf", 30);
+    TextManager::GetInstance()->renderText("Buy", screenWidth / 2 - 170 + m_X, m_Y + 90, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 30);
+    TextManager::GetInstance()->renderText("Sell", screenWidth / 2 + 120 + m_X, m_Y + 90, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 30);
 
     renderItems(renderer);
 
@@ -146,15 +146,15 @@ void Shop::renderItems(SDL_Renderer* renderer) {
         TextureManager::GetInstance()->draw("slot", m_X + 480, m_Y + 150, slotWidth, slotHeight, SDL_FLIP_NONE, 4.0);
         TextureManager::GetInstance()->draw(current_Items[m_Selecting]->getID(), m_X + 480, m_Y + 150, slotWidth, slotHeight, SDL_FLIP_NONE, 4.0);
 
-        TextManager::GetInstance()->renderText("Description: ", m_X + 450, m_Y + 300, "assets/fonts/PixelifySans.ttf", 20);
-        TextManager::GetInstance()->renderText(current_Items[m_Selecting]->getDescription().c_str(), m_X + 450, m_Y + 320, "assets/fonts/PixelifySans.ttf", 20);
+        TextManager::GetInstance()->renderText("Description: ", m_X + 450, m_Y + 300, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
+        TextManager::GetInstance()->renderText(current_Items[m_Selecting]->getDescription().c_str(), m_X + 450, m_Y + 320, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
 
         TextureManager::GetInstance()->draw("button", m_X + 550, m_Y + 400, 64, 64, SDL_FLIP_NONE, 2.0);
         TextureManager::GetInstance()->draw("coin", m_X + 560, m_Y + 435, 32, 32, SDL_FLIP_NONE, 2.0);
         std::stringstream strm;
         if (get_CurrentTab() == "buy") strm << current_Items[m_Selecting]->getPrice();
         if (get_CurrentTab() == "sell") strm << ceil(current_Items[m_Selecting]->getPrice() * 0.6);
-        TextManager::GetInstance()->renderText(strm.str().c_str(), m_X + 620, m_Y + 452, "assets/fonts/PixelifySans.ttf", 20);
+        TextManager::GetInstance()->renderText(strm.str().c_str(), m_X + 620, m_Y + 452, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
     }
     else {
 
@@ -170,7 +170,7 @@ void Shop::renderItems(SDL_Renderer* renderer) {
             if (m_currentTab == "sell") {
                 std::stringstream strm;
                 strm << current_Items[i]->getQuantity();
-                TextManager::GetInstance()->renderText(strm.str().c_str(), newX + 48, newY + 36, "assets/fonts/PixelifySans.ttf", 20);
+                TextManager::GetInstance()->renderText(strm.str().c_str(), newX + 48, newY + 36, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
             }
         }
     }

@@ -16,10 +16,10 @@ void Food::use()
 {
     if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_E)) {
         std::cout << "Eat" << std::endl;
-        if (*m_PlayerHealth + m_Heal <= 10) {
+        if (*m_PlayerHealth + m_Heal <= 11) {
             *m_PlayerHealth += m_Heal;
         }
-     
+        if (*m_PlayerHealth > 10) *m_PlayerHealth = 10;
     }
 }
 

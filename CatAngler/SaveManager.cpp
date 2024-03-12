@@ -23,21 +23,14 @@ void SaveManager::saveGame(const std::string& filename, const std::unordered_map
     }
 }
 
-void SaveManager::saveGameover(const std::string& filename, const std::unordered_map<std::string, int>& newdata, bool append)
+void SaveManager::saveGameover(const std::string& filename, const std::unordered_map<std::string, int>& data)
 {
-    std::unordered_map<std::string, int> data = loadGame(filename);
-
-    for (const auto& pair : newdata) {
-        data[pair.first] = pair.second; // This will insert or update the value
-    }
-
-    std::ofstream outFile(filename); // Use trunc to overwrite the file
-    if (outFile.is_open()) {
+    std::ofstream file(filename);
+    if (file.is_open()) {
         for (const auto& pair : data) {
-            outFile << pair.first << ":" << pair.second << std::endl;
+            file << pair.first << ":" << pair.second << std::endl;
         }
-        outFile.close();
-        std::cout << "Game saved to file: " << filename << std::endl;
+        std::cout << "Game saved successfully!" << std::endl;
     }
     else {
         std::cerr << "Unable to open file for writing: " << filename << std::endl;
@@ -59,7 +52,7 @@ std::unordered_map<std::string, int> SaveManager::loadGame(const std::string& fi
                 data[key] = value;
             }
         }
-        std::cout << "Game loaded from file: " << filename << std::endl;
+        //std::cout << "Game loaded from file: " << filename << std::endl;
     }
     else {
         std::cerr << "Unable to open file" << filename << std::endl;

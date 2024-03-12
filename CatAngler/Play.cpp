@@ -66,9 +66,11 @@ bool Play::exit()
 	gameData.insert({ "Coin", cat->getCoin() });
 	gameData.insert({ "PosX", cat->getTX() });
 	gameData.insert({"PosY", cat->getTY()});
+
 	for (Item* i : cat->getInventory()->getItems()) {
 		if (i != NULL && i->getQuantity() > 0) gameData.insert({i->getID(), i->getQuantity()});
 	}
+
 	for (Item* i : FishingManager::GetInstance()->getFishLists()) {
 		gameData.insert({ i->getID() + "caught", f[i->getID() + "caught"] });
 		std::cout << i->getID()  << f[i->getID() + "caught"] << std::endl;

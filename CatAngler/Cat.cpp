@@ -1,6 +1,7 @@
 #include "FishingManager.h"
 #include "Cat.h"
 #include "Engine.h"
+#include "Play.h"
 #include "CollisionHandler.h"
 #include "TextureManager.h"
 #include "TextManager.h"
@@ -79,7 +80,6 @@ void Cat::draw()
 	}
 	fish_manager->renderCatch(m_Transform->X, m_Transform->Y);
 	
-		
 	//576.697, 406.012
 	
 	//Vector2D cam = Camera::GetInstance()->getPosition();
@@ -112,8 +112,8 @@ void Cat::drawInv() {
 
 	std::stringstream strm;
 	strm << m_Coin;
-	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 65 , cam.Y + 90 , "assets/fonts/PixelifySans.ttf", 20);
-
+	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 65 , cam.Y + 90 , "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
+	TextManager::GetInstance()->renderText(std::to_string(day).c_str(), cam.X + 40, cam.Y + 50, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
 
 }
 
@@ -160,9 +160,14 @@ void Cat::update(float dt)
 
 	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_F)) {
 		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Interact")) {
-			m_IsInteract = true;
-			m_Transform->X = 379;
-			m_Transform->Y = 639;
+			if (m_Transform->X < 600 && m_Transform->Y < 450 && m_Transform->X > 550 && m_Transform->Y > 370) {
+				day++;
+			}
+			else {
+				m_IsInteract = true;
+				m_Transform->X = 379;
+				m_Transform->Y = 639;
+			}
 		}
 		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Door")) {
 			m_IsInteract = false;
@@ -230,6 +235,7 @@ void Cat::update(float dt)
 		m_Transform->X = 576;
 		m_Transform->Y = 406;
 		m_Health = 10;
+		day++;
 		fish_manager->getee()->clear();
 	}
 }

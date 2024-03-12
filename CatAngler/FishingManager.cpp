@@ -16,6 +16,7 @@ std::vector<Enemy*> enemies;
 FishingManager::FishingManager(Inventory* player_Inv, std::vector<Collider*>* colliderVec)
     : playerInventory(player_Inv), colliderVec(colliderVec)
 {
+
 	m_Collider = new Collider();
 	m_Collider->setBuffer(0, 0, 0, 0);
 
@@ -64,6 +65,7 @@ FishingManager::FishingManager(Inventory* player_Inv, std::vector<Collider*>* co
 
 void FishingManager::renderFish()
 {
+    Vector2D cam = Camera::GetInstance()->getPosition();
 
     // Use a consistent seed for rand() outside the loop
     static bool seeded = false;
@@ -77,8 +79,8 @@ void FishingManager::renderFish()
 
     // Check if we need to add a new fish
     while (randomFish.size() <= 10) {
-        int spx = rand() % 1600;
-        int spy = rand() % 1200;
+        int spx = rand() % 1280;
+        int spy = rand() % 960;
 
         // Check if the new fish is too close to existing fish
         bool tooClose = false;
@@ -93,6 +95,7 @@ void FishingManager::renderFish()
 
         // Only add the new fish if it's not too close to any other fish
         if (!tooClose) {
+            
             Collider* f = new Collider();
             f->set(spx, spy, 32, 32);
             if (CollisionHandler::GetInstance()->mapCollision(f->get(), "Water")) {
@@ -106,7 +109,8 @@ void FishingManager::renderFish()
 
     // Render existing fish shadows
     for (Collider* c : randomFish) {
-        TextureManager::GetInstance()->draw("fish_shadow", c->get().x , c->get().y , 32, 32);
+        int f = (SDL_GetTicks() / 100) % 6;
+        TextureManager::GetInstance()->drawFrame("fish_shadow", c->get().x, c->get().y , 32, 32, 1, f);
     }
 }
 
@@ -138,8 +142,8 @@ void FishingManager::checkFishing(int x, int y, std::string map)
     int chance = rand() % 10;
 
     if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), map) && x !=0) {
-
-        if ( chance > 10) {
+        randomFish.clear();
+        if ( chance > 2) {
             if (playerInventory != nullptr) {
                 if (std::count(playerInventory->getItems().begin(), playerInventory->getItems().end(), nullptr) != 0) {
                     caughtFish = fishInArea.getRandomItem();
