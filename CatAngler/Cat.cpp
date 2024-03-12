@@ -74,10 +74,14 @@ void Cat::draw()
 	}
 
 	if (!m_IsInteract) {
+		fish_manager->renderFish();
 		FishingManager::GetInstance()->draw();
 	}
 	fish_manager->renderCatch(m_Transform->X, m_Transform->Y);
-
+	
+		
+	//576.697, 406.012
+	
 	//Vector2D cam = Camera::GetInstance()->getPosition();
 	//SDL_Rect box = m_Collider->get();
 	//box.x -= cam.X;
@@ -109,6 +113,8 @@ void Cat::drawInv() {
 	std::stringstream strm;
 	strm << m_Coin;
 	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 65 , cam.Y + 90 , "assets/fonts/PixelifySans.ttf", 20);
+
+
 }
 
 void Cat::update(float dt)
@@ -214,12 +220,18 @@ void Cat::update(float dt)
 		//m_Transform->Y = m_LastSafePosition.Y;
 	}
 
-
 	m_Origin->x = m_Transform->X + m_Width / 2;
 	m_Origin->y = m_Transform->Y + m_Height / 2;
 	m_Aimation->update();
 
 	fish_manager->update(dt, m_Transform->X, m_Transform->Y, &m_Health, m_Collider->get());
+
+	if (m_Health <= 0) {
+		m_Transform->X = 576;
+		m_Transform->Y = 406;
+		m_Health = 10;
+		fish_manager->getee()->clear();
+	}
 }
 
 void Cat::equip() {

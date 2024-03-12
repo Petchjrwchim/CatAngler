@@ -33,7 +33,7 @@ void Sword::use()
 				if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), i->getCollider()->get())) {
 					std::cout << "hit" << std::endl;
 					i->reduceHealth(getDamage());
-					setEndurance(getEndurance() - 1);
+					setEndurance(getEndurance() - 2);
 				}
 			}
 		}

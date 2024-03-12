@@ -63,17 +63,25 @@ void Menu::render()
 }
 
 void Menu::renderSaveScreen(Vector2D cam)
-{
-    std::unordered_map<std::string, int> loadedData = SaveManager::GetInstance()->loadGame("savegame" + Engine::GetInstance()->getPlayerSlot() + ".txt");
-    for (int i = 0; i < 3; i++) {
-        if (loadedData["Health"] == NULL || loadedData["Health"] <= 0) {
+{   
 
-        }
-    }
     TextureManager::GetInstance()->draw("exit_button", cam.X + 100, cam.Y, 32, 32, SDL_FLIP_NONE, 2);
     TextureManager::GetInstance()->draw("longslot", 104 + cam.X, 120 + cam.Y, 64, 128, SDL_FLIP_NONE, 3);
     TextureManager::GetInstance()->draw("longslot", 304 + cam.X, 120 + cam.Y, 64, 128, SDL_FLIP_NONE, 3);
     TextureManager::GetInstance()->draw("longslot", 504 + cam.X, 120 + cam.Y, 64, 128, SDL_FLIP_NONE, 3);
+
+    for (int i = 1; i <= 3; i++) {
+        std::unordered_map<std::string, int> loadedData = SaveManager::GetInstance()->loadGame("savegame" + std::to_string(i) + ".txt");
+        if (loadedData["Health"] == NULL || loadedData["Health"] <= 0) {
+            TextManager::GetInstance()->renderText("Empty", 125 + 200 * (i-1) + cam.X, 300 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 50);
+        }
+        else {
+            std::string health = "Health : " + std::to_string(loadedData["Health"]);
+            std::string coin = "Coin : " + std::to_string(loadedData["Coin"]);
+            TextManager::GetInstance()->renderText(health.c_str(), 125 + 200 * (i - 1) + cam.X, 300 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
+            TextManager::GetInstance()->renderText(coin.c_str(), 125 + 200 * (i - 1) + cam.X, 320 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
+        }
+    }
 }
 
 void Menu::renderSelected(Vector2D cam)

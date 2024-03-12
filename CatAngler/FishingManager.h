@@ -2,6 +2,7 @@
 
 #include "Inventory.h"
 #include "LootTable.h"
+#include "CollisionHandler.h"
 #include "Fish.h"
 
 class FishingManager {
@@ -16,6 +17,7 @@ class FishingManager {
         Item* caughtFish;
         float caughtFishAnim;
 
+        std::vector<Collider*> randomFish;
         std::vector<Collider*>* colliderVec;
         std::vector<Enemy*> spawned_enemies;
 
@@ -25,8 +27,11 @@ class FishingManager {
 
         inline static FishingManager* GetInstance() { return s_Instance = (s_Instance != nullptr) ? s_Instance : new FishingManager(); }
 
+        void clearEnemies() { spawned_enemies.clear(); }
+        void renderFish();
         std::vector<Enemy*> getEnemies() { return spawned_enemies; }
         std::vector<Item*> getFishLists() { return fishLists; }
+        std::vector<Enemy*>* getee();
 
         void renderCatch(int x, int y);
         void checkFishing(int  x,int y, std::string map);

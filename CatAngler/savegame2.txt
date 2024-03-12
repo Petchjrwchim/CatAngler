@@ -1,13 +1,10 @@
 Health:10
-largemouthbasscaught:0
 Coin:0
 smallmouthbasscaught:0
+largemouthbasscaught:0
 carpcaught:0
-PosX:617
-PosY:440
-sword:1
-redsalmoncaught:0
-fishingrod:1
+PosX:576
+PosY:406
 catfishcaught:0
 strippedbasscaught:0
 fiddlercrabcaught:0
@@ -20,3 +17,6 @@ alligatorgarcaught:0
 sturgeoncaught:0
 giantcrayfishcaught:0
 featherbackcaught:0
+fishingrod:1
+redsalmoncaught:0
+sword:1

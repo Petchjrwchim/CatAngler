@@ -62,8 +62,62 @@ FishingManager::FishingManager(Inventory* player_Inv, std::vector<Collider*>* co
     }
 }
 
+void FishingManager::renderFish()
+{
+
+    // Use a consistent seed for rand() outside the loop
+    static bool seeded = false;
+    if (!seeded) {
+        srand(time(0));
+        seeded = true;
+    }
+
+    // Define the minimum distance between fish
+    const int minDistance = 50; // Set this to whatever you deem appropriate
+
+    // Check if we need to add a new fish
+    while (randomFish.size() <= 10) {
+        int spx = rand() % 1600;
+        int spy = rand() % 1200;
+
+        // Check if the new fish is too close to existing fish
+        bool tooClose = false;
+        for (Collider* existingFish : randomFish) {
+            int distX = std::abs(existingFish->get().x - spx);
+            int distY = std::abs(existingFish->get().y - spy);
+            if (distX < minDistance && distY < minDistance) {
+                tooClose = true;
+                break;
+            }
+        }
+
+        // Only add the new fish if it's not too close to any other fish
+        if (!tooClose) {
+            Collider* f = new Collider();
+            f->set(spx, spy, 32, 32);
+            if (CollisionHandler::GetInstance()->mapCollision(f->get(), "Water")) {
+                randomFish.push_back(f);
+            }
+            else {
+                delete f; // Make sure to clean up if not adding to the vector
+            }
+        }
+    }
+
+    // Render existing fish shadows
+    for (Collider* c : randomFish) {
+        TextureManager::GetInstance()->draw("fish_shadow", c->get().x , c->get().y , 32, 32);
+    }
+}
+
+std::vector<Enemy*>* FishingManager::getee()
+{
+    return &enemies;
+}
+
 void FishingManager::renderCatch(int x, int y)
 {
+
     if (caughtFish != NULL) {
         if (caughtFish->getID() != "empty") TextureManager::GetInstance()->draw(caughtFish->getID(), x, y - 15 - caughtFishAnim, 32, 32);
         if (caughtFish->getID() == "empty") TextManager::GetInstance()->renderText("Inventory full!", x - 20, y - 15 - caughtFishAnim, "assets/fonts/PixelifySans.ttf", 15, {255,20,20});
@@ -122,6 +176,7 @@ void FishingManager::checkFishing(int x, int y, std::string map)
 
 void FishingManager::update(float dt, int x, int y, int* health,SDL_Rect target)
 {
+
     if (!enemies.empty()) {
         for (unsigned int i = 0; i < enemies.size(); i++) {
             enemies[i]->setTarget(x, y, health, target);

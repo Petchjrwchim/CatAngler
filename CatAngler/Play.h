@@ -16,6 +16,7 @@ public:
 	std::unordered_map<std::string, int> loadedData;
 	std::vector<std::pair<int, int>> unlockFish;
 	std::unordered_map<std::string, int> gameData;
+	int day;
 
 	Item* fish = NULL;
 	bool show = false;

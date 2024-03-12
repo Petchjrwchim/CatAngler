@@ -60,13 +60,14 @@ bool Play::init()
 
 bool Play::exit()
 {
+	
 	std::unordered_map<std::string, int> f = SaveManager::GetInstance()->loadGame("savegame" + Engine::GetInstance()->getPlayerSlot() + ".txt");
 	gameData.insert({ "Health", cat->getHealth() }); 
 	gameData.insert({ "Coin", cat->getCoin() });
 	gameData.insert({ "PosX", cat->getTX() });
 	gameData.insert({"PosY", cat->getTY()});
 	for (Item* i : cat->getInventory()->getItems()) {
-		if (i != NULL) gameData.insert({i->getID(), i->getQuantity()});
+		if (i != NULL && i->getQuantity() > 0) gameData.insert({i->getID(), i->getQuantity()});
 	}
 	for (Item* i : FishingManager::GetInstance()->getFishLists()) {
 		gameData.insert({ i->getID() + "caught", f[i->getID() + "caught"] });
@@ -79,6 +80,8 @@ bool Play::exit()
 	
 	SaveManager::GetInstance()->saveGameover("savegame" + Engine::GetInstance()->getPlayerSlot() + ".txt", gameData);
 	std::cout << "Game close" << std::endl;
+
+	//FishingManager::GetInstance()->getEnemies().clear();
 
 	cat = nullptr;
 

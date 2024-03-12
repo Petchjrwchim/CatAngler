@@ -16,6 +16,7 @@ longslot,assets\images\longslot.png
 usingslot,assets\images\usingslot.png
 bait,assets\images\bait.png
 fish,assets\images\fish.png
+fish_shadow,assets\images\fish_shadow.png
 
 shark_walk,assets\images\shark.png
 shark_dive,assets\images\shark_dive.png
