@@ -106,7 +106,7 @@ void Shop::initButtons() {
             if (playerCoin - current_Items[this->get_Selecting()]->getPrice() >= 0) {
                 std::cout << "Buy" << std::endl;
                 playerCoin -= current_Items[this->get_Selecting()]->getPrice();
-                m_PlayerInventory->addItem(current_Items[this->get_Selecting()]);
+                m_PlayerInventory->addItem(new Sword(1, "Sword", "Weapon", "sword", 50, 100, 1));
             }
         }
         else if (get_CurrentTab() == "sell") {

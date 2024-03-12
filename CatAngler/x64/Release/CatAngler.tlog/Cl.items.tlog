@@ -22,6 +22,7 @@ C:\CatAngler\CatAngler\Point.cpp;C:\CatAngler\CatAngler\x64\Release\Point.obj
 C:\CatAngler\CatAngler\RigidBody.cpp;C:\CatAngler\CatAngler\x64\Release\RigidBody.obj
 C:\CatAngler\CatAngler\SaveManager.cpp;C:\CatAngler\CatAngler\x64\Release\SaveManager.obj
 C:\CatAngler\CatAngler\Shop.cpp;C:\CatAngler\CatAngler\x64\Release\Shop.obj
+C:\CatAngler\CatAngler\SoundManager.cpp;C:\CatAngler\CatAngler\x64\Release\SoundManager.obj
 C:\CatAngler\CatAngler\Sword.cpp;C:\CatAngler\CatAngler\x64\Release\Sword.obj
 C:\CatAngler\CatAngler\TextManager.cpp;C:\CatAngler\CatAngler\x64\Release\TextManager.obj
 C:\CatAngler\CatAngler\TextureManager.cpp;C:\CatAngler\CatAngler\x64\Release\TextureManager.obj
