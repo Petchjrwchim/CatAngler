@@ -58,11 +58,14 @@ bool Engine::init()
 		return false;
 	}
 
+	SoundManager::GetInstance()->loadMusic("bgmusic", "assets/sound/bg_sound.mp3");
 
 	TextureManager::GetInstance()->parseTexture("assets/images/textures.txt");
 	
 	menu = new Menu();
 	menu->init();
+
+	SoundManager::GetInstance()->playMusic("bgmusic");
 
 	return m_IsRunning = true;
 }
@@ -85,6 +88,8 @@ void Engine::quit()
 
 void Engine::update()
 {
+	
+
 	if (m_GameState == "menu") {
 		menu->update();
 	}
