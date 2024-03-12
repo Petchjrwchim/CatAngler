@@ -39,6 +39,7 @@ pause_button,assets\images\pause_button.png
 exit_button,assets\images\exit_button.png
 arrow,assets\images\arrow.png
 badge,assets\images\badge.png
+board,assets\images\board.png
 wallpaper,assets\images\wallpaper.png
 healthbar,assets\images\healthbar.png
 night,assets\images\night.png

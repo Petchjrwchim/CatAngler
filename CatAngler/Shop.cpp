@@ -14,7 +14,7 @@ static int test = 100;
 Shop::Shop() : m_isVisible(false), playerCoin(test) {
     
     FishingRod* fishingRod = new FishingRod(1, "Fishing Rod", "Rod", "fishingrod", 50);
-    Sword* sword = new Sword(1, "Sword", "Weapon", "sword", 50);
+    Sword* sword = new Sword(1, "Sword", "Weapon", "sword", 50, 100, 1);
     Food* fishcan = new Food(1, "Fishcan", "Food", "fishcan", 20, 2);
 
     m_items.push_back(fishingRod);
@@ -112,7 +112,7 @@ void Shop::initButtons() {
         else if (get_CurrentTab() == "sell") {
             std::cout << "Sell" << std::endl;
             if (!current_Items.empty() && m_Selecting < current_Items.size() && current_Items[this->get_Selecting()] != NULL) {
-                playerCoin += current_Items[this->get_Selecting()]->getPrice() * 0.6;
+                playerCoin += ceil(current_Items[this->get_Selecting()]->getPrice() * 0.6);
                 m_PlayerInventory->removeItem(current_Items[this->get_Selecting()]);
             }
         }
@@ -153,7 +153,7 @@ void Shop::renderItems(SDL_Renderer* renderer) {
         TextureManager::GetInstance()->draw("coin", m_X + 560, m_Y + 435, 32, 32, SDL_FLIP_NONE, 2.0);
         std::stringstream strm;
         if (get_CurrentTab() == "buy") strm << current_Items[m_Selecting]->getPrice();
-        if (get_CurrentTab() == "sell") strm << current_Items[m_Selecting]->getPrice() * 0.6;
+        if (get_CurrentTab() == "sell") strm << ceil(current_Items[m_Selecting]->getPrice() * 0.6);
         TextManager::GetInstance()->renderText(strm.str().c_str(), m_X + 620, m_Y + 452, "assets/fonts/PixelifySans.ttf", 20);
     }
     else {

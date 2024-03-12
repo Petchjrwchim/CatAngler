@@ -1,15 +1,12 @@
-﻿  Engine.cpp
+﻿  Inventory.cpp
 C:\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Engine.cpp')
-  
 C:\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Engine.cpp')
-  
 C:\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Engine.cpp')
-  
-C:\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Engine.cpp')
-  
-C:\CatAngler\CatAngler\Engine.cpp(133,12): warning C4101: 'event': unreferenced local variable
+C:\CatAngler\CatAngler\Inventory.cpp(60,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Inventory.cpp(131,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Inventory.cpp(131,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Inventory.cpp(144,78): warning C4838: conversion from 'double' to 'int' requires a narrowing conversion
+C:\CatAngler\CatAngler\Inventory.cpp(144,78): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Inventory.cpp(178,173): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\CatAngler\CatAngler\Inventory.cpp(178,152): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   CatAngler.vcxproj -> C:\CatAngler\x64\Debug\CatAngler.exe

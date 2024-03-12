@@ -41,6 +41,11 @@ class Item {
             if (m_Quantity < 1) m_Quantity = 0; 
         }
 
+        void setEndurance(int i) { m_Endurance = i; }
+        void setDamage(int i) { m_Damage = i; }
+        
+        int getDamage() { return m_Damage; }
+        int getEndurance() { return m_Endurance; }
         int getQuantity() { return m_Quantity; }
         int getPrice() { return m_Price; }
         int getDropChance() { return m_DropChance; }
@@ -51,6 +56,8 @@ class Item {
 
     private:
 
+        int m_Endurance;
+        int m_Damage;
         int m_DropChance;
         int m_Quantity;
         int m_Price;

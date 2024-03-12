@@ -73,6 +73,10 @@ bool Play::exit()
 		std::cout << i->getID()  << f[i->getID() + "caught"] << std::endl;
 	}
 
+	for (const auto& pair : gameData) {
+		std::cout << pair.first << ": " << pair.second << std::endl;
+	}
+	
 	SaveManager::GetInstance()->saveGameover("savegame" + Engine::GetInstance()->getPlayerSlot() + ".txt", gameData);
 	std::cout << "Game close" << std::endl;
 
@@ -87,7 +91,9 @@ bool Play::exit()
 void Play::update()
 {
 	if (IsPause) Input::GetInstance()->setCurrentWindow("pause");
-	if (IsCollection) Input::GetInstance()->setCurrentWindow("fishcollection");
+	if (IsCollection) {
+		Input::GetInstance()->setCurrentWindow("fishcollection");
+	}
 	if (!IsPause && !IsCollection) {
 		Input::GetInstance()->setCurrentWindow("play");
 		cam = Camera::GetInstance()->getPosition();
@@ -106,9 +112,32 @@ void Play::update()
 		shop.setPlayercoin(cat->getCoin());
 		shop.setPlayerInventory(cat->getInventory());
 		shop.update(cam.X, cam.Y);
-		Camera::GetInstance()->update(dt);
-	}
 
+		Camera::GetInstance()->update(dt);
+
+		int row = 0;
+		int col = 0;
+		for (Item* i : FishingManager::GetInstance()->getFishLists()) {
+			for (Item* j : cat->getInventory()->getItems()) {
+				if (j != NULL && i->getID() == j->getID()) {
+					std::pair<int, int> a(row, col);
+					unlockFish.push_back(a);
+					gameData.insert({ i->getID() + "x", row });
+					gameData.insert({ i->getID() + "y", col });
+				}
+			}
+			Input::GetInstance()->addButton(280 + 64 * col, 158 + 64 * row, 48, 48, "fishcollection", [i]() {
+				}, [i, this, col, row]() {
+					this->fish = i;
+					this->show = true;
+					});
+			col++;
+			if (col == 4) {
+				row++;
+				col = 0;
+			}
+		}
+	}
 }
 
 void Play::render()
@@ -144,7 +173,7 @@ void Play::render()
 
 	cam = Camera::GetInstance()->getPosition();
 
-	TextureManager::GetInstance()->draw("fishcollection", cam.X + 10, cam.Y + 70, 32, 32, SDL_FLIP_NONE, 1.5);
+	TextureManager::GetInstance()->draw("fishcollection", cam.X + 708, cam.Y + 60, 32, 32, SDL_FLIP_NONE, 1.5);
 
 	TextureManager::GetInstance()->draw("pause_button", cam.X + 700, cam.Y, 32, 32, SDL_FLIP_NONE, 2);
 	if (IsPause) {
@@ -152,9 +181,10 @@ void Play::render()
 		TextureManager::GetInstance()->draw("badge", 314 + cam.X, 248 + cam.Y, 64, 64, SDL_FLIP_NONE, 3);
 		TextureManager::GetInstance()->draw("badge", 314 + cam.X, 348 + cam.Y, 64, 64, SDL_FLIP_NONE, 3);
 
-		TextManager::GetInstance()->renderText("Resume", 380 + cam.X, 224 + cam.Y, "assets/fonts/PixelifySans.ttf", 30);
-		TextManager::GetInstance()->renderText("Settings", 350 + cam.X, 324 + cam.Y, "assets/fonts/PixelifySans.ttf", 30);
-		TextManager::GetInstance()->renderText("Return", 400 + cam.X, 424 + cam.Y, "assets/fonts/PixelifySans.ttf", 30);
+		TextManager::GetInstance()->renderText("Resume", 385 + cam.X, 230 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 25);
+		TextManager::GetInstance()->renderText("Settings", 365 + cam.X, 330 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 25);
+		TextManager::GetInstance()->renderText("Return", 385 + cam.X, 430 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 25);
+
 	}
 
 	if (IsCollection) {
@@ -173,12 +203,12 @@ void Play::initButton()
 		this->IsPause = true;
 		}, []() {});
 
-	Input::GetInstance()->addButton(cam.X + 10, cam.Y + 70, 48, 48, "play", [this]() {
+	Input::GetInstance()->addButton(cam.X + 708, cam.Y + 60, 48, 48, "play", [this]() {
 		std::cout << "collection" << std::endl;
-		Input::GetInstance()->deleteButton(24); // delete excess button
+		//Input::GetInstance()->deleteButton(24); // delete excess button
 		this->IsCollection = !IsCollection;
 		}, []() {});
-	Input::GetInstance()->addButton(cam.X + 10, cam.Y + 70, 48, 48, "fishcollection", [this]() {
+	Input::GetInstance()->addButton(cam.X + 708, cam.Y + 60, 48, 48, "fishcollection", [this]() {
 		std::cout << "collection" << std::endl;
 		Input::GetInstance()->deleteButton(24); // delete excess button
 		this->IsCollection = !IsCollection;
@@ -220,29 +250,6 @@ void Play::renderCollection()
 {
 
 	Input::GetInstance()->setCurrentWindow("fishcollection");
-	int row = 0;
-	int col = 0;
-	for (Item* i : FishingManager::GetInstance()->getFishLists()) {
-		for (Item* j : cat->getInventory()->getItems()) {
-			if (j != NULL && i->getID() == j->getID()) {
-				std::pair<int, int> a(row, col);
-				unlockFish.push_back(a);
-				gameData.insert({ i->getID() + "x", row });
-				gameData.insert({ i->getID() + "y", col });
-			}
-		}
-		Input::GetInstance()->addButton(280 + 64 * col, 158 + 64 * row, 48, 48, "fishcollection", [i]() {
-			}, [i, this, col, row]() {
-				this->fish = i;
-				this->show = true;
-				});
-		col++;
-		if (col == 4) {
-			row++;
-			col = 0;
-		}
-
-	}
 
 	TextureManager::GetInstance()->draw("fishcollection_bg", cam.X + 80, cam.Y - 40, 128, 128, SDL_FLIP_NONE, 5);
 	TextureManager::GetInstance()->draw("lock", cam.X + 272, cam.Y + 150, 128, 128, SDL_FLIP_NONE, 2);
@@ -253,12 +260,17 @@ void Play::renderCollection()
 	}
 	int x, y;
 	SDL_GetMouseState(&x, &y);
+
 	if (show && fish != NULL) {
 		loadedData = SaveManager::GetInstance()->loadGame("savegame" + Engine::GetInstance()->getPlayerSlot() + ".txt");
 		gameData.insert({ fish->getID() + "caught", loadedData[fish->getID() + "caught"] });
+		
+		TextureManager::GetInstance()->draw("button", cam.X + x - 20, cam.Y + y - 60, 64, 64, SDL_FLIP_NONE, 3);
+		TextManager::GetInstance()->renderText( fish->getName().c_str(), cam.X + x + 10, cam.Y + y + 10, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 15);
+		TextManager::GetInstance()->renderText("caught: ", cam.X + x + 20, cam.Y + y + 25, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 15);
 		std::stringstream strm;
 		strm << loadedData[fish->getID() + "caught"];
-		TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + x, cam.Y + y, "assets/fonts/PixelifySans.ttf", 50);
+		TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + x + 20, cam.Y + y + 45, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 15);
 		fish = NULL;
 	}
 

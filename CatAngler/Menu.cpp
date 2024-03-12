@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "Engine.h"
 #include "TextManager.h"
+#include "SaveManager.h"
 #include "TextureManager.h"
 
 Menu* Menu::s_Instance = nullptr;
@@ -63,6 +64,12 @@ void Menu::render()
 
 void Menu::renderSaveScreen(Vector2D cam)
 {
+    std::unordered_map<std::string, int> loadedData = SaveManager::GetInstance()->loadGame("savegame" + Engine::GetInstance()->getPlayerSlot() + ".txt");
+    for (int i = 0; i < 3; i++) {
+        if (loadedData["Health"] == NULL || loadedData["Health"] <= 0) {
+
+        }
+    }
     TextureManager::GetInstance()->draw("exit_button", cam.X + 100, cam.Y, 32, 32, SDL_FLIP_NONE, 2);
     TextureManager::GetInstance()->draw("longslot", 104 + cam.X, 120 + cam.Y, 64, 128, SDL_FLIP_NONE, 3);
     TextureManager::GetInstance()->draw("longslot", 304 + cam.X, 120 + cam.Y, 64, 128, SDL_FLIP_NONE, 3);

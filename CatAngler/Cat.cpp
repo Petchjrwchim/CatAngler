@@ -95,19 +95,20 @@ void Cat::drawInv() {
 	}
 	m_Inventory->renderInventoryBar(cam.X, cam.Y + 530, &m_IsUsing);
 
-	
-	SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 255, 0, 10);
-	SDL_Rect healthBar = { 253, 502, floor(m_Health * 141 / 10), 18};
+	SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 255, 0, 0);
+	if (m_Health < 6) SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 255, 255, 0, 0);
+	if (m_Health < 3) SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 255, 0, 0, 0);
+
+	SDL_Rect healthBar = { 118, 32, floor(m_Health * 141 / 10), 18}; // + 33 +87
 	SDL_RenderFillRect(Engine::GetInstance()->GetRenderer(), &healthBar);
 
-	TextureManager::GetInstance()->draw("healthbar", cam.X + 220, cam.Y + 415, 64, 64, SDL_FLIP_NONE, 3);
-
-	TextureManager::GetInstance()->draw("badge", cam.X + 10, cam.Y - 13, 64, 64, SDL_FLIP_NONE, 1.5);
-	TextureManager::GetInstance()->draw("coin", cam.X + 30, cam.Y + 20, 32, 32);
+	TextureManager::GetInstance()->draw("board", cam.X + 10, cam.Y + 10, 128, 64, SDL_FLIP_NONE, 3);
+	TextureManager::GetInstance()->draw("healthbar", cam.X + 85, cam.Y - 55, 64, 64, SDL_FLIP_NONE, 3);
+	TextureManager::GetInstance()->draw("coin", cam.X + 5, cam.Y + 73, 32, 32, SDL_FLIP_NONE, 2);
 
 	std::stringstream strm;
 	strm << m_Coin;
-	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 60 , cam.Y + 22 , "assets/fonts/PixelifySans.ttf", 20);
+	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 65 , cam.Y + 90 , "assets/fonts/PixelifySans.ttf", 20);
 }
 
 void Cat::update(float dt)
@@ -163,7 +164,7 @@ void Cat::update(float dt)
 			m_Transform->Y = 347;
 		}
 
-		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Shop")) {
+		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Shop") && m_IsInteract) {
 			m_IsShopping = !m_IsShopping;
 		}
 	}
@@ -252,6 +253,11 @@ void Cat::equip() {
 		}
 		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Food" && Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_E) && h != m_Health) {
 			m_Inventory->removeItem(m_Inventory->getItems()[m_IsUsing]);
+		}
+		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Weapon") {
+			if (m_Inventory->getItems()[m_IsUsing]->getQuantity() <= 0) {
+				m_Inventory->removeItem(m_Inventory->getItems()[m_IsUsing]);
+			}
 		}
 	}
 

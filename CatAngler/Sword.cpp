@@ -1,9 +1,11 @@
 #include "Sword.h"
 #include "CollisionHandler.h"
 
-Sword::Sword(int quantity, const std::string& name, const std::string& type, const std::string& texture, int price)
+Sword::Sword(int quantity, const std::string& name, const std::string& type, const std::string& texture, int price, int endurance, int damage)
 	: Item(quantity, name, type, texture, price)
 {
+	setEndurance(endurance);
+	setDamage(damage);
 
 	m_AimationS = new Animation();
 	m_AimationS->setProps(getID(), 1, 4, 100);
@@ -30,12 +32,16 @@ void Sword::use()
 			if (i->getHealth() > 0) {
 				if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), i->getCollider()->get())) {
 					std::cout << "hit" << std::endl;
-					i->reduceHealth(1);
+					i->reduceHealth(getDamage());
+					setEndurance(getEndurance() - 1);
 				}
 			}
 		}
 
     }
+	if (getEndurance() <= 0) {
+		removeitems(1);
+	}
 
 	m_AimationS->update();
 }

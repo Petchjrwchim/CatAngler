@@ -11,7 +11,7 @@ private:
     Animation* m_AimationS;
 
 public:
-    Sword(int quantity, const std::string& name, const std::string& type, const std::string& texture, int price);
+    Sword(int quantity, const std::string& name, const std::string& type, const std::string& texture, int price, int endurance, int damage);
 
     std::string getDescription() override;
 

@@ -7,7 +7,7 @@
 #include "RigidBody.h"
 #include "Vector2D.h"
 
-#define SPEED_ENEMY 1.f
+#define SPEED_ENEMY 0.7f
 
 class Enemy : public Character
 {

@@ -65,7 +65,7 @@ bool Engine::init()
 	menu = new Menu();
 	menu->init();
 
-	SoundManager::GetInstance()->playMusic("bgmusic");
+	//SoundManager::GetInstance()->playMusic("bgmusic");
 
 	return m_IsRunning = true;
 }

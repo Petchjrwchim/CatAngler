@@ -24,7 +24,7 @@ void Inventory::addItem(Item* item) {
         });
 
     // If the item exists, increase its quantity
-    if (it != m_items.end()) {
+    if (it != m_items.end() && (item->getType() != "Weapon" && item->getType() != "Rod")) {
         (*it)->additems(1);
     }
     else {
@@ -48,7 +48,7 @@ void Inventory::removeItem(Item* item) {
     for (Item* i : m_items) {
         //std::cout << i->getName() << ", " << item->getName() << std::endl;
         if (i != nullptr && i->getName() == item->getName()) {
-            if (i->getQuantity() == 1) {
+            if (i->getQuantity() <= 1 ) {
                 m_items.erase(m_items.begin() + count, m_items.begin() + count + 1);
             }
             if (i->getQuantity() > 1) {
@@ -96,8 +96,10 @@ void Inventory::render(int x, int y) {
             TextureManager::GetInstance()->draw(m_items[i]->getID(), newX, newY, slotWidth, slotHeight);
             std::stringstream strm;
             strm << m_items[i]->getQuantity();
-            TextManager::GetInstance()->renderText(strm.str().c_str(), newX + 23, newY + 20, "assets/fonts/PixelifySans.ttf", 10);
+            TextManager::GetInstance()->renderText(strm.str().c_str(), newX + 23, newY + 20, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 10);
+            std::cout << m_items[i]->getID() << std::endl;
         }
+       
     }
 
     if (isDragging && selectedItem) {
@@ -115,26 +117,38 @@ void Inventory::renderInventoryBar(int x, int y, int *usingSlot) {
 
     Vector2D cam = Camera::GetInstance()->getPosition();
     for (int i = 0; i < INVENTORY_BAR_SLOTS; ++i) {
-        int x = startX + i * (SLOT_WIDTH + BAR_PADDING);
-        SDL_Rect slotRect = { x, startY, SLOT_WIDTH, SLOT_HEIGHT };
-        TextureManager::GetInstance()->draw("slot", x, startY, SLOT_WIDTH, SLOT_HEIGHT);
+        int newX = startX + i * (SLOT_WIDTH + BAR_PADDING);
+        SDL_Rect slotRect = { newX, startY, SLOT_WIDTH, SLOT_HEIGHT };
+        TextureManager::GetInstance()->draw("slot", newX, startY, SLOT_WIDTH, SLOT_HEIGHT);
 
         int usingX = startX + *usingSlot * (SLOT_WIDTH + BAR_PADDING);
         TextureManager::GetInstance()->draw("usingslot", usingX, startY, SLOT_WIDTH , SLOT_HEIGHT);
 
         std::stringstream strm;
         strm << i+1;
-        TextManager::GetInstance()->renderText(strm.str().c_str(), x + 7, startY + 3,  "assets/fonts/PixelifySans.ttf", 10);
+        TextManager::GetInstance()->renderText(strm.str().c_str(), newX + 7, startY + 3,  "assets/fonts/VCR_OSD_MONO_1.001.ttf", 10);
 
-        Input::GetInstance()->addButton(x - cam.X, startY - cam.Y, SLOT_WIDTH, SLOT_HEIGHT, "play", [usingSlot,i]() {
+        Input::GetInstance()->addButton(newX - cam.X, startY - cam.Y, SLOT_WIDTH, SLOT_HEIGHT, "play", [usingSlot,i]() {
             *usingSlot = i;
             }, []() {});
 
         if (i < m_items.size() && m_items[i] != nullptr) {
-            TextureManager::GetInstance()->draw(m_items[i]->getID(), x, startY, 32, 32, SDL_FLIP_NONE, 2.0);
+            TextureManager::GetInstance()->draw(m_items[i]->getID(), newX, startY, 32, 32, SDL_FLIP_NONE, 2.0);
             std::stringstream strm;
             strm << m_items[i]->getQuantity();
-            TextManager::GetInstance()->renderText(strm.str().c_str(), x + 48, startY + 36, "assets/fonts/PixelifySans.ttf", 20);
+            TextManager::GetInstance()->renderText(strm.str().c_str(), newX + 48, startY + 40, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 15);
+
+            if (m_items[i]->getType() == "Weapon") {
+
+                SDL_Rect maxEnd = { newX - x + 7 , startY - y + 585, 50, 5 };
+                SDL_Rect currentEnd = { newX - x + 7, startY - y + 585, floor(m_items[i]->getEndurance() * 50 / 100), 5 };
+
+                SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 255, 0, 0, 0);
+                SDL_RenderFillRect(Engine::GetInstance()->GetRenderer(), &maxEnd);
+
+                SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 255, 0, 0);
+                SDL_RenderFillRect(Engine::GetInstance()->GetRenderer(), &currentEnd);
+            }
         }
     }
 }

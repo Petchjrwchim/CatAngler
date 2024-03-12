@@ -43,7 +43,7 @@ void Enemy::setTarget(int x, int y, int* health, SDL_Rect target)
 void Enemy::update(float dt)
 {
 	int IsKnockback = 1;
-	if (m_Health != h) IsKnockback = -5;
+	if (m_Health != h) IsKnockback = -20;
 	int lastX = m_Transform->X;
 	int lastY = m_Transform->Y;
 
