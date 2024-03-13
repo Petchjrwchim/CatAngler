@@ -37,7 +37,8 @@ bool Play::init()
 	Camera::GetInstance()->setSceneLimit(width, height);
 	cat = new Cat(new Properties("cat", loadedData["PosX"], loadedData["PosY"], 32, 32), loadedData["Health"]);
 	cat->setCoin(loadedData["Coin"]);
-	
+	cat->setDay(loadedData["Day"]);
+
 	Shop();
 	shop.setPlayercoin(loadedData["Coin"]);
 	Camera::GetInstance()->setTarget(cat->getOrigin());
@@ -66,6 +67,7 @@ bool Play::exit()
 	gameData.insert({ "Coin", cat->getCoin() });
 	gameData.insert({ "PosX", cat->getTX() });
 	gameData.insert({"PosY", cat->getTY()});
+	gameData.insert({ "Day", cat->getDay() });
 
 	for (Item* i : cat->getInventory()->getItems()) {
 		if (i != NULL && i->getQuantity() > 0) gameData.insert({i->getID(), i->getQuantity()});

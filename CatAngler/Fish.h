@@ -22,4 +22,9 @@ public:
     }
 
     void draw() override;
+
+
+    Fish* clone() const override {
+        return new Fish(*this);
+    }
 };

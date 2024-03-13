@@ -3,6 +3,7 @@
 #include "TextManager.h"
 #include "SaveManager.h"
 #include "TextureManager.h"
+#include "SoundManager.h"
 
 Menu* Menu::s_Instance = nullptr;
 
@@ -10,6 +11,7 @@ Menu::Menu()
 {
     m_Aimation = new Animation();
     m_Aimation->setProps("wallpaper", 1, 2, 1000);
+
 }
 
 bool Menu::init()
@@ -53,9 +55,16 @@ void Menu::render()
 
         renderSelected(cam);
     }
+
+
     if (currentTab == "save") {
         Input::GetInstance()->setCurrentWindow("save");
         renderSaveScreen(cam);
+    }
+
+    if (currentTab == "settings") {
+        Input::GetInstance()->setCurrentWindow("settings");
+        renderSettings(cam);
     }
 
     //Input::GetInstance()->renderButtons(m_Ctxt);
@@ -78,10 +87,21 @@ void Menu::renderSaveScreen(Vector2D cam)
         else {
             std::string health = "Health : " + std::to_string(loadedData["Health"]);
             std::string coin = "Coin : " + std::to_string(loadedData["Coin"]);
+            std::string day = "Day : " + std::to_string(loadedData["Day"]);
+            TextManager::GetInstance()->renderText(day.c_str(), 125 + 200 * (i - 1) + cam.X, 280 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
             TextManager::GetInstance()->renderText(health.c_str(), 125 + 200 * (i - 1) + cam.X, 300 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
             TextManager::GetInstance()->renderText(coin.c_str(), 125 + 200 * (i - 1) + cam.X, 320 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
         }
     }
+}
+
+void Menu::renderSettings(Vector2D cam)
+{
+    TextureManager::GetInstance()->draw("exit_button", cam.X + 100, cam.Y, 32, 32, SDL_FLIP_NONE, 2);
+    TextureManager::GetInstance()->draw("tab", 208 + cam.X, 120 + cam.Y, 128, 128, SDL_FLIP_NONE, 3);
+    TextManager::GetInstance()->renderText("Background music", 300 + cam.X, 200 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
+    Input::GetInstance()->renderSliders();
+    SoundManager::GetInstance()->setMusicVolume( "bgmusic", Input::GetInstance()->getSliderValue(0));
 }
 
 void Menu::renderSelected(Vector2D cam)
@@ -114,7 +134,11 @@ void Menu::quit()
 
 void Menu::initButtons()
 {
+
     Vector2D cam = Camera::GetInstance()->getPosition();
+
+    Input::GetInstance()->addSlider(250, 230, Engine::GetInstance()->GetRenderer());
+
     Input::GetInstance()->addButton( 300, 250, 200, 50, "menu", [this]() {
         std::cout << "start" << std::endl;
         //startGame();
@@ -124,9 +148,15 @@ void Menu::initButtons()
     });
 
     Input::GetInstance()->addButton( 300, 350, 200, 50, "menu", [this]() {
+        this->currentTab = "settings";
         }, [this]() {
             this->IsSelecting = "settings";
         });
+
+    Input::GetInstance()->addButton(cam.X + 104, cam.Y + 10, 54, 40, "settings", [this]() {
+        std::cout << "Exit settings" << std::endl;
+        this->currentTab = "menu";
+        }, []() {});
 
     Input::GetInstance()->addButton(300, 450, 200, 50, "menu", [this]() {
         std::cout << "quit game" << std::endl;
@@ -134,6 +164,7 @@ void Menu::initButtons()
         }, [this]() {
             this->IsSelecting = "exit";
         });
+
     Input::GetInstance()->addButton(cam.X + 104, cam.Y + 10, 54, 40, "save", [this]() {
         std::cout << "Exit save" << std::endl;
         this->currentTab = "menu";

@@ -143,7 +143,7 @@ void FishingManager::checkFishing(int x, int y, std::string map)
 
     if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), map) && x !=0) {
         randomFish.clear();
-        if ( chance > 2) {
+        if ( chance > 10) {
             if (playerInventory != nullptr) {
                 if (std::count(playerInventory->getItems().begin(), playerInventory->getItems().end(), nullptr) != 0) {
                     caughtFish = fishInArea.getRandomItem();

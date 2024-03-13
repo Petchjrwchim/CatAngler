@@ -2,7 +2,6 @@
 #include "TextureManager.h"
 #include "TextManager.h"
 #include "Input.h"
-
 #include "FishingRod.h"
 #include "Sword.h"
 #include "Food.h"
@@ -12,13 +11,15 @@
 static int test = 100;
 
 Shop::Shop() : m_isVisible(false), playerCoin(test) {
-    
+
     FishingRod* fishingRod = new FishingRod(1, "Fishing Rod", "Rod", "fishingrod", 50);
     Sword* sword = new Sword(1, "Sword", "Weapon", "sword", 50, 100, 1);
+    Sword* goldsword = new Sword(1, "Gold Sword", "Weapon", "goldsword", 75, 200, 2);
     Food* fishcan = new Food(1, "Fishcan", "Food", "fishcan", 20, 2);
 
     m_items.push_back(fishingRod);
     m_items.push_back(sword);
+    m_items.push_back(goldsword);
     m_items.push_back(fishcan);
 
     current_Items = m_items;
@@ -87,7 +88,7 @@ void Shop::initButtons() {
         this->setTab("sell");
         current_Items = m_PlayerInventory->getItems();
         std::cout << "Sell tab clicked" << std::endl;
-        Input::GetInstance()->deleteButton(24); // delete excess button
+        Input::GetInstance()->deleteButton(46); // delete excess button
         addMultipleButton(current_Items);
         }, []() {});
 
@@ -95,26 +96,30 @@ void Shop::initButtons() {
         this->setTab("buy");
         current_Items = m_items;
         std::cout << "Buy tab clicked" << std::endl;
-        Input::GetInstance()->deleteButton(24); // delete excess button
+        Input::GetInstance()->deleteButton(46); // delete excess button
         addMultipleButton(current_Items);
 
         }, []() {});
 
     Input::GetInstance()->addButton(m_X + 568, m_Y + 437, 98, 54, "shop", [this]() {
-        std::cout << playerCoin << std::endl;
-        if (get_CurrentTab() == "buy") {
-            if (playerCoin - current_Items[this->get_Selecting()]->getPrice() >= 0) {
+        if (get_CurrentTab() == "buy" && !current_Items.empty() && m_Selecting < current_Items.size()) {
+            Item* selectedItem = current_Items[this->get_Selecting()];
+            int itemPrice = selectedItem->getPrice();
+            if (playerCoin - itemPrice >= 0) {
                 std::cout << "Buy" << std::endl;
-                playerCoin -= current_Items[this->get_Selecting()]->getPrice();
-                m_PlayerInventory->addItem(new Sword(1, "Sword", "Weapon", "sword", 50, 100, 1));
+                playerCoin -= itemPrice;
+                Item* ni = selectedItem->clone();
+                ni->setEndurance(ni->getMaxEndurance());
+                m_PlayerInventory->addItem(ni); // Add a clone of the item
             }
         }
-        else if (get_CurrentTab() == "sell") {
+        else if (get_CurrentTab() == "sell" && !current_Items.empty() && m_Selecting < current_Items.size()) {
+            Item* selectedItem = current_Items[this->get_Selecting()];
+            int sellPrice = ceil(selectedItem->getPrice() * 0.6);
             std::cout << "Sell" << std::endl;
-            if (!current_Items.empty() && m_Selecting < current_Items.size() && current_Items[this->get_Selecting()] != NULL) {
-                playerCoin += ceil(current_Items[this->get_Selecting()]->getPrice() * 0.6);
-                m_PlayerInventory->removeItem(current_Items[this->get_Selecting()]);
-            }
+            playerCoin += sellPrice;
+            m_PlayerInventory->removeItem(selectedItem);
+            // You might also need to delete the item if it's no longer needed
         }
         }, []() {});
 

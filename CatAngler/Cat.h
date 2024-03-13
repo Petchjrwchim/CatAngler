@@ -31,7 +31,7 @@ private:
 	Vector2D m_LastSafePosition;
 
 	std::vector<Collider*> colliderVec;
-	int day = 1;
+	int m_Day = 1;
 	int checkX, checkY;
 
 public:
@@ -44,8 +44,10 @@ public:
 	bool getIs_Shopping() const {return m_IsShopping;}
 
 	int& getCoin() { return m_Coin; }
+	int getDay() { return m_Day; }
 
-	void plusDay() { day++; }
+	void setDay(int day) { m_Day = day; }
+	void plusDay() { m_Day++; }
 	void setCoin(int coin) { m_Coin = coin; }
 	void setInteract(bool set) { m_IsInteract = set; }
 

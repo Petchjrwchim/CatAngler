@@ -14,5 +14,9 @@ public:
     void use() override;
     void draw() override;
 
+    Food* clone() const override {
+        return new Food(*this);
+    }
+
 };
 

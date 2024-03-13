@@ -24,6 +24,7 @@ private:
     float animationProgress;
     bool animate;
     int ropeLength;
+    int efficient;
     float controlX, controlY;
 
 public:
@@ -35,6 +36,9 @@ public:
     void drawMovingCircle(SDL_Renderer* renderer, int startX, int startY, int length, float animationProgress, float controlX, float controlY, char direction);
     void qteEvent(int x = 0, int y = 0);
 
+    FishingRod* clone() const override {
+        return new FishingRod(*this);
+    }
     void use() override;
     void draw() override;
 

@@ -53,3 +53,28 @@ void SoundManager::clean() {
     m_MusicTracks.clear();
     Mix_Quit();
 }
+
+void SoundManager::setSoundEffectVolume(const std::string& id, int volume) {
+
+    volume = std::max(0, std::min(volume, MIX_MAX_VOLUME));
+
+
+    if (m_SoundEffects.find(id) != m_SoundEffects.end()) {
+        Mix_VolumeChunk(m_SoundEffects[id], volume);
+    }
+    else {
+        std::cerr << "Sound effect with ID '" << id << "' not found." << std::endl;
+    }
+}
+
+void SoundManager::setMusicVolume(const std::string& id, int volume) {
+
+    volume = std::max(0, std::min(volume, MIX_MAX_VOLUME));
+
+    if (m_MusicTracks.find(id) != m_MusicTracks.end()) {
+        Mix_VolumeMusic(volume);
+    }
+    else {
+        std::cerr << "Music track with ID '" << id << "' not found." << std::endl;
+    }
+}

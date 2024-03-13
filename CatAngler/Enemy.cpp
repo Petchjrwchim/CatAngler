@@ -4,7 +4,7 @@
 #include "TextureManager.h"
 #include "Camera.h"
 
-int h;
+
 
 Enemy::Enemy(Properties* props, int health, int frame) : Character(props), m_Frame(frame)
 {
@@ -22,11 +22,13 @@ Enemy::Enemy(Properties* props, int health, int frame) : Character(props), m_Fra
 	m_AimationE->setProps(m_TextureID + "_walk", 1, m_Frame, 150);
 
 	m_Health = health;
+	
 
 }
 
 void Enemy::draw()
-{	
+{
+	Vector2D cam = Camera::GetInstance()->getPosition();
 	m_AimationE->draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
 	h = m_Health;
 }
@@ -42,8 +44,12 @@ void Enemy::setTarget(int x, int y, int* health, SDL_Rect target)
 
 void Enemy::update(float dt)
 {
+
 	int IsKnockback = 1;
-	if (m_Health != h) IsKnockback = -20;
+	if (m_Health != h) { 
+		IsKnockback = -200; 
+		std::cout << "knock" << std::endl;
+	}
 	int lastX = m_Transform->X;
 	int lastY = m_Transform->Y;
 

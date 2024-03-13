@@ -17,6 +17,7 @@ public:
 	virtual void update();
 	virtual void render();
 	void renderSaveScreen(Vector2D cam);
+	void renderSettings(Vector2D cam);
 	void renderSelected(Vector2D cam);
 
 	std::string currentTab = "menu";

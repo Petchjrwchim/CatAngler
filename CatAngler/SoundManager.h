@@ -17,6 +17,8 @@ public:
     bool loadMusic(const std::string& id, const std::string& filename);
     void playSoundEffect(const std::string& id, int loops = 0);
     void playMusic(const std::string& id, int loops = -1);
+    void setSoundEffectVolume(const std::string& id, int volume);
+    void setMusicVolume(const std::string& id, int volume);
     void stopMusic();
     void pauseMusic();
     void resumeMusic();

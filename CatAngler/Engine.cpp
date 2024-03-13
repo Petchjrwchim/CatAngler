@@ -59,19 +59,22 @@ bool Engine::init()
 	}
 
 	SoundManager::GetInstance()->loadMusic("bgmusic", "assets/sound/bg_sound.mp3");
+	SoundManager::GetInstance()->loadSoundEffect("water_splash", "assets/sound/water_splash.mp3");
 
 	TextureManager::GetInstance()->parseTexture("assets/images/textures.txt");
 	
 	menu = new Menu();
 	menu->init();
 
-	//SoundManager::GetInstance()->playMusic("bgmusic");
+	SoundManager::GetInstance()->playMusic("bgmusic");
+
 
 	return m_IsRunning = true;
 }
 
 bool Engine::clean()
 {	
+	SoundManager::GetInstance()->clean();
 	TextureManager::GetInstance()->clean();
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_DestroyWindow(m_Window);
@@ -132,7 +135,7 @@ void Engine::toggleFullscreen() {
 void Engine::event() {
 	SDL_Event event;
 	Input::GetInstance()->listen(); // Existing input handling
-	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_V)) {
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_M)) {
 		toggleFullscreen();
 	}
 }

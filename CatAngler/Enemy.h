@@ -7,7 +7,7 @@
 #include "RigidBody.h"
 #include "Vector2D.h"
 
-#define SPEED_ENEMY 0.5f
+#define SPEED_ENEMY 0.1f
 
 class Enemy : public Character
 {
@@ -31,6 +31,7 @@ private:
 	Vector2D m_LastSafePosition;
 
 	int* m_playerHealth;
+	int h;
 
 	std::vector<Collider*> colliderVec;
 

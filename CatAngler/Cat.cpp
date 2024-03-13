@@ -74,12 +74,22 @@ void Cat::draw()
 		TextureManager::GetInstance()->draw("interact_F", m_Transform->X, m_Transform->Y - 20, 32, 32);
 	}
 
+	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_V)) {
+		for (Enemy* e : fish_manager->getEnemies()) {
+			if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), e->getCollider()->get())) {
+				e->reduceHealth(1);
+			}
+		}
+	}
+
 	if (!m_IsInteract) {
 		fish_manager->renderFish();
 		FishingManager::GetInstance()->draw();
 	}
 	fish_manager->renderCatch(m_Transform->X, m_Transform->Y);
 	
+
+
 	//576.697, 406.012
 	
 	//Vector2D cam = Camera::GetInstance()->getPosition();
@@ -113,7 +123,7 @@ void Cat::drawInv() {
 	std::stringstream strm;
 	strm << m_Coin;
 	TextManager::GetInstance()->renderText(strm.str().c_str(), cam.X + 65 , cam.Y + 90 , "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
-	TextManager::GetInstance()->renderText(std::to_string(day).c_str(), cam.X + 40, cam.Y + 50, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
+	TextManager::GetInstance()->renderText(std::to_string(m_Day).c_str(), cam.X + 40, cam.Y + 50, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
 
 }
 
@@ -161,7 +171,7 @@ void Cat::update(float dt)
 	if (Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_F)) {
 		if (CollisionHandler::GetInstance()->mapCollision(m_Collider->get(), "Interact")) {
 			if (m_Transform->X < 600 && m_Transform->Y < 450 && m_Transform->X > 550 && m_Transform->Y > 370) {
-				day++;
+				m_Day++;
 			}
 			else {
 				m_IsInteract = true;
@@ -235,7 +245,7 @@ void Cat::update(float dt)
 		m_Transform->X = 576;
 		m_Transform->Y = 406;
 		m_Health = 10;
-		day++;
+		m_Day++;
 		fish_manager->getee()->clear();
 	}
 }
@@ -269,10 +279,10 @@ void Cat::equip() {
 		if (!Input::GetInstance()->getKeyDown(SDL_NUM_SCANCODES)) {
 			m_Inventory->getItems()[m_IsUsing]->use();
 		}
-		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Food" && Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_E) && h != m_Health) {
+		if (m_Inventory->getItems()[m_IsUsing] != NULL && m_Inventory->getItems()[m_IsUsing]->getType() == "Food" && Input::GetInstance()->getKeyDownOnetime(SDL_SCANCODE_E) && h != m_Health) {
 			m_Inventory->removeItem(m_Inventory->getItems()[m_IsUsing]);
 		}
-		if (m_Inventory->getItems()[m_IsUsing]->getType() == "Weapon") {
+		if (m_Inventory->getItems()[m_IsUsing] != NULL && m_Inventory->getItems()[m_IsUsing]->getType() == "Weapon") {
 			if (m_Inventory->getItems()[m_IsUsing]->getQuantity() <= 0) {
 				m_Inventory->removeItem(m_Inventory->getItems()[m_IsUsing]);
 			}

@@ -20,6 +20,7 @@ class Item {
         Item(int quantity, const std::string& name, const std::string& type, const std::string& texture, const int price, const int chance = 0)
             : m_Quantity(quantity), m_Name(name), m_Type(type), m_TextureID(texture), m_Price(price), m_DropChance(chance) {}
 
+        virtual Item* clone() const = 0;
         virtual void use() = 0;
         virtual std::string getDescription() = 0;
         virtual void draw() = 0;
@@ -41,11 +42,13 @@ class Item {
             if (m_Quantity < 1) m_Quantity = 0; 
         }
 
-        void setEndurance(int i) { m_Endurance = i; }
+        void setEndurance(int i) { m_Endurance = i;}
+        void setMaxEndurance(int i) { m_MaxEnd = i; }
         void setDamage(int i) { m_Damage = i; }
         
         int getDamage() { return m_Damage; }
         int getEndurance() { return m_Endurance; }
+        int getMaxEndurance() { return m_MaxEnd; }
         int getQuantity() { return m_Quantity; }
         int getPrice() { return m_Price; }
         int getDropChance() { return m_DropChance; }
@@ -56,6 +59,7 @@ class Item {
 
     private:
 
+        int m_MaxEnd;
         int m_Endurance;
         int m_Damage;
         int m_DropChance;

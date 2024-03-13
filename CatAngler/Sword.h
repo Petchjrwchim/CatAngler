@@ -15,6 +15,11 @@ public:
 
     std::string getDescription() override;
 
+
+    Sword* clone() const override {
+        return new Sword(*this);
+    }
+
     void use() override;
     void draw() override;
 

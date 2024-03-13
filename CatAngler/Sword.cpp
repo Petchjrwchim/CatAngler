@@ -5,6 +5,7 @@ Sword::Sword(int quantity, const std::string& name, const std::string& type, con
 	: Item(quantity, name, type, texture, price)
 {
 	setEndurance(endurance);
+	setMaxEndurance(endurance);
 	setDamage(damage);
 
 	m_AimationS = new Animation();

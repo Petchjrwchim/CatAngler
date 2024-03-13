@@ -141,7 +141,7 @@ void Inventory::renderInventoryBar(int x, int y, int *usingSlot) {
             if (m_items[i]->getType() == "Weapon") {
 
                 SDL_Rect maxEnd = { newX - x + 7 , startY - y + 585, 50, 5 };
-                SDL_Rect currentEnd = { newX - x + 7, startY - y + 585, floor(m_items[i]->getEndurance() * 50 / 100), 5 };
+                SDL_Rect currentEnd = { newX - x + 7, startY - y + 585, floor(m_items[i]->getEndurance() * 50 / m_items[i]->getMaxEndurance()), 5};
 
                 SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 255, 0, 0, 0);
                 SDL_RenderFillRect(Engine::GetInstance()->GetRenderer(), &maxEnd);

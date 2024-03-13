@@ -1,6 +1,8 @@
 #include "FishingRod.h"
 #include "Engine.h"
 #include "TextureManager.h"
+#include "SoundManager.h"
+#include "TextManager.h"
 #include "Cat.h"
 #include <iostream>
 
@@ -170,15 +172,19 @@ void FishingRod::use()
     }
 
     if (animate && ropeLength > 10) {
- 
+
+        
+
         if (animationProgress > 1.0f) {
             qteEvent();
         }
         else {
+            SoundManager::GetInstance()->playSoundEffect("water_splash");
             animationProgress += 0.01f;
         }
 
         if (animationProgress == 0.99f) {
+            
             QTEstate += 1;
         }
         
@@ -258,7 +264,7 @@ int FishingRod::getY()
 }
 
 void FishingRod::qteEvent(int x, int y) {
-
+    Vector2D cam = Camera::GetInstance()->getPosition();
     
 
     if (QTEstate <= 3 && (SDL_GetTicks() - oldPressStartTime) / 1000 > ropeLength/100 + waitTime) {
@@ -293,6 +299,9 @@ void FishingRod::qteEvent(int x, int y) {
             animationProgress = 0.0f;
             ropeLength = 0;
             QTEstate = 0;
+        }
+        else {
+            TextManager::GetInstance()->renderText("Click!", x + cam.X + 400, y + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 50);
         }
 
         //std::cout << "hook, " << QTEstate <<", "<< shakeTime << ", " << waitTime << std::endl;

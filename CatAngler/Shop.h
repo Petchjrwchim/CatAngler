@@ -40,6 +40,7 @@ private:
 
     std::string m_currentTab = "buy";
     bool m_isVisible;     
+    std::vector<Item> m_shopitems;
     std::vector<Item*> m_items; 
     std::vector<Item*> current_Items;
     void initButtons();     

@@ -37,7 +37,6 @@ void SaveManager::saveGameover(const std::string& filename, const std::unordered
     }
 }
 
-
 std::unordered_map<std::string, int> SaveManager::loadGame(const std::string& filename)
 {
     std::unordered_map<std::string, int> data;

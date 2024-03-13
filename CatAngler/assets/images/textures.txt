@@ -27,6 +27,9 @@ squid_dive,assets\images\squid.png
 squid_attack,assets\images\squid.png
 
 sword,assets\images\sword.png
+goldsword,assets\images\goldsword.png
+attack,assets\images\attack.png
+
 interact_F,assets\images\interact_F.png
 coin,assets\images\coin.png
 shopkeeper,assets\images\Shopkeeper.png
@@ -45,6 +48,7 @@ wallpaper,assets\images\wallpaper.png
 healthbar,assets\images\healthbar.png
 night,assets\images\night.png
 logo,assets\images\logo.png
+tab,assets\images\tab.png
 fishcollection_bg,assets\images\fishcollection_bg.png
 fishcan,assets\images\FishCan.png
 

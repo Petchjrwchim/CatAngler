@@ -46,6 +46,7 @@ void Input::listen()
             m_MouseMoved = true; // Set the flag if mouse motion is detected
             break;
         }
+        handleSliderEvents(event);
     }
 }
 
@@ -129,7 +130,7 @@ void Input::handleButtonEvents() {
     int x, y;
     SDL_GetMouseState(&x, &y);
 
-    //std::cout << m_Buttons.size() << std::endl;
+    std::cout << m_Buttons.size() << std::endl;
 
     for (auto& button : m_Buttons) {
         bool isInside = (x >= button.rect.x) && (x <= (button.rect.x + button.rect.w)) &&
@@ -151,5 +152,21 @@ void Input::renderButtons(SDL_Renderer* renderer) {
         if (currentWindow == button.page) {
             SDL_RenderFillRect(renderer, &button.rect);
         }
+    }
+}
+
+void Input::addSlider(int x, int y, SDL_Renderer* renderer) {
+    m_Sliders.emplace_back(x, y, renderer);
+}
+
+void Input::renderSliders() {
+    for (auto& slider : m_Sliders) {
+        slider.draw();
+    }
+}
+
+void Input::handleSliderEvents(const SDL_Event& e) {
+    for (auto& slider : m_Sliders) {
+        slider.handleEvent(e);
     }
 }
