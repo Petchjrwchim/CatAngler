@@ -47,7 +47,7 @@ void Enemy::update(float dt)
 
 	int IsKnockback = 1;
 	if (m_Health != h) { 
-		IsKnockback = -200; 
+		IsKnockback = -20; 
 		std::cout << "knock" << std::endl;
 	}
 	int lastX = m_Transform->X;

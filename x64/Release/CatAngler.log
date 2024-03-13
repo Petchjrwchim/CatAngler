@@ -1,0 +1,392 @@
+﻿  Animation.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Animation.cpp(12,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Animation.cpp(12,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Camera.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Camera.cpp(13,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Camera.cpp(14,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Camera.cpp(32,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Camera.cpp(32,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Cat.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Cat.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Cat.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(18,6): warning C4101: 'xPos': unreferenced local variable
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(42,23): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(49,15): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(54,20): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(59,20): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(74,84): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(74,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(89,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(89,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(107,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(107,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(110,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(110,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(116,39): warning C4838: conversion from 'double' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(116,39): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(119,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(119,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(120,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(120,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(121,63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(121,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(125,80): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(125,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(126,90): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(126,78): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(220,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(220,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(228,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(228,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(242,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(242,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(272,93): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.cpp(272,76): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Collider.cpp
+  CollisionHandler.cpp
+  Enemy.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(53,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(54,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(95,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(95,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(97,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(100,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(100,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(102,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(105,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(105,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(112,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Enemy.cpp(113,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Engine.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Engine.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Engine.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Engine.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Engine.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Engine.cpp(136,12): warning C4101: 'event': unreferenced local variable
+  Fish.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Fish.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Fish.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Fish.cpp')
+  
+  FishingManager.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'FishingManager.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FishingManager.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FishingManager.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingManager.cpp(73,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingManager.cpp(126,112): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingManager.cpp(127,118): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingManager.cpp(139,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  FishingRod.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'FishingRod.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FishingRod.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FishingRod.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'FishingRod.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(37,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(38,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(40,44): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(43,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(43,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(92,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(93,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(96,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(96,28): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(104,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(104,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(121,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(125,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(125,28): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(133,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(133,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(143,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(270,70): warning C4018: '>': signed/unsigned mismatch
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(304,81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\FishingRod.cpp(304,72): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Food.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Food.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Food.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Food.cpp')
+  
+  GameObject.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'GameObject.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'GameObject.cpp')
+  
+  GameState.cpp
+  Input.cpp
+  Inventory.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Inventory.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Inventory.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Inventory.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Inventory.cpp(60,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Inventory.cpp(131,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Inventory.cpp(131,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Inventory.cpp(144,78): warning C4838: conversion from 'double' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Inventory.cpp(144,78): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Inventory.cpp(178,173): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Inventory.cpp(178,152): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Item.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Item.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Item.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Item.cpp')
+  
+  LootTable.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'LootTable.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'LootTable.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'LootTable.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\LootTable.cpp(22,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  main.cpp
+  Menu.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(47,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(47,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(48,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(48,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(49,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(49,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(50,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(50,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(52,74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(52,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(53,77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(53,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(54,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(54,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(77,72): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(77,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(78,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(78,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(79,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(79,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(80,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(80,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(85,92): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(85,79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(91,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(91,85): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(92,101): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(92,88): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(93,99): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(93,86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(100,72): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(100,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(101,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(101,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(102,81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(102,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(110,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(110,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(113,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(113,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(116,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(116,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(156,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(156,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(168,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(168,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(173,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(173,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(180,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(180,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(187,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Menu.cpp(187,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Play.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Play.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Play.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Play.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Cat.h(1,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Play.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(121,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(121,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(183,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(183,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(185,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(185,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(187,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(187,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(188,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(188,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(189,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(189,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(191,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(191,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(192,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(192,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(193,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(193,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(208,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(208,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(213,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(213,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(218,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(218,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(224,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(224,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(261,77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(261,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(262,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(262,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(265,97): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(265,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(275,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(275,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(276,94): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(276,78): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(277,80): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(277,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(280,88): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Play.cpp(280,72): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Compiling...
+  Point.cpp
+  RigidBody.cpp
+  SaveManager.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'SaveManager.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'SaveManager.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'SaveManager.cpp')
+  
+  Shop.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Shop.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Shop.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Shop.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Shop.cpp(118,27): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Slider.cpp
+  SoundManager.cpp
+  Sword.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Character.h(2,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Sword.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(19,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Sword.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\GameObject.h(20,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Sword.cpp')
+  
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Sword.cpp(69,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Sword.cpp(69,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TextManager.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextManager.cpp(59,31): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextManager.cpp(59,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextManager.cpp(59,42): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextManager.cpp(59,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  TextureManager.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(61,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(61,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(61,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(61,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(61,51): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(61,51): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(61,63): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(61,63): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(68,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(68,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(68,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(68,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(78,25): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(78,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(78,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(78,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(78,51): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(78,51): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(78,63): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\TextureManager.cpp(78,63): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Tile.cpp
+  Timer.cpp
+C:\Users\hp\Documents\GitHub\CatAngler\CatAngler\Timer.cpp(13,27): warning C4244: '=': conversion from 'Uint32' to 'float', possible loss of data
+  Transform.cpp
+  Vector2D.cpp
+LINK : fatal error LNK1181: cannot open input file 'SDL2.lib'

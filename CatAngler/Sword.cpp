@@ -1,5 +1,6 @@
 #include "Sword.h"
 #include "CollisionHandler.h"
+#include "SoundManager.h"
 
 Sword::Sword(int quantity, const std::string& name, const std::string& type, const std::string& texture, int price, int endurance, int damage)
 	: Item(quantity, name, type, texture, price)
@@ -32,6 +33,7 @@ void Sword::use()
 		for (Enemy* i : m_enemies) {
 			if (i->getHealth() > 0) {
 				if (CollisionHandler::GetInstance()->checkCollision(m_Collider->get(), i->getCollider()->get())) {
+					SoundManager::GetInstance()->playSoundEffect("stab");
 					std::cout << "hit" << std::endl;
 					i->reduceHealth(getDamage());
 					setEndurance(getEndurance() - 2);

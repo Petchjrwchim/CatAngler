@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "Engine.h"
 #include "TextManager.h"
+#include <filesystem>
 #include "SaveManager.h"
 #include "TextureManager.h"
 #include "SoundManager.h"
@@ -81,6 +82,12 @@ void Menu::renderSaveScreen(Vector2D cam)
 
     for (int i = 1; i <= 3; i++) {
         std::unordered_map<std::string, int> loadedData = SaveManager::GetInstance()->loadGame("savegame" + std::to_string(i) + ".txt");
+        TextureManager::GetInstance()->draw("button", 230 + 200 * (i - 1) + cam.X, 510 + cam.Y, 64, 64, SDL_FLIP_NONE, 2);
+        std::string filename = "savegame" + std::to_string(i) + ".txt";
+        Input::GetInstance()->addButton(230 + 200 * (i - 1) + cam.X, 510 + cam.Y, 64, 64, "save", [this, filename]() {
+            std::cout << "delete slot1" << std::endl;
+            std::filesystem::remove(filename);
+            }, []() {});
         if (loadedData["Health"] == NULL || loadedData["Health"] <= 0) {
             TextManager::GetInstance()->renderText("Empty", 125 + 200 * (i-1) + cam.X, 300 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 50);
         }
@@ -93,6 +100,7 @@ void Menu::renderSaveScreen(Vector2D cam)
             TextManager::GetInstance()->renderText(coin.c_str(), 125 + 200 * (i - 1) + cam.X, 320 + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 20);
         }
     }
+    //Input::GetInstance()->renderButtons(Engine::GetInstance()->GetRenderer());
 }
 
 void Menu::renderSettings(Vector2D cam)
@@ -190,6 +198,7 @@ void Menu::initButtons()
         startGame();
         this->currentTab = "menu";
         }, []() {});
+
 }
 
 void Menu::setCursor(const char* imagePath)

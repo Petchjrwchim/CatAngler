@@ -79,7 +79,7 @@ void FishingManager::renderFish()
 
     // Check if we need to add a new fish
     while (randomFish.size() <= 10) {
-        int spx = rand() % 1280;
+        int spx = rand() % 1080;
         int spy = rand() % 960;
 
         // Check if the new fish is too close to existing fish
@@ -164,7 +164,7 @@ void FishingManager::checkFishing(int x, int y, std::string map)
             int chance = rand() % 10;
             caughtFish = NULL;
             Enemy* enemy;
-            if (chance > 3) {
+            if (chance > 10) {
                 enemy = new Enemy(new Properties("shark", x, y, 32, 32), 10, 4);
             }
             else {

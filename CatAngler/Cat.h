@@ -7,7 +7,7 @@
 #include "Inventory.h"
 #include "Vector2D.h"
 
-#define SPEED 50.0f
+#define SPEED 20.0f
 
 class Cat : public Character {
 
@@ -20,7 +20,7 @@ private:
 	bool m_IsShopping = false;
 	int m_IsUsing = 0;
 	int current_Equip = 1;
-	int m_Coin = 10000;
+	int m_Coin;
 	int* catHealth = NULL;
 	SDL_RendererFlip m_Flip;
 

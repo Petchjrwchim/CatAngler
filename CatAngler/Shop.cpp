@@ -102,7 +102,7 @@ void Shop::initButtons() {
         }, []() {});
 
     Input::GetInstance()->addButton(m_X + 568, m_Y + 437, 98, 54, "shop", [this]() {
-        if (get_CurrentTab() == "buy" && !current_Items.empty() && m_Selecting < current_Items.size()) {
+        if (get_CurrentTab() == "buy" && !current_Items.empty() && current_Items.size() + 1 <= 10) {
             Item* selectedItem = current_Items[this->get_Selecting()];
             int itemPrice = selectedItem->getPrice();
             if (playerCoin - itemPrice >= 0) {

@@ -15,7 +15,6 @@ FishingManager* fish_manager;
 
 Cat::Cat(Properties* props, int health) : Character(props)
 {
-	int xPos;
 	m_Flip = SDL_FLIP_NONE;
 
 	m_RigidBody = new RigidBody();

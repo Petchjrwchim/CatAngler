@@ -60,6 +60,7 @@ bool Engine::init()
 
 	SoundManager::GetInstance()->loadMusic("bgmusic", "assets/sound/bg_sound.mp3");
 	SoundManager::GetInstance()->loadSoundEffect("water_splash", "assets/sound/water_splash.mp3");
+	SoundManager::GetInstance()->loadSoundEffect("stab", "assets/sound/stab.mp3");
 
 	TextureManager::GetInstance()->parseTexture("assets/images/textures.txt");
 	

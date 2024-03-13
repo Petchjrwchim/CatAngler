@@ -217,7 +217,7 @@ void Play::initButton()
 		}, []() {});
 	Input::GetInstance()->addButton(cam.X + 708, cam.Y + 60, 48, 48, "fishcollection", [this]() {
 		std::cout << "collection" << std::endl;
-		Input::GetInstance()->deleteButton(24); // delete excess button
+		Input::GetInstance()->deleteButton(46); // delete excess button
 		this->IsCollection = !IsCollection;
 		}, []() {});
 

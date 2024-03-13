@@ -130,7 +130,7 @@ void Input::handleButtonEvents() {
     int x, y;
     SDL_GetMouseState(&x, &y);
 
-    std::cout << m_Buttons.size() << std::endl;
+    //std::cout << m_Buttons.size() << std::endl;
 
     for (auto& button : m_Buttons) {
         bool isInside = (x >= button.rect.x) && (x <= (button.rect.x + button.rect.w)) &&

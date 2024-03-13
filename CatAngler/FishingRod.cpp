@@ -179,9 +179,11 @@ void FishingRod::use()
             qteEvent();
         }
         else {
-            SoundManager::GetInstance()->playSoundEffect("water_splash");
+            
             animationProgress += 0.01f;
         }
+
+        if(animationProgress < 0.99f && animationProgress > 0.97f) SoundManager::GetInstance()->playSoundEffect("water_splash");
 
         if (animationProgress == 0.99f) {
             
@@ -301,7 +303,7 @@ void FishingRod::qteEvent(int x, int y) {
             QTEstate = 0;
         }
         else {
-            TextManager::GetInstance()->renderText("Click!", x + cam.X + 400, y + cam.Y, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 50);
+            TextManager::GetInstance()->renderText("Click!", x + cam.X + 370, y + cam.Y + 250, "assets/fonts/VCR_OSD_MONO_1.001.ttf", 50);
         }
 
         //std::cout << "hook, " << QTEstate <<", "<< shakeTime << ", " << waitTime << std::endl;
